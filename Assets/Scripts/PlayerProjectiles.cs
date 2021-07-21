@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PlayerProjectiles : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D _rb2d;
+    public Projectile projectile;
 
-    [SerializeField] float speed = 20f;
-
-    public GameObject player;
-    
-    void Start()
-    {
-        //player = GameObject.FindGameObjectWithTag("Player");
-      //  _rb2d.velocity = player.transform.position.normalized * speed;
+    void Start(){
+        transform.Rotate(0,0,90);
     }
+    
+    // void OnCollisionEnter(Collider2D other){
 
+    // }
    
 }
