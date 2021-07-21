@@ -12,8 +12,8 @@ public class PlayerProjectiles : MonoBehaviour
     
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        _rb2d.velocity = player.transform.position * speed;
+        //player = GameObject.FindGameObjectWithTag("Player");
+      //  _rb2d.velocity = player.transform.position.normalized * speed;
     }
 
    

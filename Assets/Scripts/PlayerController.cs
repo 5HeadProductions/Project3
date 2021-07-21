@@ -8,14 +8,26 @@ public class PlayerController : MonoBehaviour
 
     	public float moveSpeed;
         public GameObject bulletPrefab;
+        public GameObject chargedBulletPrefab;
 
         public Transform rocketSprite;
+
+        public float chargeTimer = 0;
 
     void Update(){
         RotatePlayer();
 
-        if(Input.GetKeyDown(KeyCode.Space)){
-            ChargeShot();
+        if(Input.GetKey(KeyCode.Space)){
+            chargeTimer += Time.deltaTime;
+        }
+        if(Input.GetKeyUp(KeyCode.Space) && chargeTimer > 2){
+            ChargeFire();
+            chargeTimer = 0;
+        }
+        else if(Input.GetKeyUp(KeyCode.Space) && chargeTimer < 2){
+            
+            Fire();
+            chargeTimer = 0;
         }
     }
 
@@ -26,9 +38,16 @@ public class PlayerController : MonoBehaviour
 		rocketSprite.localEulerAngles = new Vector3(0, 0, Input.GetAxis("Horizontal") * -30);
 	}
 
-    void ChargeShot(){
-      Instantiate(bulletPrefab,rocketSprite.position,Quaternion.identity);
+//Instantiates a bullet prefab
+    void Fire(){
+      GameObject bullet = Instantiate(bulletPrefab,rocketSprite.position,transform.rotation);
 
-      
+      bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * 100;
+    }
+
+    void ChargeFire(){
+        GameObject bullet = Instantiate(chargedBulletPrefab,rocketSprite.position,transform.rotation);
+
+      bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * 100;
     }
 }
