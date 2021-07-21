@@ -12,8 +12,8 @@ public class ExampleScript : MonoBehaviour
 
     void Update()
     {
-        if(this.gameObject.transform.position.x > 1100f)Destroy(this.gameObject);
-        if(this.gameObject.transform.position.y > 645f)Destroy(this.gameObject);
+        if(this.gameObject.transform.position.x > 1200f)Destroy(this.gameObject);
+        if(this.gameObject.transform.position.y > 790f)Destroy(this.gameObject);
         
         z = 1 - z;
         this.gameObject.transform.position += new Vector3(.1f,.1f,0f);
