@@ -170,13 +170,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: spaceship_2
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: ChargeTimer
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -228,25 +222,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 110220550}
     m_Position: {x: -10, y: 260, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -1537166017836212060}
-    m_Position: {x: -360, y: 430, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6012454971668425515}
-    m_Position: {x: -370, y: 580, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7876710759361238148}
-    m_Position: {x: 20, y: 590, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6755969292276042762}
-    m_Position: {x: 40, y: 440, z: 0}
   m_ChildStateMachines: []
-  m_AnyStateTransitions:
-  - {fileID: 3595954833796519597}
+  m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: -210, y: 510, z: 0}
   m_EntryPosition: {x: 340, y: 240, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

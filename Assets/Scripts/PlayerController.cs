@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
     //Script is meant to handle player movement, firing and anything else related to the players actions
 
+        PhotonView view;
     	public float moveSpeed;
         
 
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         public GameObject charge3;
 
         void Start(){
+            view = gameObject.GetComponent<PhotonView>();
             SetBullet(tier1Bullet.bulletPrefab);
             charge1.SetActive(false);
             charge2.SetActive(false);
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
     void Update(){
+        if(view.IsMine)
         RotatePlayer();
 
         WeaponCharge();
