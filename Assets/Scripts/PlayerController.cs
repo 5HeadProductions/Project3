@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
 //Instantiates a bullet prefab
     void Fire(){
-      GameObject bullet = Instantiate(_currentBullet,rocketSprite.position,transform.rotation);
+      GameObject bullet = PhotonNetwork.Instantiate(_currentBullet.name,rocketSprite.position,transform.rotation);
 
       bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * 100;
 
