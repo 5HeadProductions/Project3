@@ -39,4 +39,8 @@ public class ButtonManager : MonoBehaviour
         Debug.Log("APPLICATION QUITING");
         Application.Quit();
     }
+
+    public void LoadingScene(){
+        SceneManager.LoadScene("LoadingScene");
+    }
 }
