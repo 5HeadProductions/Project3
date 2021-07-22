@@ -39,10 +39,11 @@ public class PlayerController : MonoBehaviour
 
 
     void Update(){
-        if(view.IsMine)
+        if(view.IsMine){
         RotatePlayer();
 
         WeaponCharge();
+        }
 
         
     }
