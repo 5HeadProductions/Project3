@@ -36,6 +36,7 @@ public class ButtonManager : MonoBehaviour
     }
     
     public void ExitButton(){
+        Debug.Log("APPLICATION QUITING");
         Application.Quit();
     }
 }

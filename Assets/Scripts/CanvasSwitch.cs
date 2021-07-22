@@ -5,24 +5,38 @@ using UnityEngine.UI;
 public class CanvasSwitch : MonoBehaviour
 {
 
-    [SerializeField]private Animator playAnimator;
-    [SerializeField]private Animator mmAnimator;
- //   public CanvasGroup mmCanvas, playCanvas;
+    [SerializeField]private GameObject mmCanvas, playCanvas;
+    [SerializeField]private CanvasGroup mmCanvasGroup, playCanvasGroup;
+    [SerializeField]private Animator playAnimator,mmAnimator;
 
-    public void SwitchToPlay(){
-        playAnimator.SetTrigger("Start");
-        mmAnimator.SetTrigger("Start");
-
-    //     animator.SetBool("Done", true);
-   //     mmCanvas.alpha = 0;
-   //     playCanvas.alpha = 1;
+//player clicks on the play button
+    public void SwitchToPlay(){ 
+       playAnimator.SetTrigger("Start");
+       mmAnimator.SetTrigger("Start");
+     StartCoroutine(Fade());
+       
     }
+
+    //players clicks on the back button from Play Canvas
     public void SwitchToMM(){
-//animator.SetBool("Done", true);
-   //     playCanvas.alpha = 0;
-   //     mmCanvas.alpha = 1;
+        StopAllCoroutines();
+      StartCoroutine(FadeIn());
+        playAnimator.SetBool("Done", true);
+      
+ 
     }
 
+    IEnumerator Fade(){
+         yield return new WaitForSeconds(1.5f);
+          mmCanvas.SetActive(false);
+       mmCanvasGroup.interactable = false;
+    }
 
+     IEnumerator FadeIn(){
+          mmCanvas.SetActive(true);
+         yield return new WaitForSeconds(1.5f);
+          mmAnimator.SetBool("Done", true);
+        mmCanvasGroup.interactable = false;
+    }
 
 }
