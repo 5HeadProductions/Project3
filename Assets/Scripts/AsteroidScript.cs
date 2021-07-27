@@ -41,7 +41,7 @@ public class AsteroidScript : MonoBehaviour
         transform.eulerAngles = currentEulerAngles;
     }
 
-    public void Disapear(){
+    public void Disapear(){ // destroying the asteroids in the MM
         _audio.Play("Asteroid");
         this.gameObject.SetActive(false);
     }

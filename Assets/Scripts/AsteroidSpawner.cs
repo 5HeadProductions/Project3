@@ -6,7 +6,7 @@ public class AsteroidSpawner : MonoBehaviour
 {
 
     public GameObject asteroid;
-    private float spawnRate = 2f, timeToCross = 0;
+    private float spawnRate = 2f, timeToCross = 0; // how many to spawn in back to back
     // Update is called once per frame
     void Update()
     {
@@ -14,7 +14,7 @@ public class AsteroidSpawner : MonoBehaviour
             GameObject obj = ObjectPooler.Instance.GetPooledObject();
             if(obj == null) return;
             
-            GameObject parent = GameObject.Find("NewMMPanel");
+            GameObject parent = GameObject.Find("NewMMPanel"); // spawn them in the correct canvas
             if(parent == null){
                 parent = GameObject.Find("Play Canvas");
             }
