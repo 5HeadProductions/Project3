@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         void Start(){
             
-            _pauseCanvas = GameObject.Find("Pause");
+            _pauseCanvas = GameObject.Find("PauseCanvas");
             _pauseCanvas.SetActive(false);
             //View component for the photon network
             view = gameObject.GetComponent<PhotonView>();
@@ -141,9 +141,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void Pause(){
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)){
+        _pauseCanvas.SetActive(false);
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape)){
             _pauseCanvas.SetActive(true);
         }
+        
+
     }
 
 
