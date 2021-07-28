@@ -5,6 +5,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
+
+    public GameObject enemySpawner;
+
+    public GameObject pain;
+
+    private bool pause = false;
     public int[] basicPerRound;
     public int[] suicidePerRound;
     public int[] bossPerRound;
@@ -20,11 +26,19 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pause == true){
         
+            RotateSpawner();
+        }
     }
 
-    public void ChangePosition(){
+    public void SpawnEnemy(){
         Debug.Log(basicPerRound.Length.ToString());
-        Instantiate(basic.shipType, gameObject.transform.position, gameObject.transform.rotation); 
+        pain = Instantiate(basic.shipType, enemySpawner.transform.position,Quaternion.identity); 
+        pause = true;
+        
+    }
+    void RotateSpawner(){
+        transform.eulerAngles += new Vector3(0,0,(10f * Time.deltaTime));
     }
 }
