@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
         private GameObject _pauseCanvas;
 
+        [SerializeField]private Turret turret;
+
         void Start(){
             
             _pauseCanvas = GameObject.Find("PauseCanvas");
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if(view.IsMine){
         RotatePlayer();
         Pause();
+        TempPurchase();
 
 
         //this is a check so fire cannot be called immediatly
@@ -149,6 +152,12 @@ public class PlayerController : MonoBehaviour
         }
         
 
+    }
+
+    void TempPurchase(){
+        if(Input.GetKeyDown(KeyCode.T)){
+            PhotonNetwork.Instantiate(turret.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+        }
     }
 
 

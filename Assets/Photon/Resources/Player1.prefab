@@ -61,6 +61,7 @@ MonoBehaviour:
   charge1: {fileID: 3872074298543273569}
   charge2: {fileID: 7835008026891528855}
   charge3: {fileID: 2633173631296405554}
+  turret: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
 --- !u!114 &2559898320127527634
 MonoBehaviour:
   m_ObjectHideFlags: 0
