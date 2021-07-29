@@ -661,13 +661,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 1827102726}
-  pain: {fileID: 0}
-  basicPerRound: 00000000
-  suicidePerRound: 00000000
-  bossPerRound: 00000000
-  basic: {fileID: 11400000, guid: be268f6f93e7d7d42af891d35be5ca61, type: 2}
-  suicide: {fileID: 11400000, guid: 077b8d8df99507849842ff09cf50cc48, type: 2}
-  boss: {fileID: 11400000, guid: 89e5e8cdbe9af814a8aeb78ef4a40821, type: 2}
+  waves:
+  - waveNum: 1
+    numOfEnemies: 5
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    enemySpawnRate: 3
+  - waveNum: 2
+    numOfEnemies: 10
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    enemySpawnRate: 5
+  - waveNum: 3
+    numOfEnemies: 15
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    enemySpawnRate: 5
+  - waveNum: 4
+    numOfEnemies: 22
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    enemySpawnRate: 5
+  - waveNum: 5
+    numOfEnemies: 25
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    enemySpawnRate: 5
+  canSpawn: 1
 --- !u!1 &1813423555
 GameObject:
   m_ObjectHideFlags: 0

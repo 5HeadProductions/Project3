@@ -6,6 +6,6 @@ public class StartRound : MonoBehaviour
 {
 
   public void StartR(){
-    EnemySpawner.Instance.SpawnEnemy();
+    EnemySpawner.Instance.BeginRound();
   }
 }
