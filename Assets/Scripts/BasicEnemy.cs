@@ -27,7 +27,7 @@ public class BasicEnemy : MonoBehaviour
     void FixedUpdate(){
         if(!isMoving) return ;
 
-        rb.AddForce(-transform.up * moveSpeed, ForceMode2D.Impulse);
+        rb.AddForce(-transform.up * moveSpeed, ForceMode2D.Force);
     }
 
     ///collison when they hit turret or earth

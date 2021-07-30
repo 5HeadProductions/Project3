@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5515551583737132467}
   m_Layer: 0
   m_Name: BasicShip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062837878321723779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9344, y: 2.0275, z: 0}
-  m_LocalScale: {x: 2.6531746, y: 2.4844327, z: 0.8843915}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.572802, y: 1.4727718, z: 0.5242673}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 0}
   rb: {fileID: 5515551583737132467}
-  moveSpeed: 0.1
+  moveSpeed: 1
 --- !u!50 &5515551583737132467
 Rigidbody2D:
   serializedVersion: 4
