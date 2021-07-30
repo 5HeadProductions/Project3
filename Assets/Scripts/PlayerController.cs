@@ -35,7 +35,15 @@ public class PlayerController : MonoBehaviour
         public GameObject charge2;
         public GameObject charge3;
         ////////////////////////////////////////////////////////////////////////////////////////
+
+        private GameObject _pauseCanvas;
+
+        [SerializeField]private Turret turret;
+
         void Start(){
+            
+            _pauseCanvas = GameObject.Find("PauseCanvas");
+            _pauseCanvas.SetActive(false);
             //View component for the photon network
             view = gameObject.GetComponent<PhotonView>();
             //Sets the bullet prefab that will be instantiated if fire is called
@@ -53,6 +61,9 @@ public class PlayerController : MonoBehaviour
         //the if statement is so you only control one player
         if(view.IsMine){
         RotatePlayer();
+        Pause();
+        TempPurchase();
+
 
         //this is a check so fire cannot be called immediatly
         if(_timeUntilFire <= Time.time)
@@ -119,7 +130,7 @@ public class PlayerController : MonoBehaviour
     void DisplayCharge(){
         
         
-        if((_chargeTimer > bullet2Timer)){
+        if((_chargeTimer > bullet2Timer)){      
             charge1.SetActive(true);
         }
         if(_chargeTimer > bullet3Timer){
@@ -129,6 +140,24 @@ public class PlayerController : MonoBehaviour
         if(_chargeTimer > bullet4Timer){
             charge2.SetActive(false);
             charge3.SetActive(true);
+        }
+    }
+
+    void Pause(){
+        if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)){
+        _pauseCanvas.SetActive(false);
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape)){
+            _pauseCanvas.SetActive(true);
+        }
+        
+
+    }
+
+    void TempPurchase(){
+        if(Input.GetKeyDown(KeyCode.T)){
+            PhotonNetwork.Instantiate(turret.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            
         }
     }
 

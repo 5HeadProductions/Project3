@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - A
+  - PlacedTurret
+  - NewTurret
+  - Turret
   layers:
   - Default
   - TransparentFX
