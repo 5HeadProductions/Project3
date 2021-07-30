@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2ff0d8cdcba0649b977af92ee95b31, type: 3}
   m_Name: TurretTier1
   m_EditorClassIdentifier: 
+  turretTier: 1
   damage: 10
   health: 10
   range: 1

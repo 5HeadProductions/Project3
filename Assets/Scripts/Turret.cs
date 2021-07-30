@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Turret : ScriptableObject
 {
+    public int turretTier;
     public int damage;
     public int health;
     public int range;

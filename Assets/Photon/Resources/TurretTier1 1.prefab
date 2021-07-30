@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 8955091782017585378}
   - component: {fileID: 5535298702757132582}
   - component: {fileID: 904514930506285178}
+  - component: {fileID: -5972677341427713760}
   m_Layer: 0
   m_Name: TurretTier1 1
-  m_TagString: Untagged
+  m_TagString: NewTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,9 +160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 3470490177158463337}
-  turret: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
+  turretTier1: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
+  turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
+  turretTier3: {fileID: 11400000, guid: ad9b5a2e6ea04594c99cf69012b865fe, type: 2}
+  _currentTurret: {fileID: 0}
   aimArea: {fileID: 3470490177655658915}
   animator: {fileID: 3470490177291654265}
+  startTime: 0
 --- !u!95 &3470490177291654265
 Animator:
   serializedVersion: 3
@@ -242,6 +247,27 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!50 &-5972677341427713760
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3470490177291654242}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &3470490177655658915
 GameObject:
   m_ObjectHideFlags: 0

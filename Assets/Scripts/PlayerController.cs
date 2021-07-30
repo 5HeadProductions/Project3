@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
     void TempPurchase(){
         if(Input.GetKeyDown(KeyCode.T)){
             PhotonNetwork.Instantiate(turret.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            
         }
     }
 
