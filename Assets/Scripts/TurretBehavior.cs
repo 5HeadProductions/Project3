@@ -6,6 +6,7 @@ using Photon.Pun;
 public class TurretBehavior : MonoBehaviour
 {
     public Transform firePoint;
+    private Transform _playerFirePoint;
 
     [SerializeField]Turret turretTier1;
     [SerializeField]Turret turretTier2;
@@ -27,8 +28,9 @@ public class TurretBehavior : MonoBehaviour
     public float startTime;
 
     void Start(){
-        _currentTurret = turretTier1;
+        // _currentTurret = turretTier1;
         startTime = Time.time;
+        _playerFirePoint = GameObject.Find("PlayerFirePoint").transform;
     }
     
     void Update(){
@@ -37,10 +39,10 @@ public class TurretBehavior : MonoBehaviour
         if(temp != null)_target = temp.gameObject.transform;
 
         
-        if(Time.time > _timeUntilAttack  && _target != null){
+        if(Time.time > _timeUntilAttack  && _target != null && !_target.CompareTag("Turret")){
             animator.SetBool("Firing",true);
           
-            GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, _currentTurret.projectilePrefab.transform.rotation);
+            GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, firePoint.transform.rotation);
             Vector2 bulletDirection = (_target.transform.position - transform.position).normalized * 10;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y);
             _timeUntilAttack = Time.time + _currentTurret.fireRate;
@@ -61,26 +63,35 @@ public class TurretBehavior : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other){
-        if(this.startTime > other.gameObject.GetComponent<TurretBehavior>().startTime){
-        if(other.gameObject != null){
-        if(this.gameObject.CompareTag("NewTurret")){
+        //If statement ensures this code is only excecuted once by checking their start times
+        if(this.startTime < other.gameObject.GetComponent<TurretBehavior>().startTime && other.gameObject.CompareTag("Turret")){
+            //for the turrets of tier 1 combining
            if(_currentTurret.turretTier == 1){
-               this.tag = "PlacedTurret";
+               //Destroy both turrets
                PhotonNetwork.Destroy(this.gameObject);
-               Debug.Log("placed turret destroyed");
                PhotonNetwork.Destroy(other.gameObject);
-               Debug.Log("new turret destroyed turret destroyed");
-
-
-               //other.gameObject.GetComponent<TurretBehavior>()._currentTurret = turretTier2;
-
-               GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.position,
-                _currentTurret.turretPrefab.transform.rotation);
-
-                temp.tag = "PlacedTurret";
+            //Instantiate the tier 2 turret
+               GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, _playerFirePoint.position,
+                _playerFirePoint.rotation);
            }
-        }
-        }
+           //for turrets of tier 2 combining
+           else if(_currentTurret.turretTier == 2){
+               //Getting rid of the tier 1 turrets that spawn on top
+               if(other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1){
+                   Debug.Log("Can't combine different level turrets");
+                   PhotonNetwork.Destroy(other.gameObject);
+                   return;
+               }
+
+            
+               //Destroy both turrets
+               PhotonNetwork.Destroy(this.gameObject);
+               PhotonNetwork.Destroy(other.gameObject);
+            //Instantiate the tier 2 turret
+               GameObject temp = PhotonNetwork.Instantiate(turretTier3.turretPrefab.name, _playerFirePoint.position,
+                _playerFirePoint.rotation);
+           }
+        
         }
     }
 }

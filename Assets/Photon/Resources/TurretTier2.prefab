@@ -63,9 +63,10 @@ GameObject:
   - component: {fileID: 8978587990509827450}
   - component: {fileID: 5480298438052830398}
   - component: {fileID: 887703056657802722}
+  - component: {fileID: -6092845760950371143}
   m_Layer: 0
   m_Name: TurretTier2
-  m_TagString: NewTurret
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +79,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3527746630980940282}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 1.9, y: -2.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.8599, y: 1.8599, z: 1.8599}
   m_Children:
   - {fileID: 3527746631141399281}
@@ -179,7 +180,7 @@ MonoBehaviour:
   turretTier1: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
   turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
   turretTier3: {fileID: 11400000, guid: ad9b5a2e6ea04594c99cf69012b865fe, type: 2}
-  _currentTurret: {fileID: 0}
+  _currentTurret: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
   aimArea: {fileID: 3527746630548028475}
   animator: {fileID: 3527746630980940257}
   startTime: 0
@@ -263,6 +264,27 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!50 &-6092845760950371143
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527746630980940282}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &3527746631141399182
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3527746631141399281}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: TurretFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
