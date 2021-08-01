@@ -16,7 +16,15 @@ public class Earth : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D col){
+   public void OnCollisionEnter2D(Collision2D col){ // inner collider
+        if(col.transform.tag == "Suicide"){
+            Debug.Log("Crashed on Earth");
+            EnemySpawner.Instance.UpdateEnemyTracker();
+            col.gameObject.SetActive(false);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D col){ // outer collider
         if(col.transform.tag == "Enemy"){
             col.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }

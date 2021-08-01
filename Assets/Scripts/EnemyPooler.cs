@@ -48,4 +48,20 @@ public class EnemyPooler : MonoBehaviour
         }
         return null;
     }
+    public GameObject SpawnSuiEnemy(int numOfEnemies){
+        for(int i = 10; i < numOfEnemies; i++){
+            if(!list[i].activeInHierarchy){
+                return list[i];
+            }
+        }
+        return null;
+    }
+    public GameObject SpawnBossEnemy(int numOfEnemies){
+        for(int i = 20; i < numOfEnemies; i++){
+            if(!list[i].activeInHierarchy){
+                return list[i];
+            }
+        }
+        return null;
+    }
 }

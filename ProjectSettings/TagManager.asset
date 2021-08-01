@@ -8,6 +8,8 @@ TagManager:
   - PlacedTurret
   - NewTurret
   - Turret
+  - Enemy
+  - Suicide
   layers:
   - Default
   - TransparentFX
