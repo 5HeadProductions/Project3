@@ -61,7 +61,8 @@ MonoBehaviour:
   charge1: {fileID: 3872074298543273569}
   charge2: {fileID: 7835008026891528855}
   charge3: {fileID: 2633173631296405554}
-  turret: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
+  turretTier1: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
+  turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
 --- !u!114 &2559898320127527634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 147846, guid: e2a563409f05b26429e07cb45c0d2ea2, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 420902, guid: e2a563409f05b26429e07cb45c0d2ea2, type: 3}
       propertyPath: m_RootOrder

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   bulletPrefab: {fileID: 6421207923324575761, guid: 64c831ea2e7f6dc419142f233b33b4c1, type: 3}
+  timeUnitilNextBullet: 1

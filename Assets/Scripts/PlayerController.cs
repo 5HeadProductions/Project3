@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     //Script is meant to handle player movement, firing and anything else related to the players actions
 
@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
 
         private GameObject _pauseCanvas;
 
-        [SerializeField]private Turret turret;
+        [SerializeField]private Turret turretTier1;
+        [SerializeField]private Turret turretTier2;
 
+        private bool _unlockedTurretTier2;
         void Start(){
             
             _pauseCanvas = GameObject.Find("PauseCanvas");
@@ -53,6 +55,12 @@ public class PlayerController : MonoBehaviour
             charge1.SetActive(false);
             charge2.SetActive(false);
             charge3.SetActive(false);
+
+            //sets all the scriptable objects back to original damage
+            tier1Bullet.damage = 1;
+            tier2Bullet.damage = 2;
+            tier3Bullet.damage = 3;
+            tier4Bullet.damage = 4;
             
         }
 
@@ -154,13 +162,29 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void TempPurchase(){
+   void TempPurchase(){
+
         if(Input.GetKeyDown(KeyCode.T)){
-            PhotonNetwork.Instantiate(turret.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            if(!_unlockedTurretTier2)
+            Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            else
+            Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
             
         }
     }
 
+    public void setTier2Turret(){
+        _unlockedTurretTier2 = true;
+    }
 
-
+    [PunRPC]
+    public void DestroyGameObject(int gameObjectViewID){
+            PhotonView temp = PhotonView.Find(gameObjectViewID);
+            if(temp != null)
+            PhotonNetwork.Destroy(temp.gameObject);
+    
+    }
 }
+
+    
+

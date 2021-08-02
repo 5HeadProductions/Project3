@@ -8,5 +8,7 @@ public class Projectile : ScriptableObject
     
     public int damage;
     public GameObject bulletPrefab;
+
+    public float timeUnitilNextBullet;
     
 }
