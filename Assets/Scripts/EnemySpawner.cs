@@ -29,6 +29,19 @@ public class EnemySpawner : MonoBehaviour
     private int currentWaveNumber;
     private int numberOfEnemiesInWaveCounter = 0, enemyNum; // used to update the text field and used to tell the enemy pooler how many to set active
     private float timeBetweeSpawns;
+
+
+    /*
+
+        TODO: when 6 enemies need to be spawned 12 do bc it is spawning 2 at a time// needs fix
+            health for ship, stop and shoot, boss spawning
+
+
+
+
+    */
+    private int enem = 12;
+    private int temp = 12;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +55,12 @@ public class EnemySpawner : MonoBehaviour
         if(pause == true){
              currentWave = waves[currentWaveNumber];
             waveRound.text = currentWave.waveNum.ToString();
-            if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){
-                enemyNum = currentWave.numOfEnemies;
+            if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){ // doesn't decrement count of the text until the ship is destroyed
+                enemyNum = currentWave.numOfEnemies; // used to spawn enemies
                 numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
+                if(currentWave.waveNum >= 2){
+                enemiesInWave.text = "Enemies remaining " + temp.ToString();
+                }else
                 enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
             } 
             SpawnWave();
@@ -116,50 +132,59 @@ public class EnemySpawner : MonoBehaviour
                 if(enemyNum % 2 == 0){
                     //evenly spawn basic and suicide ships
                      basicCount = enemyNum / 2;
-                     suiCount = (enemyNum / 2) + 10;
-                     Debug.Log(suiCount.ToString());         
+                     suiCount = enemyNum / 2;       
                      BasicEnemies(basicCount);
                      SuicideEnemies(suiCount);
                   
                  }
+
             }else{
+
                 BasicEnemies(enemyNum);
             }
-            currentWave.numOfEnemies--;         //////change how the number of enemies in the round are being tracked
-            timeBetweeSpawns = Time.time + currentWave.enemySpawnRate; 
+            currentWave.numOfEnemies--;   //only subtract when they spawn in
             if(currentWave.numOfEnemies == 0){  // keeping track of how many enemies are supposed to spawn in each wave ////
                 canSpawn = false;
+                
             }
+            
+
+            timeBetweeSpawns = Time.time + currentWave.enemySpawnRate; 
         }
     }
 
     public void UpdateEnemyTracker(){   /// update the text field which will show how many enemies are in each round and update the counter as they get killed
         numberOfEnemiesInWaveCounter--;
+        if(currentWave.waveNum >= 2){    
+            temp --; 
+        enemiesInWave.text = "Enemies remaining " + temp.ToString();
+        }else
         enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
     }
 
 
     public void SuicideEnemies(int max){  // enables the suicide ships across from the spawn position of the basic enemy
-            GameObject obj = EnemyPooler._Instance.SpawnSuiEnemy(max);
+            GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy(max);
             if(obj == null) return;   
             obj.SetActive(true);
             obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; 
             }
-    public void BasicEnemies(int max){ // enables the basic ship
+    public void BasicEnemies(int max){ // enables the basic ship        
             GameObject obj = EnemyPooler._Instance.SpawnEnemy(max);
             if(obj == null)return;   
             obj.SetActive(true);
             obj.transform.position = enemySpawner.transform.position;
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+           
     }
 
     public void Boss(int max){ // enables the boss ship
-            GameObject obj = EnemyPooler._Instance.SpawnBossEnemy(max + 20);
-            if(obj == null)return;   
-            obj.SetActive(true);
-            obj.transform.position = new Vector3 (enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
-            obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+         //   GameObject obj = EnemyPooler._Instance.SpawnBossEnemy(max + 20);
+            // if(obj == null)return;   
+            // obj.SetActive(true);
+            // obj.transform.position = new Vector3 (enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            // obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
 }
