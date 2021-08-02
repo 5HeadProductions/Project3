@@ -984,9 +984,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.021343946, y: 0}
   serializedVersion: 2
-  m_Radius: 1.28
+  m_Radius: 1.5147841
 --- !u!1 &1561193052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,45 +1108,11 @@ MonoBehaviour:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     enemySpawnRate: 1
   - waveNum: 2
-    numOfEnemies: 1
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 3
-    numOfEnemies: 1
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 4
-    numOfEnemies: 1
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 5
-    numOfEnemies: 10
+    numOfEnemies: 12
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
-    - {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 6
-    numOfEnemies: 10
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 7
-    numOfEnemies: 15
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
-    enemySpawnRate: 1
-  - waveNum: 7
-    numOfEnemies: 6
-    typesOfEnemies:
-    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
-    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
-    enemySpawnRate: 1
+    enemySpawnRate: 2
 --- !u!1 &1813423555
 GameObject:
   m_ObjectHideFlags: 0

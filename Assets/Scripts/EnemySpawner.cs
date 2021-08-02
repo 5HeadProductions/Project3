@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
             waveRound.text = currentWave.waveNum.ToString();
             if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){
                 enemyNum = currentWave.numOfEnemies;
-                numberOfEnemiesInWaveCounter = currentWave.numOfEnemies;
+                numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
                 enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
             } 
             SpawnWave();
@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void BeginRound(){// this is called when the player hits the start button on the top of their screen
         pause = true;
-        
+  
     }
 
     void RotateSpawner(){ // keeps the spawner moving around Earth
@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
         int suiCount; // used to determine how many suicide enemies to spawn
         //call the get spawn enemy script here
         if(canSpawn && timeBetweeSpawns < Time.time){ // spawning enemies at different time not all at once
-            if(currentWave.waveNum >= 5){ // suicides spawn on wave 5 and on
+            if(currentWave.waveNum >= 2){ // suicides spawn on wave 5 and on
                 if(currentWave.waveNum % 5 == 0){ // boss spawns in when the round is equally divisible by 5
                     //spawn a boss
                     switch (currentWave.waveNum)
@@ -113,28 +113,21 @@ public class EnemySpawner : MonoBehaviour
                         default: break;
                     }
                 }
-
                 if(enemyNum % 2 == 0){
-
                     //evenly spawn basic and suicide ships
                      basicCount = enemyNum / 2;
                      suiCount = (enemyNum / 2) + 10;
+                     Debug.Log(suiCount.ToString());         
                      BasicEnemies(basicCount);
                      SuicideEnemies(suiCount);
-                }else{
-
-                // the number is not even spawn more basic than suicides
-                basicCount = enemyNum / 2;
-                suiCount = (enemyNum % 2) + 10;
-                }
-                BasicEnemies(basicCount);
-                SuicideEnemies(suiCount);
+                  
+                 }
             }else{
                 BasicEnemies(enemyNum);
             }
-            currentWave.numOfEnemies--; /////////////////////////////////////////////////////////////////////////////////////////////change how the number of enemies in the round are being tracked
-            timeBetweeSpawns = Time.time + currentWave.enemySpawnRate;
-            if(currentWave.numOfEnemies == 0){ // keeping track of how many enemies are supposed to spawn in each wave
+            currentWave.numOfEnemies--;         //////change how the number of enemies in the round are being tracked
+            timeBetweeSpawns = Time.time + currentWave.enemySpawnRate; 
+            if(currentWave.numOfEnemies == 0){  // keeping track of how many enemies are supposed to spawn in each wave ////
                 canSpawn = false;
             }
         }
@@ -152,7 +145,6 @@ public class EnemySpawner : MonoBehaviour
             obj.SetActive(true);
             obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; 
-            Debug.Log("SPAWNED SUICIDE");
             }
     public void BasicEnemies(int max){ // enables the basic ship
             GameObject obj = EnemyPooler._Instance.SpawnEnemy(max);
