@@ -74,11 +74,11 @@ public class TurretBehavior : MonoBehaviourPun
                //Destroy both turrets
                Debug.Log(this.gameObject.name);
                Debug.Log(other.gameObject.name);
+            
+
                
-               //PhotonNetwork.Destroy(this.gameObject);
-               //PhotonNetwork.Destroy(other.gameObject);
                PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.MasterClient,this.GetComponent<PhotonView>().ViewID);
-               
+                PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.MasterClient,other.gameObject.GetComponent<PhotonView>().ViewID);
             //Instantiate the tier 2 turret
                GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, _playerFirePoint.position,
                 _playerFirePoint.rotation);
@@ -101,4 +101,12 @@ public class TurretBehavior : MonoBehaviourPun
         
         }
     }
+
+    // [PunRPC]
+    // public void DestroyGameObject(int gameObjectViewID){
+    //         PhotonView temp = PhotonView.Find(gameObjectViewID);
+    //         if(temp != null)
+    //         PhotonNetwork.Destroy(temp.gameObject);
+    
+    // }
 }

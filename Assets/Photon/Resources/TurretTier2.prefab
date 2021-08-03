@@ -184,6 +184,7 @@ MonoBehaviour:
   aimArea: {fileID: 3527746630548028475}
   animator: {fileID: 3527746630980940257}
   startTime: 0
+  PlayerController: {fileID: 0}
 --- !u!95 &3527746630980940257
 Animator:
   serializedVersion: 3

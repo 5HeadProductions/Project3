@@ -165,10 +165,12 @@ public class PlayerController : MonoBehaviourPun
    void TempPurchase(){
 
         if(Input.GetKeyDown(KeyCode.T)){
-            if(!_unlockedTurretTier2)
-            Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            if(!_unlockedTurretTier2){
+            PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            Debug.Log("Player is master client: " +  PhotonNetwork.IsMasterClient);
+            }
             else
-            Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
             
         }
     }
@@ -181,8 +183,7 @@ public class PlayerController : MonoBehaviourPun
     public void DestroyGameObject(int gameObjectViewID){
             PhotonView temp = PhotonView.Find(gameObjectViewID);
             if(temp != null)
-            PhotonNetwork.Destroy(temp.gameObject);
-    
+            Destroy(temp.gameObject);
     }
 }
 

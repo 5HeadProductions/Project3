@@ -167,6 +167,7 @@ MonoBehaviour:
   aimArea: {fileID: 3470490177655658915}
   animator: {fileID: 3470490177291654265}
   startTime: 0
+  PlayerController: {fileID: 0}
 --- !u!95 &3470490177291654265
 Animator:
   serializedVersion: 3
@@ -223,7 +224,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8955091782017585378}
