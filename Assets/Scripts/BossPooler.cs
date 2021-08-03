@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPooler : MonoBehaviour
+public class BossPooler : MonoBehaviour
 {
-
-
-    public static EnemyPooler _Instance;
+    public static BossPooler _Instance;
     public GameObject enemySpawner; // used to spawn the enemies on this gameobject
 
     public GameObject enemyObj;
 
-    public int basicS; // the number of how many to spawn of each, 10,10,5
+    public int bossCount; 
+
 
     private List<GameObject> list;
     // Start is called before the first frame update
@@ -19,22 +18,21 @@ public class EnemyPooler : MonoBehaviour
     {
         _Instance = this;
         list = new List<GameObject>();
-
-        for(int i  = 0; i < basicS; i++){
+        for(int i  = 0; i < bossCount; i++){
             GameObject obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
             obj.SetActive(false);
             list.Add(obj);
-        }
+        }     
         
     }
-    public GameObject SpawnEnemy(){
-        for(int i = 0; i < list.Count; i++){    
+    public GameObject SpawnBoss(){
+        for(int i = 0; i < list.Count; i++){
             if(!list[i].activeInHierarchy){
+
                 return list[i];
             }
+            
         }
         return null;
     }
-
-
 }

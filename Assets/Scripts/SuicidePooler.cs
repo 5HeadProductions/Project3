@@ -10,8 +10,6 @@ public class SuicidePooler : MonoBehaviour
     public GameObject enemyObj;
 
     public int suicideS; // the number of how many to spawn of each, 10,10,5
-    
-    private List<bool> basicIndex; // will keep track of the index of the objects already spawned so they dont spawn again
 
     private List<GameObject> list;
     // Start is called before the first frame update
@@ -26,11 +24,13 @@ public class SuicidePooler : MonoBehaviour
         }     
         
     }
-    public GameObject SpawnSuiEnemy(int numOfEnemies){
-        for(int i = 0; i < numOfEnemies; i++){
+    public GameObject SpawnSuiEnemy(){
+        for(int i = 0; i < list.Count; i++){
             if(!list[i].activeInHierarchy){
+
                 return list[i];
             }
+            
         }
         return null;
     }

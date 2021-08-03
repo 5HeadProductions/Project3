@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-
+    // scriptable object of the suicide
+    public EnemyStats enemyStats;
     public GameObject center; // earth
     public Rigidbody2D rb;
-    public float moveSpeed;
     private bool isMoving = false;
 
     public void OnEnable(){
@@ -39,9 +39,6 @@ public class BasicEnemy : MonoBehaviour
 
     void FixedUpdate(){
         if(!isMoving) return ;
-        
-        rb.AddForce(-transform.up * moveSpeed, ForceMode2D.Force);
+        rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Force);
     }
-
-    ///collison when they hit turret or earth
 }

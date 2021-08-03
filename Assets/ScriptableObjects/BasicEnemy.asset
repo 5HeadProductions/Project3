@@ -15,4 +15,4 @@ MonoBehaviour:
   shipType: {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
   health: 10
   damage: 10
-  speed: 10
+  speed: 1
