@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using MoreMountains.Feedbacks;
 
 public class PlayerController : MonoBehaviourPun
 {
     //Script is meant to handle player movement, firing and anything else related to the players actions
 
+        [SerializeField] MMFeedbacks shootFeedbacks;
         PhotonView view;
     	public float moveSpeed;
         [SerializeField]Transform firePoint;
@@ -97,6 +99,8 @@ public class PlayerController : MonoBehaviourPun
         GameObject bullet = PhotonNetwork.Instantiate(_currentBullet.name,rocketSprite.position,transform.rotation);
         //giving the bullet velocity
         bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
+        
+        shootFeedbacks?.PlayFeedbacks();
 
         //sets bullet to the first one in case a charged bullet is set
         SetBullet(tier1Bullet.bulletPrefab);
@@ -121,6 +125,7 @@ public class PlayerController : MonoBehaviourPun
         
         if(Input.GetKey(KeyCode.Space)){
             _chargeTimer += Time.deltaTime;
+            //chargeFeedback?.PlayFeedbacks();
             DisplayCharge();
         }
         
