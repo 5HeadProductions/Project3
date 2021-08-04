@@ -20,11 +20,8 @@ public class SinglePlayerController : MonoBehaviour
 
         //////////////////////Projectile Info/////////////////////////////////////////////////////
         public Projectile tier1Bullet;
-        public float bullet2Timer;
         public Projectile tier2Bullet;
-        public float bullet3Timer;
         public Projectile tier3Bullet;
-        public float bullet4Timer;
         public Projectile tier4Bullet;
         private GameObject _currentBullet;
 
@@ -32,6 +29,11 @@ public class SinglePlayerController : MonoBehaviour
         public GameObject charge2;
         public GameObject charge3;
         ////////////////////////////////////////////////////////////////////////////////////////
+
+        [SerializeField]private Turret turretTier1;
+        [SerializeField]private Turret turretTier2;
+
+        private bool _unlockedTurretTier2;
         void Start(){
             //View component for the photon network
 
@@ -42,6 +44,16 @@ public class SinglePlayerController : MonoBehaviour
             charge1.SetActive(false);
             charge2.SetActive(false);
             charge3.SetActive(false);
+
+            //sets all the scriptable objects back to original damage
+            tier1Bullet.damage = 1;
+            tier2Bullet.damage = 2;
+            tier3Bullet.damage = 3;
+            tier4Bullet.damage = 4; 
+
+            tier1Bullet.timeUnitilNextBullet = 1;
+            tier2Bullet.timeUnitilNextBullet = 2;
+            tier3Bullet.timeUnitilNextBullet = 3;
             
         }
 
@@ -50,6 +62,8 @@ public class SinglePlayerController : MonoBehaviour
         //the if statement is so you only control one player
 
         RotatePlayer();
+
+        TempPurchase();
 
         //this is a check so fire cannot be called immediatly
         if(_timeUntilFire <= Time.time)WeaponCharge();
@@ -75,6 +89,7 @@ public class SinglePlayerController : MonoBehaviour
         //sets bullet to the first one in case a charged bullet is set
         SetBullet(tier1Bullet.bulletPrefab);
 
+        
     
     //sets all charges to false so all charges are off when a bullet is instantiated
         charge1.SetActive(false);
@@ -99,11 +114,11 @@ public class SinglePlayerController : MonoBehaviour
         }
         
         if(Input.GetKeyUp(KeyCode.Space)){
-        if(_chargeTimer > bullet2Timer)
+        if(_chargeTimer > tier1Bullet.timeUnitilNextBullet)
             SetBullet(tier2Bullet.bulletPrefab);
-        if(_chargeTimer > bullet3Timer)
+        if(_chargeTimer > tier2Bullet.timeUnitilNextBullet)
             SetBullet(tier3Bullet.bulletPrefab);
-        if(_chargeTimer > bullet4Timer)
+        if(_chargeTimer > tier3Bullet.timeUnitilNextBullet)
             SetBullet(tier4Bullet.bulletPrefab);
 
         Fire();
@@ -115,17 +130,32 @@ public class SinglePlayerController : MonoBehaviour
     void DisplayCharge(){
         
         
-        if((_chargeTimer > bullet2Timer)){
+        if((_chargeTimer > tier1Bullet.timeUnitilNextBullet)){
             charge1.SetActive(true);
         }
-        if(_chargeTimer > bullet3Timer){
+        if(_chargeTimer > tier2Bullet.timeUnitilNextBullet){
             charge1.SetActive(false);
             charge2.SetActive(true);
         }
-        if(_chargeTimer > bullet4Timer){
+        if(_chargeTimer > tier3Bullet.timeUnitilNextBullet){
             charge2.SetActive(false);
             charge3.SetActive(true);
         }
+    }
+
+    void TempPurchase(){
+
+        if(Input.GetKeyDown(KeyCode.T)){
+            if(!_unlockedTurretTier2)
+            Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            else
+            Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            
+        }
+    }
+
+    public void setTier2Turret(){
+        _unlockedTurretTier2 = true;
     }
 
 }
