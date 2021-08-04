@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField]private Turret turretTier2;
 
         private bool _unlockedTurretTier2;
+
+        [SerializeField] KeyCode turretSpawner;
+        [SerializeField] KeyCode pauseButton;
         void Start(){
             
             _pauseCanvas = GameObject.Find("PauseCanvas");
@@ -151,23 +154,24 @@ public class PlayerController : MonoBehaviourPun
         }
     }
 
+    //gives the player the ability to spawn in there pause canvas and does not show this over the network
+    //possible tweaks are to freexe the players controls when canvas is active
     void Pause(){
-        if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)){
+        if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(pauseButton)){
         _pauseCanvas.SetActive(false);
         }
-        else if(Input.GetKeyDown(KeyCode.Escape)){
+        else if(Input.GetKeyDown(pauseButton)){
             _pauseCanvas.SetActive(true);
         }
         
 
     }
-
+    //turret purchase*
    void TempPurchase(){
 
-        if(Input.GetKeyDown(KeyCode.T)){
+        if(Input.GetKeyDown(turretSpawner)){
             if(!_unlockedTurretTier2){
             PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
-            Debug.Log("Player is master client: " +  PhotonNetwork.IsMasterClient);
             }
             else
             PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);

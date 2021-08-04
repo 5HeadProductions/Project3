@@ -63,6 +63,8 @@ MonoBehaviour:
   charge3: {fileID: 2633173631296405554}
   turretTier1: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
   turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
+  turretSpawner: 116
+  pauseButton: 27
 --- !u!114 &2559898320127527634
 MonoBehaviour:
   m_ObjectHideFlags: 0
