@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BossEnemy
   m_EditorClassIdentifier: 
   shipType: {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
+  enemyBullet: {fileID: 6421207923324575761, guid: 7d24d8e0e53eae34192407135bb082e3, type: 3}
   health: 100
-  damage: 50
-  speed: 5
+  damage: 20
+  speed: 1

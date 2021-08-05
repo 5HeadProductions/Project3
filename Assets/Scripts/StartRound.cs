@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StartRound : MonoBehaviour
 {
-
   public void StartR(){
     EnemySpawner.Instance.BeginRound();
+    this.gameObject.SetActive(false);
   }
 }

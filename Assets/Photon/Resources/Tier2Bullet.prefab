@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -3608840614467611729}
   - component: {fileID: 7798167206685049081}
   - component: {fileID: -2338576403524289576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tier2Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,6 +194,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -3608840614467611729}
+  - {fileID: -2338576403524289576}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

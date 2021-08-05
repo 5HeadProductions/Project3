@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     public GameObject shipType;
+    public GameObject enemyBullet;
     public int health;
     public int damage;
     public float speed;

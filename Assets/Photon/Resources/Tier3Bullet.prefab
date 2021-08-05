@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7738853750546484394}
   - component: {fileID: 8038167391859454708}
   - component: {fileID: 2097555851402257049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tier3Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 7738853750546484394}
+  - {fileID: 2097555851402257049}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

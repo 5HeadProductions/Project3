@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 [System.Serializable]
 public class Wave { // class = a container that will holds all the variables each wave must have
     [Header("Wave Stats")]
@@ -26,9 +27,11 @@ public class EnemySpawner : MonoBehaviour
     private int currentWaveNumber; // used to traverse our array of waves and keep track of when the end is reached
     private int numberOfEnemiesInWaveCounter = 0, enemiesToSpawn; // used to update the text field and used to tell the enemy pooler how many to set active
     private float timeBetweeSpawns;
+
+    public Button button;
     /*
 
-        TODO:health for ship, stop and shoot, boss spawning, separate code chunks into their own functions, add a conuter to keep track
+        TODO:health for ship, boss spawning, separate code chunks into their own functions, add a conuter to keep track
             of the total bosses spawned, every boss rounnd numOfEnemies should be odd, subtract by 1 and evenly spawn b & s then the extra
             enemies are gonna be the bosses
 
@@ -61,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
                 currentWaveNumber++;
                 canSpawn = true;
                 pause = false;
+                button.gameObject.SetActive(true);
                 }
             }
         }
