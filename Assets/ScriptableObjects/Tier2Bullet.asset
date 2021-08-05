@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1849d0f40554702468719feaad1b6469, type: 3}
   m_Name: Tier2Bullet
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 2
   bulletPrefab: {fileID: 8257712163238824423, guid: 9571f93ef97003d43bdf87c6a6ec011c, type: 3}
+  timeUnitilNextBullet: 2
