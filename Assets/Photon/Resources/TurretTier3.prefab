@@ -189,6 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02bda9d1b0e61d46a8d7ebd298b8c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stackEffect: {fileID: 0}
+  shootEffect: {fileID: 0}
+  destroyedEffect: {fileID: 0}
   firePoint: {fileID: 8444097000369101831}
   turretTier1: {fileID: 11400000, guid: eb29120e9e6898b4b9ffbef1c2a3afe8, type: 2}
   turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}

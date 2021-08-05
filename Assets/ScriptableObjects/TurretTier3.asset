@@ -21,3 +21,4 @@ MonoBehaviour:
   buyCost: 0
   sellCost: 0
   fireRate: 0
+  bulletSpeed: 10

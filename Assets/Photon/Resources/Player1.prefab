@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6161742592405195148}
   - component: {fileID: 106172032077558652}
-  - component: {fileID: 2345257674844811801}
   - component: {fileID: 5024644562128214677}
   m_Layer: 0
   m_Name: ShootFeedback
@@ -77,7 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feedbacks:
-  - {fileID: 2345257674844811801}
   - {fileID: 5024644562128214677}
   InitializationMode: 2
   SafeMode: 3
@@ -109,48 +107,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!114 &2345257674844811801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2460180304200930272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Shooting Particles
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  Mode: 0
-  CachedRecycle: 1
-  ParticlesPrefab: {fileID: 5676159682623251303, guid: 687995c1986a8fd47874c45a8fc819f2, type: 3}
-  RandomParticlePrefabs: []
-  PositionMode: 3
-  InstantiateParticlesPosition: {fileID: 2678361845334953844}
-  TargetWorldPosition: {x: 0, y: 0, z: 0}
-  Offset: {x: 0, y: 0, z: 0}
-  NestParticles: 1
 --- !u!114 &5024644562128214677
 MonoBehaviour:
   m_ObjectHideFlags: 0
