@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -3247018351592854499}
   m_Layer: 0
   m_Name: SuicideShip
-  m_TagString: Untagged
+  m_TagString: Suicide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48626089686b31846be87483f112c5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: a0a98772cd764d046a4595199d94b46b, type: 2}
   center: {fileID: 0}
   rb: {fileID: 4666961457383267117}
-  moveSpeed: 0.3
+  FirePoint: {fileID: 0}
+  fireRate: 1
 --- !u!50 &4666961457383267117
 Rigidbody2D:
   serializedVersion: 4
@@ -134,8 +136,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
