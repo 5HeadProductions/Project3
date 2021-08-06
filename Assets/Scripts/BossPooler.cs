@@ -28,7 +28,6 @@ public class BossPooler : MonoBehaviour
     public GameObject SpawnBoss(){
         for(int i = 0; i < list.Count; i++){
             if(!list[i].activeInHierarchy){
-
                 return list[i];
             }
             

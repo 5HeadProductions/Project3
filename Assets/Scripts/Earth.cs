@@ -19,7 +19,7 @@ public class Earth : MonoBehaviour
     {
         health_Txt.text = earthHealth.ToString();
         if(earthHealth < 0){
-            Debug.Log("Earth got destgroyed");
+          //earth got destroyed
         }
     }
 

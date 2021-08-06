@@ -55,7 +55,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void Shoot(){
         canShoot = true;
-        Debug.Log("Shoot was called");
+        
         }
     public void Fire(){
         GameObject bullet = Instantiate(enemyStats.enemyBullet,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);

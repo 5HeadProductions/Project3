@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     public TextMeshProUGUI enemiesInWave;
     public TextMeshProUGUI waveRound;
     private bool pause = false; // button that start the round 
+    public Button button;
 
     [Header("WAVES")]
     public Wave[] waves; //total waves
@@ -27,8 +28,9 @@ public class EnemySpawner : MonoBehaviour
     private int currentWaveNumber; // used to traverse our array of waves and keep track of when the end is reached
     private int numberOfEnemiesInWaveCounter = 0, enemiesToSpawn; // used to update the text field and used to tell the enemy pooler how many to set active
     private float timeBetweeSpawns;
-
-    public Button button;
+    private int basicEnemySpawnTracker = 0, suicideEnemySpawnTracker = 0, bossCount = 0, temp; // keeping track of how many enemies spawned in, in order to stop them from continously spawning
+    [Header("NumberOfBosses")][SerializeField] private int[] bossPerRound; // keeps track of how many bosses to spawn when there is a boss fight
+    private int bossToSpawnIndex = 0; // keep track of which index to use the bossPerRound array
     /*
 
         TODO:health for ship, boss spawning, separate code chunks into their own functions, add a conuter to keep track
@@ -36,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
             enemies are gonna be the bosses
 
     */
-    private int basicEnemySpawnTracker = 0, suicideEnemySpawnTracker = 0, bossCount = 0; // keeping track of how many enemies spawned in, in order to stop them from continously spawning
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +55,22 @@ public class EnemySpawner : MonoBehaviour
             if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){ // doesn't decrement count of the text until the ships start getting destroyed
                 enemiesToSpawn = currentWave.numOfEnemies; // used to spawn enemies
                 numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
-                enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+                if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses, 
+                if(numberOfEnemiesInWaveCounter <= 0){
+                    temp--;
+                    enemiesInWave.text = "Enemies remaining " + temp.ToString();
+                }
+                else enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();
+                }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
             } 
             SpawnWave();
+            // condition to end the spawning of the round
             GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // finding how many enemies are ON the scene
             if(activeEnemies.Length == 0 && !canSpawn)
             { 
+                if(currentWave.waveNum % 5 == 0 && bossToSpawnIndex < bossPerRound.Length){
+                    bossToSpawnIndex ++;
+                }
                 if(currentWaveNumber + 1 != waves.Length){ // making sure we dont try to access 1 past the end
                 currentWaveNumber++;
                 canSpawn = true;
@@ -72,6 +83,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void BeginRound(){// this is called when the player hits the start button on the top of their screen
         pause = true;
+        basicEnemySpawnTracker = 0;
+        suicideEnemySpawnTracker = 0;
+        bossCount = 0;
     }
 
     void RotateSpawner(){ // keeps the spawner moving around Earth
@@ -81,46 +95,12 @@ public class EnemySpawner : MonoBehaviour
     void SpawnWave(){
         int totalBasicEnemiesToSpawn; // used to determine how many basic enemies to spawn
         int totalSuicideEnemiesToSpawn; // used to determine how many suicide enemies to spawn
+
         if(canSpawn && timeBetweeSpawns < Time.time){ // spawning enemies at different time not all at once
-
-            if(currentWave.waveNum >= 2){ // waves with more than justt he basic enemies 
-                if(currentWave.waveNum % 5 == 0){ // boss spawns in when the round is equally divisible by 5
-                    //spawn a boss
-                    switch (currentWave.waveNum)
-                    {
-                        case 5:
-                            Boss();
-                            break;
-                        case 10:
-                            Boss();
-                            break;
-                        case 15:
-                            Boss();
-                            break;
-                        case 20:
-                            Boss();
-                            break;
-                        case 25:
-                            Boss();
-                            break;
-                        case 30:
-                            Boss();
-                            break;
-                        case 35:
-                            Boss();
-                            break;
-                        case 40:
-                            Boss();
-                            break;
-                        case 45:
-                            Boss();
-                            break;
-                        case 50:
-                            Boss();
-                            break;
-
-                        default: break;
-                    }
+            if(currentWave.waveNum >= 6){ // waves with more than justt he basic enemies 
+                if(currentWave.waveNum % 5 == 0){ // boss spawns in when the round is equally divisible by 5 
+                // boss rounds must have odd number of enemies
+                BossRound();
                 }
                 if(enemiesToSpawn % 2 == 0){
                     //evenly spawn basic and suicide ships
@@ -136,7 +116,9 @@ public class EnemySpawner : MonoBehaviour
                     currentWave.numOfEnemies = currentWave.numOfEnemies - 2;
                     if(currentWave.numOfEnemies == 0)canSpawn = false;
             }else{
-
+                if(currentWave.waveNum % 5 == 0){ // boss spawns in when the round is equally divisible by 5 should only happen at round 5
+                BossRound();
+                }
                 BasicEnemies();
             currentWave.numOfEnemies--;   //only subtract when they spawn in
             if(currentWave.numOfEnemies == 0) canSpawn = false; // keeping track of how many enemies are supposed to spawn in each wave ////canSpawn = false;
@@ -147,7 +129,48 @@ public class EnemySpawner : MonoBehaviour
 
     public void UpdateEnemyTracker(){   /// update the text field which will show how many enemies are in each round and update the counter as they get killed
         numberOfEnemiesInWaveCounter--;
-        enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+        if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses
+            enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();   
+        }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+       // enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+    }
+
+
+    public void BossRound(){
+        switch (currentWave.waveNum)
+            {
+                case 5:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 10:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();;
+                    break;
+                case 15:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 20:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 25:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 30:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 35:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 40:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 45:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                case 50:
+                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                    break;
+                default: break;
+            }
     }
 
 
@@ -176,6 +199,9 @@ public class EnemySpawner : MonoBehaviour
             obj.transform.position = new Vector3 (enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             bossCount++;
+            temp = bossCount;
+      
+
     }
 
 }

@@ -16,4 +16,4 @@ MonoBehaviour:
   enemyBullet: {fileID: 6421207923324575761, guid: 7d24d8e0e53eae34192407135bb082e3, type: 3}
   health: 100
   damage: 20
-  speed: 1
+  speed: 0.1
