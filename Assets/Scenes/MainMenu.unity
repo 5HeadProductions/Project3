@@ -2533,9 +2533,6 @@ MonoBehaviour:
   mmCanvas: {fileID: 1363945707}
   playCanvas: {fileID: 213449824}
   mmCanvasGroup: {fileID: 503831614}
-  playCanvasGroup: {fileID: 2087352690}
-  playAnimator: {fileID: 0}
-  mmAnimator: {fileID: 0}
   transitionTime: 0.5
 --- !u!4 &1989007300
 Transform:
