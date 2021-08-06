@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using MoreMountains.Feedbacks;
 
 public class TurretBehavior : MonoBehaviourPun
 {
+    public MMFeedbacks stackEffect;
+    public MMFeedbacks shootEffect;
+
+    public MMFeedbacks destroyedEffect;
     public Transform firePoint;
     private Transform _playerFirePoint;
 
@@ -29,6 +34,7 @@ public class TurretBehavior : MonoBehaviourPun
     public PlayerController PlayerController;
 
     void Start(){
+        
         // _currentTurret = turretTier1;
         startTime = Time.time;
         _playerFirePoint = GameObject.Find("PlayerFirePoint").transform;
@@ -45,7 +51,7 @@ public class TurretBehavior : MonoBehaviourPun
             animator.SetBool("Firing",true);
           
             GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, firePoint.transform.rotation);
-            Vector2 bulletDirection = (_target.transform.position - transform.position).normalized * 10; // why normalized?
+            Vector2 bulletDirection = (_target.transform.position - transform.position).normalized * _currentTurret.bulletSpeed; // why normalized?
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y);
             _timeUntilAttack = Time.time + _currentTurret.fireRate;
             StartCoroutine(animatorWait());
@@ -77,6 +83,8 @@ public class TurretBehavior : MonoBehaviourPun
             //Instantiate the tier 2 turret
                GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, _playerFirePoint.position,
                 _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
            }
            //for turrets of tier 2 combining
            else if(_currentTurret.turretTier == 1 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 2 ||
@@ -90,6 +98,8 @@ public class TurretBehavior : MonoBehaviourPun
             //Instantiate the tier 2 turret
                GameObject temp = PhotonNetwork.Instantiate(turretTier3.turretPrefab.name, _playerFirePoint.position,
                 _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
            }
             else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
            other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
