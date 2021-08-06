@@ -176,10 +176,15 @@ public class PlayerController : MonoBehaviourPun
 
         if(Input.GetKeyDown(turretSpawner)){
             if(!_unlockedTurretTier2){
-            PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+           GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+           temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+            temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
             }
-            else
-            PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            else{
+            GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+            }
             
         }
     }

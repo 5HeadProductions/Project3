@@ -340,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79177cdbe06a46408a3c54e872efcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  OnInstantiation: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 03adec9760f42e042931ef4c879f7c4b, type: 2}
+  OnInstantiation: {fileID: 3490501276498768640}
 --- !u!114 &-3608840614467611729
 MonoBehaviour:
   m_ObjectHideFlags: 0

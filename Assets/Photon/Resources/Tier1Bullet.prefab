@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79177cdbe06a46408a3c54e872efcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 11400000, guid: c8d235510a1271743a067690ded377f5, type: 2}
   OnInstantiation: {fileID: 6024145904603250973}
 --- !u!50 &1581798255880743105
 Rigidbody2D:

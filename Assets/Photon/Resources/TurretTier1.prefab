@@ -314,7 +314,8 @@ GameObject:
   - component: {fileID: 7838350356479289394}
   - component: {fileID: 5894340251152851176}
   - component: {fileID: 1039986299587347674}
-  - component: {fileID: 5773979033668792350}
+  - component: {fileID: 667468282199023952}
+  - component: {fileID: 1806139573544003219}
   m_Layer: 0
   m_Name: StackedEffect
   m_TagString: Untagged
@@ -350,7 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 1039986299587347674}
-  - {fileID: 5773979033668792350}
+  - {fileID: 667468282199023952}
+  - {fileID: 1806139573544003219}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -425,7 +427,49 @@ MonoBehaviour:
   MinPitch: 1
   MaxPitch: 1
   SfxAudioMixerGroup: {fileID: 0}
---- !u!114 &5773979033668792350
+--- !u!114 &667468282199023952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422143451570232878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Particles Instantiation
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Mode: 0
+  CachedRecycle: 1
+  ParticlesPrefab: {fileID: 904178776310913933, guid: 8a9b7b2a6bee2bb44aa268840562f5de, type: 3}
+  RandomParticlePrefabs: []
+  PositionMode: 0
+  InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  NestParticles: 1
+--- !u!114 &1806139573544003219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,16 +506,16 @@ MonoBehaviour:
   TimeScale: 0
   AnimateScaleTarget: {fileID: 3470490177291654246}
   AnimateScaleDuration: 1
-  RemapCurveZero: 1
-  RemapCurveOne: 2
+  RemapCurveZero: 0
+  RemapCurveOne: 1
   Offset: 0
   AnimateX: 1
   AnimateScaleX:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.016666412
-      value: 1.993988
+      time: 0.0041656494
+      value: 1.9996338
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -479,8 +523,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5000046
-      value: 3.0050926
+      time: 0.4889413
+      value: 3.989078
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -488,8 +532,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 2.0052795
+      time: 0.99042356
+      value: 1.9938403
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -504,8 +548,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: -0.008331809
+      value: 2.0041487
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -513,8 +557,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.48333436
-      value: 3.2936325
+      time: 0.5042084
+      value: 4.000923
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -522,8 +566,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 1.0041656
+      value: 2.0041504
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -533,13 +577,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  AnimateZ: 1
+  AnimateZ: 0
   AnimateScaleZ:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1.9986572
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -547,8 +591,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.45833284
-      value: 2.9221687
+      time: 0.52493745
+      value: 3.0029488
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -556,8 +600,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 0.9916687
+      value: 1.9986572
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -568,7 +612,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AllowAdditivePlays: 0
-  DestinationScale: {x: 0.5, y: 0.5, z: 0.5}
+  DestinationScale: {x: 2, y: 2, z: 2}
 --- !u!1 &5636744465327386189
 GameObject:
   m_ObjectHideFlags: 0

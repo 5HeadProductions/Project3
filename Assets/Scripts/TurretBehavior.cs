@@ -34,6 +34,7 @@ public class TurretBehavior : MonoBehaviourPun
     public PlayerController PlayerController;
 
     void Start(){
+        
         // _currentTurret = turretTier1;
         startTime = Time.time;
         _playerFirePoint = GameObject.Find("PlayerFirePoint").transform;
@@ -82,6 +83,7 @@ public class TurretBehavior : MonoBehaviourPun
             //Instantiate the tier 2 turret
                GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, _playerFirePoint.position,
                 _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
            }
            //for turrets of tier 2 combining
@@ -96,6 +98,8 @@ public class TurretBehavior : MonoBehaviourPun
             //Instantiate the tier 2 turret
                GameObject temp = PhotonNetwork.Instantiate(turretTier3.turretPrefab.name, _playerFirePoint.position,
                 _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
            }
             else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
            other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){

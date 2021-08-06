@@ -263,8 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79177cdbe06a46408a3c54e872efcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 11400000, guid: c8d235510a1271743a067690ded377f5, type: 2}
-  OnInstantiation: {fileID: 0}
+  projectile: {fileID: 11400000, guid: d4317a2bb73b65f48b2e7b2bffdd5129, type: 2}
+  OnInstantiation: {fileID: 1482083221079383054}
 --- !u!114 &-1834144704014808752
 MonoBehaviour:
   m_ObjectHideFlags: 0
