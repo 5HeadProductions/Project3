@@ -11,7 +11,7 @@ public class BasicEnemy : MonoBehaviour
     private bool isMoving = false, canShoot = false;
     public GameObject FirePoint;
     private float startTime = 100.0f;
-    public float fireRate = 10.0f;
+
 
     public void OnEnable(){
         Invoke("Dead", 60);
@@ -43,7 +43,7 @@ public class BasicEnemy : MonoBehaviour
     if(this.gameObject.activeInHierarchy && canShoot == true){
         if(Time.time > startTime){
             Fire();
-            startTime = Time.time + fireRate;
+            startTime = Time.time + enemyStats.fireRate;
             }
         }
      }

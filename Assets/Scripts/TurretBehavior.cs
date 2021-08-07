@@ -44,8 +44,9 @@ public class TurretBehavior : MonoBehaviourPun
     void Update(){
         //finds and assigns the transform of the target so we can shoot in their direction
         Collider2D temp = Physics2D.OverlapCircle(aimArea.transform.position,1);
-        if(temp != null)_target = temp.gameObject.transform;
-
+        if(temp != null && (temp.CompareTag("Enemy") || temp.CompareTag("Suicide"))){   
+            _target = temp.gameObject.transform;
+        }
         
         if(Time.time > _timeUntilAttack && _target != null  && !_target.CompareTag("Turret") ){
             animator.SetBool("Firing",true);

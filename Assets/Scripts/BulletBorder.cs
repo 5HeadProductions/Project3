@@ -11,7 +11,7 @@ public class BulletBorder : MonoBehaviourPun
             other.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,other.GetComponent<PhotonView>().ViewID);
         }
         else{
-            Destroy(other.gameObject);
+            if(other.gameObject.tag == "Bullet") Destroy(other.gameObject);
         }
     }
 }
