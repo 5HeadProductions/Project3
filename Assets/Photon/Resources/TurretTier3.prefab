@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8444097000369101831}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TurretFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -380,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8444097000946268875}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 709186931886840392}
   - component: {fileID: 5299512590025581332}
   - component: {fileID: 2130532780960686088}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TurretTier3
   m_TagString: Turret
   m_Icon: {fileID: 0}

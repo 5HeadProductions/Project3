@@ -78,6 +78,7 @@ public class TurretBehavior : MonoBehaviourPun
             //for the turrets of tier 1 combining
            if(_currentTurret.turretTier == 1 && other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1){
                //Destroy both turrets
+               if(PhotonNetwork.OfflineMode == false){
                PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.GetComponent<PhotonView>().ViewID);
                 PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,other.gameObject.GetComponent<PhotonView>().ViewID);
             //Instantiate the tier 2 turret
@@ -86,13 +87,27 @@ public class TurretBehavior : MonoBehaviourPun
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
            }
+           else{
+           Destroy(this.gameObject);
+           Destroy(other.gameObject);
+            //Instantiate the tier 2 turret
+               GameObject temp = Instantiate(turretTier2.turretPrefab, _playerFirePoint.position,
+                _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+           }
+           }
            //for turrets of tier 2 combining
            else if(_currentTurret.turretTier == 1 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 2 ||
            other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
+               if(PhotonNetwork.OfflineMode == false)
                    PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
+                   else
+                   Destroy(this.gameObject);
            }
                if(_currentTurret.turretTier == 2 && other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 2){
                //Destroy both turrets
+               if(PhotonNetwork.OfflineMode == false){
                PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.GetComponent<PhotonView>().ViewID);
                 PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,other.gameObject.GetComponent<PhotonView>().ViewID);
             //Instantiate the tier 2 turret
@@ -100,12 +115,25 @@ public class TurretBehavior : MonoBehaviourPun
                 _playerFirePoint.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+               }
+               else{
+                   Destroy(this.gameObject);
+                   Destroy(other.gameObject);
+                   GameObject temp = Instantiate(turretTier3.turretPrefab, _playerFirePoint.position,
+                _playerFirePoint.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+               }
            }
             else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
            other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
+               if(PhotonNetwork.OfflineMode == false)
                    PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
+                   else
+                   Destroy(this.gameObject);
            }
         
         }
     }
 }
+

@@ -48,11 +48,16 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField] KeyCode turretSpawner;
         [SerializeField] KeyCode pauseButton;
         void Start(){
-            
+            PhotonNetwork.OfflineMode = true;
+            //View component for the photon network
+            if(PhotonNetwork.OfflineMode == false){
+            view = gameObject.GetComponent<PhotonView>();
+            }
+
             _pauseCanvas = GameObject.Find("PauseCanvas");
             _pauseCanvas.SetActive(false);
             //View component for the photon network
-            view = gameObject.GetComponent<PhotonView>();
+            
             //Sets the bullet prefab that will be instantiated if fire is called
             SetBullet(tier1Bullet.bulletPrefab);
             
@@ -71,6 +76,7 @@ public class PlayerController : MonoBehaviourPun
 
 
     void Update(){
+        if(PhotonNetwork.OfflineMode == false){
         //the if statement is so you only control one player
         if(view.IsMine){
         RotatePlayer();
@@ -82,6 +88,19 @@ public class PlayerController : MonoBehaviourPun
         if(_timeUntilFire <= Time.time)
         WeaponCharge();
         }
+        }
+        else{
+            RotatePlayer();
+        Pause();
+        TempPurchase();
+
+
+        //this is a check so fire cannot be called immediatly
+        if(_timeUntilFire <= Time.time)
+        WeaponCharge();
+        }
+        
+
 
         
     }
@@ -95,10 +114,17 @@ public class PlayerController : MonoBehaviourPun
 
     //Instantiates a bullet prefab
     void Fire(){
+        if(PhotonNetwork.OfflineMode == true){
+            GameObject bullet = Instantiate(_currentBullet,rocketSprite.position,transform.rotation);
+            bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
+        }
         //so the bullet can be seen by other player
+        else{
         GameObject bullet = PhotonNetwork.Instantiate(_currentBullet.name,rocketSprite.position,transform.rotation);
-        //giving the bullet velocity
         bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
+        }
+        //giving the bullet velocity
+        
         
         shootFeedbacks?.PlayFeedbacks();
 
@@ -175,6 +201,7 @@ public class PlayerController : MonoBehaviourPun
    void TempPurchase(){
 
         if(Input.GetKeyDown(turretSpawner)){
+            if(PhotonNetwork.OfflineMode == false){
             if(!_unlockedTurretTier2){
            GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
@@ -186,6 +213,19 @@ public class PlayerController : MonoBehaviourPun
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
             }
             
+        }
+        else{ // for offline mode
+            if(!_unlockedTurretTier2){
+           GameObject temp = Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+           temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+            temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+            }
+            else{
+            GameObject temp =Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+            }
+        }
         }
     }
 
