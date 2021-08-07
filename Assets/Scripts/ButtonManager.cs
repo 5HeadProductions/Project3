@@ -43,4 +43,8 @@ public class ButtonManager : MonoBehaviour
     public void LoadingScene(){
         SceneManager.LoadScene("LoadingScene");
     }
+
+    public void LoadSinglePlayer(){
+        SceneManager.LoadScene("SinglePlayerScene");
+    }
 }
