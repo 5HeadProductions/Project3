@@ -20,9 +20,9 @@ public class PlayerProjectiles : MonoBehaviour
     }
     
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Enemy"){
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide"){
             EnemySpawner.Instance.UpdateEnemyTracker();
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             Destroy(gameObject);
 
         }

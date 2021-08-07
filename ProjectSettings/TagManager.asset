@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - A
-  - Enemy
   - Turret
+  - Enemy
+  - Suicide
+  - NewTurret
+  - A
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Bullet
   - 
   - 
   - 
