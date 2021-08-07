@@ -17,3 +17,4 @@ MonoBehaviour:
   health: 100
   damage: 20
   speed: 0.1
+  fireRate: 10

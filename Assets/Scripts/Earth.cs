@@ -17,7 +17,6 @@ public class Earth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health_Txt.text = earthHealth.ToString();
         if(earthHealth < 0){
           //earth got destroyed
         }
