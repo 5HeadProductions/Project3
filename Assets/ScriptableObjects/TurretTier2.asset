@@ -18,7 +18,7 @@ MonoBehaviour:
   range: 1
   projectilePrefab: {fileID: 439481846163429292, guid: 08a1b98bc40e3644780ab616ba75cc9c, type: 3}
   turretPrefab: {fileID: 3527746630980940282, guid: 29663529e56268643bd46d10891a5292, type: 3}
-  buyCost: 0
+  buyCost: 20
   sellCost: 0
   fireRate: 1
   bulletSpeed: 10

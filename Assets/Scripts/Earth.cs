@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using MoreMountains.Tools;
 
 public class Earth : MonoBehaviour
 {
-
+    [SerializeField] MMProgressBar healthBar;
     public TextMeshProUGUI health_Txt;
     public int earthHealth;
     // Start is called before the first frame update
@@ -36,6 +37,8 @@ public class Earth : MonoBehaviour
 
            earthHealth = earthHealth -  col.gameObject.GetComponent<EnemyProjectile>().DoDamage();;
             Destroy(col.gameObject);
+            healthBar.Minus10Percent();
+
         }
     }
 

@@ -27,7 +27,7 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        center = GameObject.Find("Center");
+        center = GameObject.Find("EnemySpawnerCenter");
         isMoving = true;
         startTime  = Time.time;
     }

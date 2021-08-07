@@ -47,12 +47,14 @@ public class PlayerController : MonoBehaviourPun
 
         [SerializeField] KeyCode turretSpawner;
         [SerializeField] KeyCode pauseButton;
+        public PlayerCoins PlayerCoins;
         void Start(){
             PhotonNetwork.OfflineMode = true;
             //View component for the photon network
             if(PhotonNetwork.OfflineMode == false){
             view = gameObject.GetComponent<PhotonView>();
             }
+            PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
 
             _pauseCanvas = GameObject.Find("PauseCanvas");
             _pauseCanvas.SetActive(false);
@@ -215,12 +217,14 @@ public class PlayerController : MonoBehaviourPun
             
         }
         else{ // for offline mode
-            if(!_unlockedTurretTier2){
+            if(!_unlockedTurretTier2 && PlayerCoins.playerCoins >= turretTier1.buyCost){
+                PlayerCoins.SubtractCoinsFromPlayer(turretTier1.buyCost);
            GameObject temp = Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
             temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
             }
-            else{
+            else if(PlayerCoins.playerCoins >= turretTier2.buyCost){
+                PlayerCoins.SubtractCoinsFromPlayer(turretTier2.buyCost);
             GameObject temp =Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
             temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();

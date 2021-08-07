@@ -46,6 +46,9 @@ public class TurretBehavior : MonoBehaviourPun
         Collider2D temp = Physics2D.OverlapCircle(aimArea.transform.position,1);
         if(temp != null && (temp.CompareTag("Enemy") || temp.CompareTag("Suicide"))){   
             _target = temp.gameObject.transform;
+            }
+            if(_target != null && _target.gameObject.activeInHierarchy == false){
+                _target = null;
         }
         
         if(Time.time > _timeUntilAttack && _target != null  && !_target.CompareTag("Turret") ){
@@ -75,7 +78,7 @@ public class TurretBehavior : MonoBehaviourPun
         //If statement ensures this code is only excecuted once by checking their start times
         //Debug.Log(this.gameObject.name + " " + other.gameObject.name);
         //Debug.Log("this.startTime" + this.startTime);
-        if(this.startTime > other.gameObject.GetComponent<TurretBehavior>().startTime && other.gameObject.CompareTag("Turret")){
+        if(other.gameObject.CompareTag("Turret")  &&  this.startTime > other.gameObject.GetComponent<TurretBehavior>().startTime){
             //for the turrets of tier 1 combining
            if(_currentTurret.turretTier == 1 && other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1){
                //Destroy both turrets
