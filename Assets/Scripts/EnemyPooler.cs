@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyPooler : MonoBehaviour
 {
 
-
+// basic enemy pooler
     public static EnemyPooler _Instance;
     public GameObject enemySpawner; // used to spawn the enemies on this gameobject
 
