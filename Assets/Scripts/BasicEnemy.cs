@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class BasicEnemy : MonoBehaviour
 {
@@ -11,10 +12,11 @@ public class BasicEnemy : MonoBehaviour
     private bool isMoving = false, canShoot = false;
     public GameObject FirePoint;
     private float startTime = 100.0f;
-
+    public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
+    public MMFeedbacks onHitFeedback, onSpawnFeedback;
 
     public void OnEnable(){
-        Invoke("Dead", 60);
+        Invoke("Dead", 120);
     }
     public void Dead(){
         canShoot = false;
@@ -28,6 +30,8 @@ public class BasicEnemy : MonoBehaviour
     void Start()
     {
         center = GameObject.Find("EnemySpawnerCenter");
+        enemyHealth = enemyStats.health; // assigning the scriptable objects value of each ships health here
+        center = GameObject.Find("Center");
         isMoving = true;
         startTime  = Time.time;
     }

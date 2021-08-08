@@ -23,7 +23,8 @@ public class Earth : MonoBehaviour
         }
     }
 
-   public void OnCollisionEnter2D(Collision2D col){ // inner collider
+// inner collider
+   public void OnCollisionEnter2D(Collision2D col){ 
         if(col.transform.tag == "Suicide"){
             EnemySpawner.Instance.UpdateEnemyTracker();
             col.gameObject.SetActive(false);
@@ -31,7 +32,7 @@ public class Earth : MonoBehaviour
             earthHealth = earthHealth - col.gameObject.GetComponent<BasicEnemy>().SuicideDamage();;
 
             }
-        if(col.transform.tag == "EnemyBullet"){
+        if(col.transform.tag == "EnemyBullet"){ // enemy bullet hits earth
             //earth take damage
            // queue explosion/camera shake
 
@@ -42,7 +43,8 @@ public class Earth : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D col){ // outer collider
+// outer collider
+    public void OnTriggerEnter2D(Collider2D col){ 
         if(col.transform.tag == "Enemy"){
             col.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             //call shoot
