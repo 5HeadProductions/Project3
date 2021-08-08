@@ -33,10 +33,7 @@ public class EnemySpawner : MonoBehaviour
     private int bossToSpawnIndex = 0; // keep track of which index to use the bossPerRound array
     /*
 
-        TODO:health for ship, boss spawning, separate code chunks into their own functions, add a conuter to keep track
-            of the total bosses spawned, every boss rounnd numOfEnemies should be odd, subtract by 1 and evenly spawn b & s then the extra
-            enemies are gonna be the bosses
-
+        TODO:health for ship, separate code chunks into their own functions
     */
 
     // Start is called before the first frame update
@@ -177,16 +174,19 @@ public class EnemySpawner : MonoBehaviour
     public void SuicideEnemies(){  // enables the suicide ships across from the spawn position of the basic enemy
             GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy();
             if(obj == null) return;   
-            obj.SetActive(true);
             obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
-           // obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; 
+            obj.SetActive(true);
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization(); // needed to play next feedback
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks(); // resetting their color, both feedbacks needed "Allow additive plays"
             suicideEnemySpawnTracker ++;
             }
     public void BasicEnemies(){ // enables the basic ship        
             GameObject obj = EnemyPooler._Instance.SpawnEnemy();
             if(obj == null)return;   
-            obj.SetActive(true);
             obj.transform.position = enemySpawner.transform.position;
+            obj.SetActive(true);
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             basicEnemySpawnTracker ++;
            
@@ -195,8 +195,10 @@ public class EnemySpawner : MonoBehaviour
     public void Boss(){ // enables the boss ship
            GameObject obj = BossPooler._Instance.SpawnBoss();
             if(obj == null)return;   
-            obj.SetActive(true);
             obj.transform.position = new Vector3 (enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            obj.SetActive(true);
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
+            obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             bossCount++;
             temp = bossCount;
