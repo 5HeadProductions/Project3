@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1144302547446168566}
   - component: {fileID: 4666961457383267117}
   - component: {fileID: -3247018351592854499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SuicideShip
   m_TagString: Suicide
   m_Icon: {fileID: 0}

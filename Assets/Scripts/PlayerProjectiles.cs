@@ -10,12 +10,14 @@ public class PlayerProjectiles : MonoBehaviour
     public Projectile projectile;
     
     public MMFeedbacks OnInstantiation;
+    public PlayerCoins PlayerCoins;
     private Color changeColor;
  
 
    
 
     void Start(){
+        PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
         transform.Rotate(0,0,90);
         OnInstantiation.Initialization(this.gameObject);
        
@@ -26,6 +28,7 @@ public class PlayerProjectiles : MonoBehaviour
     // player shoots at the ship 
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide"){
+            PlayerCoins.AddCoinsToPlayer(other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
             
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
             other.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks(); // taking damage animaiton

@@ -172,6 +172,9 @@ MonoBehaviour:
   animator: {fileID: 3470490177291654265}
   startTime: 0
   PlayerController: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &3470490177291654265
 Animator:
   serializedVersion: 3

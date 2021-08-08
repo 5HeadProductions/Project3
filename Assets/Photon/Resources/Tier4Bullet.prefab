@@ -199,7 +199,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4d79ef79b5a264cfd9b4195c5a9760d9, type: 3}
   m_Color: {r: 1, g: 0.5879793, b: 0, a: 1}
   m_FlipX: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 11400000, guid: d4317a2bb73b65f48b2e7b2bffdd5129, type: 2}
   OnInstantiation: {fileID: 1482083221079383054}
+  PlayerCoins: {fileID: 0}
 --- !u!114 &-1834144704014808752
 MonoBehaviour:
   m_ObjectHideFlags: 0
