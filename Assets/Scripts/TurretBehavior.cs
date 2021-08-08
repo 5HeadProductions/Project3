@@ -33,6 +33,10 @@ public class TurretBehavior : MonoBehaviourPun
     public float startTime;
     public PlayerController PlayerController;
 
+    public LayerMask enemyLayer;
+
+    private Collider2D _targetCollider;
+
     void Start(){
         
         // _currentTurret = turretTier1;
@@ -43,16 +47,22 @@ public class TurretBehavior : MonoBehaviourPun
     
     void Update(){
         //finds and assigns the transform of the target so we can shoot in their direction
-        Collider2D temp = Physics2D.OverlapCircle(aimArea.transform.position,1);
-        if(temp != null && (temp.CompareTag("Enemy") || temp.CompareTag("Suicide"))){   
-            _target = temp.gameObject.transform;
+        _targetCollider = Physics2D.OverlapCircle(aimArea.transform.position,_currentTurret.range,enemyLayer);
+        
+        if(_targetCollider != null && (_targetCollider.CompareTag("Enemy") || _targetCollider.CompareTag("Suicide"))){   
+            _target = _targetCollider.gameObject.transform;
+            
             }
             if(_target != null && _target.gameObject.activeInHierarchy == false){
+               _targetCollider = null;
                 _target = null;
+                
         }
         
-        if(Time.time > _timeUntilAttack && _target != null  && !_target.CompareTag("Turret") ){
+        if(Time.time > _timeUntilAttack && _target != null && _targetCollider != null && !_target.CompareTag("Turret") ){
             animator.SetBool("Firing",true);
+            Debug.Log(_targetCollider.gameObject.name);
+             Debug.Log(_target.gameObject.name);
           
             GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, firePoint.transform.rotation);
             Vector2 bulletDirection = (_target.transform.position - transform.position).normalized * _currentTurret.bulletSpeed; // why normalized?

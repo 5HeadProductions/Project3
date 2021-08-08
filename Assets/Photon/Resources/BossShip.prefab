@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2326908116721279695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3713367028447993676}
   - component: {fileID: 9200346180650480127}
   - component: {fileID: 2247019223302407738}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossShip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -178,7 +178,6 @@ MonoBehaviour:
   center: {fileID: 0}
   rb: {fileID: 2247019223302407738}
   FirePoint: {fileID: 7837219539349864257}
-  fireRate: 10
 --- !u!50 &2247019223302407738
 Rigidbody2D:
   serializedVersion: 4

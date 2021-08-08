@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2062837878312298895}
   - component: {fileID: 7843380910304444308}
   - component: {fileID: 5515551583737132467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BasicShip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,7 +148,6 @@ MonoBehaviour:
   center: {fileID: 0}
   rb: {fileID: 5515551583737132467}
   FirePoint: {fileID: 8668251653239511345}
-  fireRate: 1
 --- !u!50 &5515551583737132467
 Rigidbody2D:
   serializedVersion: 4
@@ -179,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429966062429322925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
