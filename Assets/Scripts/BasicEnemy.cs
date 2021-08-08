@@ -31,7 +31,7 @@ public class BasicEnemy : MonoBehaviour
     {
         center = GameObject.Find("EnemySpawnerCenter");
         enemyHealth = enemyStats.health; // assigning the scriptable objects value of each ships health here
-        center = GameObject.Find("Center");
+        // center = GameObject.Find("Center");
         isMoving = true;
         startTime  = Time.time;
     }
