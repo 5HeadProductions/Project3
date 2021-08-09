@@ -9,7 +9,7 @@ public class BasicEnemy : MonoBehaviour
     public EnemyStats enemyStats;
     public GameObject center; // earth
     public Rigidbody2D rb;
-    private bool isMoving = false, canShoot = false;
+    private bool isMoving = false, canShoot = false, isDashing = false;
     public GameObject FirePoint;
     private float startTime = 100.0f;
     public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
@@ -42,7 +42,6 @@ public class BasicEnemy : MonoBehaviour
     var dir = center.transform.position - transform.position; // distance between two points in a graph
     var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;  // the angle is found by taking the oppposite over adjacent * radians to get it in degrees
     transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward); // 90 is added to the angle bc 
-
     if(this.gameObject.activeInHierarchy && canShoot == true){
         if(Time.time > startTime){
             Fire();
@@ -54,6 +53,11 @@ public class BasicEnemy : MonoBehaviour
     void FixedUpdate(){
         if(!isMoving) return ;
         rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Force);
+        if(this.gameObject.CompareTag("Boss")){
+            //boss dashes left and right randomly
+            Debug.Log("moving the boss to 1");
+            rb.AddForce(new Vector2(.1f,0f) * 1f, ForceMode2D.Impulse);
+        }
     }
 
     /*  

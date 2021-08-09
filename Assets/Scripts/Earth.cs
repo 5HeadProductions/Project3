@@ -45,7 +45,7 @@ public class Earth : MonoBehaviour
 
 // outer collider
     public void OnTriggerEnter2D(Collider2D col){ 
-        if(col.transform.tag == "Enemy"){
+        if(col.transform.tag == "Enemy" || col.tag == "Boss"){
             col.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             //call shoot
             col.gameObject.GetComponent<BasicEnemy>().CanShoot();

@@ -63,7 +63,9 @@ public class EnemySpawner : MonoBehaviour
             SpawnWave();
             // condition to end the spawning of the round
             GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // finding how many enemies are ON the scene
-            if(activeEnemies.Length == 0 && !canSpawn)
+            GameObject[] activeBosses = GameObject.FindGameObjectsWithTag("Boss");
+            GameObject[] activeSuicides = GameObject.FindGameObjectsWithTag("Suicide");
+            if(activeEnemies.Length == 0 && !canSpawn && activeBosses.Length == 0 && activeSuicides.Length == 0)
             { 
                 if(currentWave.waveNum % 5 == 0 && bossToSpawnIndex < bossPerRound.Length){
                     bossToSpawnIndex ++;
