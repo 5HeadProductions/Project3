@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviourPun
         public GameObject charge3;
         ////////////////////////////////////////////////////////////////////////////////////////
 
-        private GameObject _pauseCanvas;
 
         [SerializeField]private Turret turretTier1;
         [SerializeField]private Turret turretTier2;
@@ -48,6 +47,7 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField] KeyCode turretSpawner;
         [SerializeField] KeyCode pauseButton;
         public PlayerCoins PlayerCoins;
+        [SerializeField] GameObject _pauseCanvas;
         void Start(){
             PhotonNetwork.OfflineMode = true;
             //View component for the photon network
@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviourPun
             }
             PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
 
-            _pauseCanvas = GameObject.Find("PauseCanvas");
-            _pauseCanvas.SetActive(false);
+            //_pauseCanvas = GameObject.Find("PauseCanvas");  // dragged in the canvas instead
+            //_pauseCanvas.SetActive(false);
             //View component for the photon network
             
             //Sets the bullet prefab that will be instantiated if fire is called
@@ -191,13 +191,23 @@ public class PlayerController : MonoBehaviourPun
     //possible tweaks are to freexe the players controls when canvas is active
     void Pause(){
         if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(pauseButton)){
+            if(PhotonNetwork.OfflineMode == true){
+                ResumeTime();
+            }
         _pauseCanvas.SetActive(false);
         }
         else if(Input.GetKeyDown(pauseButton)){
+            if(PhotonNetwork.OfflineMode == true){
+                PauseTime();
+            }
             _pauseCanvas.SetActive(true);
         }
-        
-
+    }
+    void PauseTime(){
+        Time.timeScale = 0;
+    }
+    void ResumeTime(){
+        Time.timeScale = 1;
     }
     //turret purchase*
    void TempPurchase(){
