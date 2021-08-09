@@ -31,7 +31,6 @@ public class BasicEnemy : MonoBehaviour
     {
         center = GameObject.Find("EnemySpawnerCenter");
         enemyHealth = enemyStats.health; // assigning the scriptable objects value of each ships health here
-        // center = GameObject.Find("Center");
         isMoving = true;
         startTime  = Time.time;
     }
@@ -57,10 +56,19 @@ public class BasicEnemy : MonoBehaviour
         rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Force);
     }
 
-    public void Shoot(){
-        canShoot = true;
-        
+    /*  
+    Can shoot is called from the Earth script which enables the ships to start shooting.
+    To create a delay and not let the ships shoot instantly when they collided, the 
+    coroutine was made to make that delay.
+    CanShoot itself didn't become the coroutine because Earth couldn't start the coroutine.
+    */
+    public void CanShoot(){
+       StartCoroutine(Delay()); 
         }
+    public IEnumerator Delay(){
+        yield return new WaitForSeconds(.5f);
+           canShoot = true;
+    }
     public void Fire(){
         GameObject bullet = Instantiate(enemyStats.enemyBullet,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);
         var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph

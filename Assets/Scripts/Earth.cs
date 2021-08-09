@@ -48,7 +48,7 @@ public class Earth : MonoBehaviour
         if(col.transform.tag == "Enemy"){
             col.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             //call shoot
-            col.gameObject.GetComponent<BasicEnemy>().Shoot();
+            col.gameObject.GetComponent<BasicEnemy>().CanShoot();
         }
     }
 
