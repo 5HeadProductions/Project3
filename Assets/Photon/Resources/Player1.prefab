@@ -237,6 +237,7 @@ MonoBehaviour:
   turretTier2: {fileID: 11400000, guid: 5654d970d4387104c8fe7bb8379b5dc3, type: 2}
   turretSpawner: 116
   pauseButton: 27
+  PlayerCoins: {fileID: 0}
 --- !u!114 &2559898320127527634
 MonoBehaviour:
   m_ObjectHideFlags: 0
