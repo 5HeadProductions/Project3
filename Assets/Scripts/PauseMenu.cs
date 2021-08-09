@@ -19,6 +19,9 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Back(){
+        if(PhotonNetwork.OfflineMode == true){
+            Time.timeScale = 1;
+        }
         GameObject.Find(_pauseCanvasName).SetActive(false);
     }
     
