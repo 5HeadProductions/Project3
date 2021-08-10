@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviourPun
 {
     //Script is meant to handle player movement, firing and anything else related to the players actions
 
-        [SerializeField] MMFeedbacks shootFeedbacks;
+        
         PhotonView view;
     	public float moveSpeed;
         [SerializeField]Transform firePoint;
@@ -48,7 +48,19 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField] KeyCode pauseButton;
         public PlayerCoins PlayerCoins;
         [SerializeField] GameObject _pauseCanvas;
+
+        [Header("FeedBacks")]
+        [SerializeField] MMFeedbacks tier1Shot;
+        [SerializeField] MMFeedbacks tier2Shot;
+        [SerializeField] MMFeedbacks tier3Shot;
+        [SerializeField] MMFeedbacks tier4Shot;
+        [SerializeField] MMFeedbacks tier1Charge;
+        [SerializeField] MMFeedbacks tier2Charge;
+        [SerializeField] MMFeedbacks tier3Charge;
+        
+        MMFeedbacks _currentShotFeedback;
         void Start(){
+            _currentShotFeedback = tier1Shot;
             PhotonNetwork.OfflineMode = true;
             //View component for the photon network
             if(PhotonNetwork.OfflineMode == false){
@@ -108,7 +120,7 @@ public class PlayerController : MonoBehaviourPun
     }
 
     //rotates player around earth, in Unity the sprite must have the offset that is the radius of the object you are trying to ratoate around
-    void RotatePlayer ()
+    void RotatePlayer()
 	{
 		transform.eulerAngles += new Vector3(0, 0, (-moveSpeed * Input.GetAxis("Horizontal")) * Time.deltaTime);
 		rocketSprite.localEulerAngles = new Vector3(0, 0, Input.GetAxis("Horizontal") * -30);
@@ -128,16 +140,14 @@ public class PlayerController : MonoBehaviourPun
         //giving the bullet velocity
         
         
-        shootFeedbacks?.PlayFeedbacks();
+        _currentShotFeedback?.PlayFeedbacks();
 
         //sets bullet to the first one in case a charged bullet is set
         SetBullet(tier1Bullet.bulletPrefab);
 
     
     //sets all charges to false so all charges are off when a bullet is instantiated
-        charge1.SetActive(false);
-        charge2.SetActive(false);
-        charge3.SetActive(false);
+        
         _timeUntilFire = Time.time + timeBetweenProjectiles;
     }
 
@@ -158,12 +168,18 @@ public class PlayerController : MonoBehaviourPun
         }
         
         if(Input.GetKeyUp(KeyCode.Space)){
-        if(_chargeTimer > bullet2Timer)
+        if(_chargeTimer > bullet2Timer){
             SetBullet(tier2Bullet.bulletPrefab);
-        if(_chargeTimer > bullet3Timer)
+            _currentShotFeedback = tier2Shot;
+        }
+        if(_chargeTimer > bullet3Timer){
             SetBullet(tier3Bullet.bulletPrefab);
-        if(_chargeTimer > bullet4Timer)
+            _currentShotFeedback = tier3Shot;
+        }
+        if(_chargeTimer > bullet4Timer){
             SetBullet(tier4Bullet.bulletPrefab);
+            _currentShotFeedback = tier4Shot;
+        }
 
         Fire();
         _chargeTimer = 0;
@@ -175,15 +191,13 @@ public class PlayerController : MonoBehaviourPun
         
         
         if((_chargeTimer > bullet2Timer)){      
-            charge1.SetActive(true);
+            tier1Charge?.PlayFeedbacks();
         }
         if(_chargeTimer > bullet3Timer){
-            charge1.SetActive(false);
-            charge2.SetActive(true);
+            tier2Charge?.PlayFeedbacks();
         }
         if(_chargeTimer > bullet4Timer){
-            charge2.SetActive(false);
-            charge3.SetActive(true);
+            tier3Charge?.PlayFeedbacks();
         }
     }
 
