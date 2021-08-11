@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8320896915769885549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FeedBacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3490501276498768640}
   - component: {fileID: 2360100275441426903}
   - component: {fileID: 690337831021169831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 7798167206685049081}
   - component: {fileID: -2338576403524289576}
   - component: {fileID: 3066569362663836649}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tier2Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 11400000, guid: 03adec9760f42e042931ef4c879f7c4b, type: 2}
   OnInstantiation: {fileID: 3490501276498768640}
+  PlayerCoins: {fileID: 0}
 --- !u!114 &-3608840614467611729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 496554392257265498, guid: 925059f234302b948b6c53fa7c9caa91, type: 3}
       propertyPath: m_Name
       value: 'Tier2BulletParticles '
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: 925059f234302b948b6c53fa7c9caa91, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6363037240051572008, guid: 925059f234302b948b6c53fa7c9caa91, type: 3}
       propertyPath: m_RootOrder

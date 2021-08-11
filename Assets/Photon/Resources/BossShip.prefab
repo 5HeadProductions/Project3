@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1015809394282372194}
   - component: {fileID: 1812835584021018489}
   - component: {fileID: 1484296146497277446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 3170124690716236004}
   - component: {fileID: 6028511167858152545}
   - component: {fileID: 2545890602395303861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DamageFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2326908116721279695}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -350,9 +350,9 @@ GameObject:
   - component: {fileID: 3713367028447993676}
   - component: {fileID: 9200346180650480127}
   - component: {fileID: 2247019223302407738}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BossShip
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
