@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8038167391859454708}
   - component: {fileID: 2097555851402257049}
   - component: {fileID: 7157626207462380002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tier3Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   OnCollision: {fileID: 57084672245348355}
   PlayerCoins: {fileID: 0}
   shipDeathFeedback: {fileID: 4470142163006227041}
+  PlayerCoins: {fileID: 0}
 --- !u!50 &4856363871582066786
 Rigidbody2D:
   serializedVersion: 4
@@ -260,7 +261,7 @@ GameObject:
   - component: {fileID: 493458082923880968}
   - component: {fileID: 2937500729176168137}
   - component: {fileID: 1663355883096003712}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3811574427984728329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FeedBacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +527,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 819436712652189259}
     m_Modifications:
-    - target: {fileID: 3690488941209282224, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+      propertyPath: m_Name
+      value: Tier3BulletParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363037240051572008, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}

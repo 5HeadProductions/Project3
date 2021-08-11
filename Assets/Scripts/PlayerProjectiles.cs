@@ -29,10 +29,8 @@ public class PlayerProjectiles : MonoBehaviour
     
     // player shoots at the ship 
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide"){
-           
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
             OnCollision?.PlayFeedbacks();
-            
             PlayerCoins.AddCoinsToPlayer(other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
             
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
