@@ -61,12 +61,14 @@ public class TurretBehavior : MonoBehaviourPun
         
         if(Time.time > _timeUntilAttack && _target != null && _targetCollider != null && !_target.CompareTag("Turret") ){
             animator.SetBool("Firing",true);
-            Debug.Log(_targetCollider.gameObject.name);
-             Debug.Log(_target.gameObject.name);
+            
           
             GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, firePoint.transform.rotation);
-            Vector2 bulletDirection = (_target.transform.position - transform.position).normalized * _currentTurret.bulletSpeed; // why normalized?
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y);
+            Vector2 bulletDirection = (_target.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(bulletDirection.y,bulletDirection.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
+            bullet.transform.Rotate(0,0,-90);
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y) * _currentTurret.bulletSpeed;
             _timeUntilAttack = Time.time + _currentTurret.fireRate;
             StartCoroutine(animatorWait());
         }

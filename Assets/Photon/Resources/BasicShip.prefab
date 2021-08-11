@@ -118,7 +118,7 @@ MonoBehaviour:
   ResetTargetValuesAfterShake: 1
   UseRange: 0
   EventRange: 100
-  EventOriginTransform: {fileID: 0}
+  EventOriginTransform: {fileID: 5261883995245177357}
   AllowAdditivePlays: 1
   ModifyColor: 1
   ColorOverTime:
@@ -306,6 +306,7 @@ MonoBehaviour:
   enemyHealth: 0
   onHitFeedback: {fileID: 4254302743033469938}
   onSpawnFeedback: {fileID: 8145281549549594224}
+  onDeathFeedback: {fileID: 0}
 --- !u!50 &5515551583737132467
 Rigidbody2D:
   serializedVersion: 4
@@ -445,7 +446,7 @@ MonoBehaviour:
   ResetTargetValuesAfterShake: 1
   UseRange: 0
   EventRange: 100
-  EventOriginTransform: {fileID: 0}
+  EventOriginTransform: {fileID: 6177355978667914292}
   AllowAdditivePlays: 1
   ModifyColor: 1
   ColorOverTime:
