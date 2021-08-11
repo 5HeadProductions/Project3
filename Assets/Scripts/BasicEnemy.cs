@@ -15,10 +15,10 @@ public class BasicEnemy : MonoBehaviour
     public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
     public MMFeedbacks onHitFeedback, onSpawnFeedback;
 
-    public void OnEnable(){
+    public void OnEnable(){ // killing the enemy after it has been alive for a number of time
         Invoke("Dead", 120);
     }
-    public void Dead(){
+    public void Dead(){ // enemy ship dies after timer is over
         canShoot = false;
         gameObject.SetActive(false);
     }
@@ -54,10 +54,35 @@ public class BasicEnemy : MonoBehaviour
         if(!isMoving) return ;
         rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Force);
         if(this.gameObject.CompareTag("Boss")){
-            //boss dashes left and right randomly
-            Debug.Log("moving the boss to 1");
-            rb.AddForce(new Vector2(.1f,0f) * 1f, ForceMode2D.Impulse);
+            BossMovement(); // giving additional movement to the bosses
         }
+    }
+
+    
+    /*
+    Giving the bosses more mobility allowing them to orbit around the earth
+    When there is an even amount of bosses then they orbit in the opposite direction
+    */
+    private void BossMovement(){
+        GameObject[] activeBosses = GameObject.FindGameObjectsWithTag("Boss"); // keeps track of how many enemies are currently active
+        GameObject earth = GameObject.Find("BossCenter");   //GO in the scene that will rotate the its children, that being the boss ships
+        GameObject earthTwo = GameObject.Find("BossCenterTwo");// GO similar to the one above but rotates in the opposite direction
+        int i = 0;
+        while(i < activeBosses.Length){
+            if(activeBosses[i].activeInHierarchy){
+                    //boss ships rotate
+                if(i % 2 == 0){
+                    activeBosses[i].transform.SetParent(earthTwo.transform);
+                    rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Impulse);
+                    earthTwo.transform.eulerAngles += new Vector3(0,0,(-5f * Time.deltaTime));
+                    }else{
+                        activeBosses[i].transform.SetParent(earth.transform);
+                        rb.AddForce(-transform.up * enemyStats.speed, ForceMode2D.Impulse);
+                        earth.transform.eulerAngles += new Vector3(0,0,(5f * Time.deltaTime));
+                    }
+                }
+                i++;
+            }
     }
 
     /*  

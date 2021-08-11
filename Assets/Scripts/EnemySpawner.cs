@@ -17,10 +17,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemySpawner; // used to spawn the enemies on this gameobject
     public bool canSpawn = true; // determines if enemies can keep on spawning
     [Header("Text Fields")]
-    public TextMeshProUGUI enemiesInWave;
+    //public TextMeshProUGUI enemiesInWave;
     public TextMeshProUGUI waveRound;
     private bool pause = false; // button that start the round 
-    public Button button;
+    [Header("StartButtonAnimation")][SerializeField]Animator animator;
 
     [Header("WAVES")]
     public Wave[] waves; //total waves
@@ -49,17 +49,17 @@ public class EnemySpawner : MonoBehaviour
         if(pause == true){
             currentWave = waves[currentWaveNumber];
             waveRound.text = currentWave.waveNum.ToString();
-            if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){ // doesn't decrement count of the text until the ships start getting destroyed
+           // if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){ // doesn't decrement count of the text until the ships start getting destroyed
                 enemiesToSpawn = currentWave.numOfEnemies; // used to spawn enemies
-                numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
-                if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses, 
-                if(numberOfEnemiesInWaveCounter <= 0){
-                    temp--;
-                    enemiesInWave.text = "Enemies remaining " + temp.ToString();
-                }
-                else enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();
-                }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
-            } 
+            //     numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
+            //     if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses, 
+            //     if(numberOfEnemiesInWaveCounter <= 0){
+            //         temp--;
+            //         enemiesInWave.text = "Enemies remaining " + temp.ToString();
+            //     }
+            //     else enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();
+            //     }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+            // } 
             SpawnWave();
             // condition to end the spawning of the round
             GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // finding how many enemies are ON the scene
@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
                 currentWaveNumber++;
                 canSpawn = true;
                 pause = false;
-                button.gameObject.SetActive(true);
+                animator.SetTrigger("FadeIn");
                 }
             }
         }
@@ -128,10 +128,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void UpdateEnemyTracker(){   /// update the text field which will show how many enemies are in each round and update the counter as they get killed
         numberOfEnemiesInWaveCounter--;
-        if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses
-            enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();   
-        }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
-       // enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+        // if(currentWave.waveNum % 5 == 0){ // need to include the number of regular enemies plus the number of bosses
+        //     enemiesInWave.text = "Enemies remaining " + (numberOfEnemiesInWaveCounter + bossPerRound[bossToSpawnIndex]).ToString();   
+        // }else enemiesInWave.text = "Enemies remaining " + numberOfEnemiesInWaveCounter.ToString();
+       
     }
 
 
