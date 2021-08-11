@@ -13,6 +13,7 @@ public class PlayerProjectiles : MonoBehaviour
     public MMFeedbacks OnCollision;
     public PlayerCoins PlayerCoins;
     private Color changeColor;
+    public MMFeedbacks shipDeathFeedback;
  
 
    
@@ -31,11 +32,13 @@ public class PlayerProjectiles : MonoBehaviour
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide"){
            
             OnCollision?.PlayFeedbacks();
+            
             PlayerCoins.AddCoinsToPlayer(other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
             
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
             other.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks(); // taking damage animaiton
             if( other.gameObject.GetComponent<BasicEnemy>().enemyHealth < 1){
+                shipDeathFeedback?.PlayFeedbacks();
                 if(other.gameObject.tag == "Enemy")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 3;
                 if(other.gameObject.tag == "Suicide")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 1;
             EnemySpawner.Instance.UpdateEnemyTracker();

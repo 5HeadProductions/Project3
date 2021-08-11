@@ -33,9 +33,6 @@ public class PlayerController : MonoBehaviourPun
         public Projectile tier4Bullet;
         private GameObject _currentBullet;
 
-        public GameObject charge1;
-        public GameObject charge2;
-        public GameObject charge3;
         ////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -57,6 +54,11 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField] MMFeedbacks tier1Charge;
         [SerializeField] MMFeedbacks tier2Charge;
         [SerializeField] MMFeedbacks tier3Charge;
+
+        //boolean for the feedbacks of charging works
+        bool _charge1 = true;
+        bool _charge2 = true;
+        bool _charge3 = true;
         
         MMFeedbacks _currentShotFeedback;
         void Start(){
@@ -74,11 +76,6 @@ public class PlayerController : MonoBehaviourPun
             
             //Sets the bullet prefab that will be instantiated if fire is called
             SetBullet(tier1Bullet.bulletPrefab);
-            
-            //sets all charges to false so they cannot be seen until called upon
-            charge1.SetActive(false);
-            charge2.SetActive(false);
-            charge3.SetActive(false);
 
             //sets all the scriptable objects back to original damage
             tier1Bullet.damage = 1;
@@ -141,12 +138,18 @@ public class PlayerController : MonoBehaviourPun
         
         
         _currentShotFeedback?.PlayFeedbacks();
+        _currentShotFeedback = tier1Shot;
+        
 
         //sets bullet to the first one in case a charged bullet is set
         SetBullet(tier1Bullet.bulletPrefab);
 
     
     //sets all charges to false so all charges are off when a bullet is instantiated
+        _charge1 = true;
+        _charge2 = true;
+        _charge3 = true;
+        tier3Charge?.StopFeedbacks();
         
         _timeUntilFire = Time.time + timeBetweenProjectiles;
     }
@@ -190,14 +193,17 @@ public class PlayerController : MonoBehaviourPun
     void DisplayCharge(){
         
         
-        if((_chargeTimer > bullet2Timer)){      
+        if(_chargeTimer > bullet2Timer && _charge1){      
             tier1Charge?.PlayFeedbacks();
+            _charge1 = false;
         }
-        if(_chargeTimer > bullet3Timer){
+        if(_chargeTimer > bullet3Timer && _charge2){
             tier2Charge?.PlayFeedbacks();
+            _charge2 = false;
         }
-        if(_chargeTimer > bullet4Timer){
+        if(_chargeTimer > bullet4Timer && _charge3){
             tier3Charge?.PlayFeedbacks();
+            _charge3 = false;
         }
     }
 

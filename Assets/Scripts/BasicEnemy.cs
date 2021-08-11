@@ -19,6 +19,7 @@ public class BasicEnemy : MonoBehaviour
         Invoke("Dead", 120);
     }
     public void Dead(){
+        GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion();
         canShoot = false;
         gameObject.SetActive(false);
     }
