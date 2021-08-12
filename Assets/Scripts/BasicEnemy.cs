@@ -95,8 +95,10 @@ public class BasicEnemy : MonoBehaviour
     public void CanShoot(){
        StartCoroutine(Delay()); 
         }
+
+    //Delay how fast the basic enemy can shoot when they reach the outer earth collider    
     public IEnumerator Delay(){
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
            canShoot = true;
     }
     public void Fire(){

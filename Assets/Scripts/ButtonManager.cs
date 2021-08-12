@@ -7,6 +7,8 @@ public class ButtonManager : MonoBehaviour
 {
     //MainMenu
     private GameObject canvasSwitch;
+
+    public Animator animator;
     ///////////////////
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,13 @@ public class ButtonManager : MonoBehaviour
     }
 
     public void LoadSinglePlayer(){
+        animator.SetTrigger("Close");
+        StartCoroutine(Delay());
+        
+    }
+
+    private IEnumerator Delay(){
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("SinglePlayerScene");
     }
 }

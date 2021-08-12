@@ -35,9 +35,9 @@ public class PlayerProjectiles : MonoBehaviour
             
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
             other.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks(); // taking damage animaiton
-            if( other.gameObject.GetComponent<BasicEnemy>().enemyHealth < 1){
+            if(other.gameObject.GetComponent<BasicEnemy>().enemyHealth < 1){
                 shipDeathFeedback?.PlayFeedbacks();
-                if(other.gameObject.tag == "Enemy")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 3;
+                if(other.gameObject.tag == "Enemy")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 3; // ressting the ships health
                 if(other.gameObject.tag == "Suicide")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 1;
             EnemySpawner.Instance.UpdateEnemyTracker();
             other.gameObject.SetActive(false); // "killing" the enemy
