@@ -37,9 +37,12 @@ public class TurretBehavior : MonoBehaviourPun
 
     private Collider2D _targetCollider;
 
+    public int turretHealth;
+
     void Start(){
         
         // _currentTurret = turretTier1;
+        turretHealth = _currentTurret.health;
         startTime = Time.time;
         _playerFirePoint = GameObject.Find("PlayerFirePoint").transform;
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

@@ -16,7 +16,7 @@ public class AsteroidSpawner : MonoBehaviour
             
             GameObject parent = GameObject.Find("NewMMPanel"); // spawn them in the correct canvas
             if(parent == null){
-                parent = GameObject.Find("Play Canvas");
+                parent = GameObject.Find("NewPlayPanel");
             }
             if(parent.activeInHierarchy){
             obj.transform.SetParent(parent.transform);

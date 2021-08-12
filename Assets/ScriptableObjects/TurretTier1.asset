@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretTier: 1
   damage: 10
-  health: 10
+  health: 2
   range: 1
   projectilePrefab: {fileID: 1795017783903721421, guid: 95f41d0cb22a20c4a94892e970f9e49b, type: 3}
   turretPrefab: {fileID: 3470490177291654242, guid: 571c64c529f995f429edbc07bdcd5e61, type: 3}
