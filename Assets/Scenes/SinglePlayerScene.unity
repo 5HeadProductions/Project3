@@ -521,7 +521,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84469340}
-  m_LocalRotation: {x: 1e-45, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1381,13 +1381,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  damageIncrease: 0
-  chargeTimeDecrease: 0.1
   projectileTier1: {fileID: 11400000, guid: c8d235510a1271743a067690ded377f5, type: 2}
   projectileTier2: {fileID: 11400000, guid: 03adec9760f42e042931ef4c879f7c4b, type: 2}
   projectileTier3: {fileID: 11400000, guid: a42fbe5e94e05e840848412d2d464cdf, type: 2}
   projectileTier4: {fileID: 11400000, guid: d4317a2bb73b65f48b2e7b2bffdd5129, type: 2}
   PlayerController: {fileID: 0}
+  Descripion: 
+  damageIncrease: 0
+  initialUpgradeBulletCost: 0
+  upgradeBulletCostIncrease: 0
+  maxUpgradeBulletAmount: 0
+  Descripion2: 
+  chargeTimeDecrease: 0.1
+  initialCooldownUpgradeCost: 0
+  cooldownUpgradeCostIncrease: 0
+  maxCooldownUpgradeAmount: 0
 --- !u!114 &474958500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,13 +1683,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1257735970}
-  damageIncrease: 0
-  chargeTimeDecrease: 0
   projectileTier1: {fileID: 0}
   projectileTier2: {fileID: 0}
   projectileTier3: {fileID: 0}
   projectileTier4: {fileID: 0}
   PlayerController: {fileID: 0}
+  Descripion: 
+  damageIncrease: 0
+  initialUpgradeBulletCost: 0
+  upgradeBulletCostIncrease: 0
+  maxUpgradeBulletAmount: 0
+  Descripion2: 
+  chargeTimeDecrease: 0
+  initialCooldownUpgradeCost: 0
+  cooldownUpgradeCostIncrease: 0
+  maxCooldownUpgradeAmount: 0
 --- !u!114 &523432723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,6 +2081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8594f8dd653b3e740b6705b0a00e4b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &668042281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3335,13 +3352,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  damageIncrease: 0
-  chargeTimeDecrease: 0
   projectileTier1: {fileID: 0}
   projectileTier2: {fileID: 0}
   projectileTier3: {fileID: 0}
   projectileTier4: {fileID: 0}
   PlayerController: {fileID: 0}
+  Descripion: 
+  damageIncrease: 0
+  initialUpgradeBulletCost: 0
+  upgradeBulletCostIncrease: 0
+  maxUpgradeBulletAmount: 0
+  Descripion2: 
+  chargeTimeDecrease: 0
+  initialCooldownUpgradeCost: 0
+  cooldownUpgradeCostIncrease: 0
+  maxCooldownUpgradeAmount: 0
 --- !u!114 &1031233992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5200,13 +5225,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  damageIncrease: 1
-  chargeTimeDecrease: 0
   projectileTier1: {fileID: 11400000, guid: c8d235510a1271743a067690ded377f5, type: 2}
   projectileTier2: {fileID: 11400000, guid: 03adec9760f42e042931ef4c879f7c4b, type: 2}
   projectileTier3: {fileID: 11400000, guid: a42fbe5e94e05e840848412d2d464cdf, type: 2}
   projectileTier4: {fileID: 11400000, guid: d4317a2bb73b65f48b2e7b2bffdd5129, type: 2}
   PlayerController: {fileID: 0}
+  Descripion: 
+  damageIncrease: 1
+  initialUpgradeBulletCost: 0
+  upgradeBulletCostIncrease: 0
+  maxUpgradeBulletAmount: 0
+  Descripion2: 
+  chargeTimeDecrease: 0
+  initialCooldownUpgradeCost: 0
+  cooldownUpgradeCostIncrease: 0
+  maxCooldownUpgradeAmount: 0
 --- !u!114 &1638439401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5778,7 +5811,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820030145}
-  m_LocalRotation: {x: 3e-45, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5986,9 +6019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 260742000}
   canSpawn: 1
-  enemiesInWave: {fileID: 1972542562}
   waveRound: {fileID: 106428338}
-  button: {fileID: 668042281}
+  animator: {fileID: 0}
   waves:
   - waveNum: 1
     numOfEnemies: 1
