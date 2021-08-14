@@ -13,7 +13,7 @@ public class BasicEnemy : MonoBehaviour
     public GameObject FirePoint;
     private float startTime = 100.0f;
     public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
-    public MMFeedbacks onHitFeedback, onSpawnFeedback;
+    public MMFeedbacks onHitFeedback, onSpawnFeedback,enemyShootingSound;
 
     public void OnEnable(){ // killing the enemy after it has been alive for a number of time
         Invoke("Dead", 120);
@@ -45,6 +45,7 @@ public class BasicEnemy : MonoBehaviour
     transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward); // 90 is added to the angle bc 
     if(this.gameObject.activeInHierarchy && canShoot == true){
         if(Time.time > startTime){
+            enemyShootingSound?.PlayFeedbacks();
             Fire();
             startTime = Time.time + enemyStats.fireRate;
             }
