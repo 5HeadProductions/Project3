@@ -8,8 +8,9 @@ using MoreMountains.Feedbacks;
 public class Earth : MonoBehaviour
 {
     [SerializeField] MMProgressBar healthBar;
-    public TextMeshProUGUI health_Txt;
-    public MMFeedbacks earthDamaged;
+    public MMFeedbacks earthDamaged; //earth turn read when it is hit
+
+    [SerializeField]MMFeedbacks OnEarthHit;
     public int earthHealth;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class Earth : MonoBehaviour
         }
     }
 
-// inner collider
+// inner collider, suicide ships hit and enemy bullets
    public void OnCollisionEnter2D(Collision2D col){ 
         if(col.transform.tag == "Suicide"){
             EnemySpawner.Instance.UpdateEnemyTracker();
@@ -38,12 +39,14 @@ public class Earth : MonoBehaviour
             //earth take damage
            // queue explosion/camera shake
 
-           earthHealth = earthHealth -  col.gameObject.GetComponent<EnemyProjectile>().DoDamage();;
+           earthHealth -= col.gameObject.GetComponent<EnemyProjectile>().DoDamage();
+           OnEarthHit?.PlayFeedbacks();
             Destroy(col.gameObject);
             healthBar.Minus10Percent();
 
         }
-        earthDamaged?.PlayFeedbacks();
+        OnEarthHit?.PlayFeedbacks(); // plays sound
+        earthDamaged?.PlayFeedbacks();//plays red earth
     }
 
 // outer collider
