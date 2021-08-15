@@ -15,11 +15,12 @@ public class BasicEnemy : MonoBehaviour
     public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
     public MMFeedbacks onHitFeedback, onSpawnFeedback,enemyShootingSound;
 
+    
+
     public void OnEnable(){ // killing the enemy after it has been alive for a number of time
         Invoke("Dead", 120);
     }
     public void Dead(){
-        GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion();
         canShoot = false;
         gameObject.SetActive(false);
     }

@@ -526,15 +526,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1795017783903721416}
     m_Modifications:
-    - target: {fileID: 496554392257265498, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
-      propertyPath: m_Name
-      value: Tier4BulletParticles
-      objectReference: {fileID: 0}
-    - target: {fileID: 496554392257265498, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6363037240051572008, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
+    - target: {fileID: 3690488941209282224, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -581,6 +573,18 @@ PrefabInstance:
     - target: {fileID: 3690488941209282239, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_Name
       value: shipDeathFeedback
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
+      propertyPath: m_Name
+      value: Tier4BulletParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363037240051572008, guid: 16d75e3df6ce3164c8539e8ff0bb46ff, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}

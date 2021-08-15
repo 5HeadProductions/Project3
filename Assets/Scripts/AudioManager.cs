@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-       // Play("Theme");
+        Play("Theme");
     }
 
     public void Play(string name)    //Function to call when you want to play a sound in script

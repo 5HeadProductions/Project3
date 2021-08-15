@@ -175,6 +175,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  turretHealth: 0
 --- !u!95 &3470490177291654265
 Animator:
   serializedVersion: 3
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
 --- !u!50 &-5972677341427713760
 Rigidbody2D:

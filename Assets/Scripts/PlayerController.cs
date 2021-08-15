@@ -63,16 +63,18 @@ public class PlayerController : MonoBehaviourPun
         MMFeedbacks _currentShotFeedback;
         void Start(){
             _currentShotFeedback = tier1Shot;
-            PhotonNetwork.OfflineMode = true;
+          //  PhotonNetwork.OfflineMode = true;
             //View component for the photon network
             if(PhotonNetwork.OfflineMode == false){
+                //View component for the photon network
             view = gameObject.GetComponent<PhotonView>();
+            _pauseCanvas = GameObject.Find("PauseCanvas");  // dragged in the canvas instead
+            _pauseCanvas.SetActive(false);
             }
             PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
 
-            //_pauseCanvas = GameObject.Find("PauseCanvas");  // dragged in the canvas instead
-            //_pauseCanvas.SetActive(false);
-            //View component for the photon network
+            
+            
             
             //Sets the bullet prefab that will be instantiated if fire is called
             SetBullet(tier1Bullet.bulletPrefab);
@@ -210,7 +212,7 @@ public class PlayerController : MonoBehaviourPun
     //gives the player the ability to spawn in there pause canvas and does not show this over the network
     //possible tweaks are to freexe the players controls when canvas is active
     void Pause(){
-        if(_pauseCanvas.activeInHierarchy && Input.GetKeyDown(pauseButton)){
+        if(Input.GetKeyDown(pauseButton) && _pauseCanvas.activeInHierarchy){
             if(PhotonNetwork.OfflineMode == true){
                 ResumeTime();
             }

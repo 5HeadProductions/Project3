@@ -165,6 +165,12 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Theme
+    clip: {fileID: 8300000, guid: 970ce4c26ceb8554db08950e904c86ff, type: 3}
+    volume: 0.01
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
 --- !u!4 &171711621
 Transform:
   m_ObjectHideFlags: 0
