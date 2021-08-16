@@ -41,6 +41,7 @@ public class PlayerProjectiles : MonoBehaviour
                 if(other.gameObject.tag == "Suicide")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 1;
             EnemySpawner.Instance.UpdateEnemyTracker();
             other.gameObject.SetActive(false); // "killing" the enemy
+            GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(other.transform.position.x,other.transform.position.y, 0));
             }
             this.GetComponent<SpriteRenderer>().enabled = false;
             this.GetComponent<BoxCollider2D>().enabled = false;
