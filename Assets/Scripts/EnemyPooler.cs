@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class EnemyPooler : MonoBehaviour
+public class EnemyPooler : MonoBehaviourPun
 {
 
 // basic enemy pooler
@@ -21,9 +22,18 @@ public class EnemyPooler : MonoBehaviour
         list = new List<GameObject>();
 
         for(int i  = 0; i < basicS; i++){
-            GameObject obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
-            obj.SetActive(false);
+            GameObject obj;
+            if(PhotonNetwork.OfflineMode){
+                obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
+                obj.SetActive(false);
+            }
+            else{
+            obj = PhotonNetwork.Instantiate(enemyObj.name,enemySpawner.transform.position,Quaternion.identity);
+            this.GetComponent<PhotonView>().RPC("DisableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+            }
+            
             list.Add(obj);
+            
         }
         
     }
@@ -36,5 +46,12 @@ public class EnemyPooler : MonoBehaviour
         return null;
     }
 
+    [PunRPC]
+    private void DisableGameObject(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+            if(targetPhotonView != null)
+            targetPhotonView.gameObject.SetActive(false);
+    }
 
+    
 }

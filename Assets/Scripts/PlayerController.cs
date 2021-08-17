@@ -275,6 +275,22 @@ public class PlayerController : MonoBehaviourPun
             if(temp != null)
             Destroy(temp.gameObject);
     }
+
+    [PunRPC]
+    public void Instaniate(int gameObjectViewID){
+            PhotonView temp = PhotonView.Find(gameObjectViewID);
+            if(temp != null)
+            temp.gameObject.SetActive(true);
+    }
+
+    [PunRPC]
+    public void Destroy(int gameObjectViewID){
+            PhotonView temp = PhotonView.Find(gameObjectViewID);
+            if(temp != null)
+            temp.gameObject.SetActive(false);
+    }
+
+
 }
 
     
