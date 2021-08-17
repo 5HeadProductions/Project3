@@ -21,12 +21,6 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void HowToPlay(){
         _audio.Play("ButtonClick");
         Debug.Log("CHANGING SCENE TO HOW TO PLAY");

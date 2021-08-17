@@ -4,6 +4,7 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 using Photon.Pun;
 
+
 public class PlayerProjectiles : MonoBehaviour
 {
     //Plan for this script is that it takes a scriptable object that will have the info of damage
@@ -40,20 +41,42 @@ public class PlayerProjectiles : MonoBehaviour
                 if(other.gameObject.tag == "Enemy")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 3; // ressting the ships health
                 if(other.gameObject.tag == "Suicide")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 1;
             EnemySpawner.Instance.UpdateEnemyTracker();
+            if(PhotonNetwork.OfflineMode)
             other.gameObject.SetActive(false); // "killing" the enemy
+            else
+            this.GetComponent<PhotonView>().RPC("DisableEnemyShip", RpcTarget.AllBuffered,other.gameObject.GetComponent<PhotonView>().ViewID);
             GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(other.transform.position.x,other.transform.position.y, 0));
             }
+            if(PhotonNetwork.OfflineMode){
             this.GetComponent<SpriteRenderer>().enabled = false;
             this.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(gameObject, 1f); // destorying the bullet
+            }
+            else{
+                this.GetComponent<PhotonView>().RPC("DisableProjectile", RpcTarget.AllBuffered);
+            }
 
         }
      }
    
    [PunRPC]
-    public void DestroyGameObject(int gameObjectViewID){
-            PhotonView temp = PhotonView.Find(gameObjectViewID);
-            if(temp != null)
-            Destroy(temp.gameObject);
+    private void DisableEnemyShip(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+            if(targetPhotonView != null)
+            targetPhotonView.gameObject.SetActive(false);
     }
+
+    [PunRPC]
+    private void DisableProjectile(){
+        // PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+        //     if(targetPhotonView != null){
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(gameObject, 1f); // destorying the bullet
+    //}
+    }
+
+
+
+
 }

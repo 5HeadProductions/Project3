@@ -9,7 +9,6 @@ public class FeedbackManager : MonoBehaviour
 
     public ParticleSystem explosionParticle;
     public void ShipExplosion(Vector3 explosionPosition){
-        Debug.Log("particles should be instantiated");
         Instantiate(explosionParticle,explosionPosition, Quaternion.identity);
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Photon.Pun;
 [System.Serializable]
 public class Wave { // class = a container that will holds all the variables each wave must have
     [Header("Wave Stats")]
@@ -186,7 +187,12 @@ public class EnemySpawner : MonoBehaviour
             GameObject obj = EnemyPooler._Instance.SpawnEnemy();
             if(obj == null)return;   
             obj.transform.position = enemySpawner.transform.position;
+            //spawning over network requires a RPC
+            if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
+            else
+            this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
@@ -206,6 +212,14 @@ public class EnemySpawner : MonoBehaviour
             temp = bossCount;
       
 
+    }
+
+    [PunRPC]
+    private void EnableGameObject(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+            if(targetPhotonView != null)
+            targetPhotonView.gameObject.SetActive(true);
+        
     }
 
 }
