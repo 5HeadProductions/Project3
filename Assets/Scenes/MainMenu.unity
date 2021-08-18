@@ -2062,9 +2062,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1728267499}
-  - component: {fileID: 1728267500}
+  - component: {fileID: 1728267501}
   m_Layer: 5
-  m_Name: ObjectPooler
+  m_Name: AsteroidPooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2089,7 +2089,7 @@ RectTransform:
   m_AnchoredPosition: {x: 399.99997, y: 224.99998}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1728267500
+--- !u!114 &1728267501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728267498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5f5f03f4fb99f4a9b62ebd32ce0ba6, type: 3}
+  m_Script: {fileID: 11500000, guid: c10bd1ce74efb924c8a99547af7c69b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObj: {fileID: 71741073674554120, guid: 4ab7e041a447c7148b40621c90b06e0b, type: 3}
