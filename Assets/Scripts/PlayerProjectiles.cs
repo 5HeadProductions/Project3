@@ -23,8 +23,6 @@ public class PlayerProjectiles : MonoBehaviour
         PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
         transform.Rotate(0,0,90);
         OnInstantiation.Initialization(this.gameObject);
-       
-        
         OnInstantiation?.PlayFeedbacks();
     }
     
