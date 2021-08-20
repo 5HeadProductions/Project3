@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 public class ButtonManager : MonoBehaviour
 {
     //MainMenu
@@ -23,7 +24,6 @@ public class ButtonManager : MonoBehaviour
 
     public void HowToPlay(){
         _audio.Play("ButtonClick");
-        Debug.Log("CHANGING SCENE TO HOW TO PLAY");
     }
     public void PlayButton(){
         _audio.Play("ButtonClick");
@@ -38,16 +38,16 @@ public class ButtonManager : MonoBehaviour
     
     public void ExitButton(){
         _audio.Play("ButtonClick");
-        Debug.Log("APPLICATION QUITING");
         Application.Quit();
     }
 
     public void LoadingScene(){
         _audio.Play("ButtonClick");
+        PhotonNetwork.OfflineMode = false;
         SceneManager.LoadScene("LoadingScene");
     }
 
-    public void LoadSinglePlayer(){
+    public void LoadSinglePlayer(){ //scene loaded in Delay function
         _audio.Play("ButtonClick");
         animator.SetTrigger("Close");
         StartCoroutine(Delay());
@@ -56,6 +56,7 @@ public class ButtonManager : MonoBehaviour
 
     private IEnumerator Delay(){
         yield return new WaitForSeconds(2);
+        PhotonNetwork.OfflineMode = true;
         SceneManager.LoadScene("SinglePlayerScene");
     }
 }
