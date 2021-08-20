@@ -11,7 +11,7 @@ public class AsteroidSpawner : MonoBehaviour
     void Update()
     {
         if(Time.time > timeToCross){ 
-            GameObject obj = ObjectPooler.Instance.GetPooledObject();
+            GameObject obj = AsteroidPooler.Instance.GetPooledObject();
             if(obj == null) return;
             
             GameObject parent = GameObject.Find("NewMMPanel"); // spawn them in the correct canvas
