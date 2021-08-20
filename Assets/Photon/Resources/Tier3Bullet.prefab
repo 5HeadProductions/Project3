@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: cf9760a2dafc94f97b705a62ec67e9ff, type: 3}
   m_Color: {r: 0.66497254, g: 0.22828408, b: 0.8490566, a: 1}
   m_FlipX: 0
@@ -127,7 +127,6 @@ MonoBehaviour:
   OnCollision: {fileID: 57084672245348355}
   PlayerCoins: {fileID: 0}
   shipDeathFeedback: {fileID: 4470142163006227041}
-  PlayerCoins: {fileID: 0}
 --- !u!50 &4856363871582066786
 Rigidbody2D:
   serializedVersion: 4
@@ -527,15 +526,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 819436712652189259}
     m_Modifications:
-    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
-      propertyPath: m_Name
-      value: Tier3BulletParticles
-      objectReference: {fileID: 0}
-    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6363037240051572008, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+    - target: {fileID: 3690488941209282224, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -582,6 +573,18 @@ PrefabInstance:
     - target: {fileID: 3690488941209282239, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_Name
       value: shipDeathFeedback
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+      propertyPath: m_Name
+      value: Tier3BulletParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 496554392257265498, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363037240051572008, guid: cafd75e0a7bc1d6439e906c113e08fee, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}

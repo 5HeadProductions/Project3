@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviourPun
         MMFeedbacks _currentShotFeedback;
         void Start(){
             _currentShotFeedback = tier1Shot;
-          //  PhotonNetwork.OfflineMode = true;
             //View component for the photon network
             if(PhotonNetwork.OfflineMode == false){
                 //View component for the photon network
@@ -127,7 +126,7 @@ public class PlayerController : MonoBehaviourPun
 
     //Instantiates a bullet prefab
     void Fire(){
-        if(PhotonNetwork.OfflineMode == true){
+        if(PhotonNetwork.OfflineMode){
             GameObject bullet = Instantiate(_currentBullet,rocketSprite.position,transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
         }
@@ -274,20 +273,6 @@ public class PlayerController : MonoBehaviourPun
             PhotonView temp = PhotonView.Find(gameObjectViewID);
             if(temp != null)
             Destroy(temp.gameObject);
-    }
-
-    [PunRPC]
-    public void Instaniate(int gameObjectViewID){
-            PhotonView temp = PhotonView.Find(gameObjectViewID);
-            if(temp != null)
-            temp.gameObject.SetActive(true);
-    }
-
-    [PunRPC]
-    public void Destroy(int gameObjectViewID){
-            PhotonView temp = PhotonView.Find(gameObjectViewID);
-            if(temp != null)
-            temp.gameObject.SetActive(false);
     }
 
 

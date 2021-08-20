@@ -23,7 +23,7 @@ public class EnemyPooler : MonoBehaviourPun
 
         for(int i  = 0; i < basicS; i++){
             GameObject obj;
-            if(PhotonNetwork.OfflineMode){
+            if(PhotonNetwork.OfflineMode == true){
                 obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
                 obj.SetActive(false);
             }
