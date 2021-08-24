@@ -12,18 +12,12 @@ public class Earth : MonoBehaviour
 
     [SerializeField]MMFeedbacks OnEarthHit;
     public int earthHealth;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    public GameObject deathCanvas;
+    
     // Update is called once per frame
     void Update()
     {
-        if(earthHealth < 0){
-          //earth got destroyed
-        }
+        
     }
 
 // inner collider, suicide ships hit and enemy bullets
@@ -44,9 +38,14 @@ public class Earth : MonoBehaviour
             Destroy(col.gameObject);
             healthBar.Minus10Percent();
 
+
         }
         OnEarthHit?.PlayFeedbacks(); // plays sound
         earthDamaged?.PlayFeedbacks();//plays red earth
+        if(earthHealth < 0){
+          //earth got destroyed
+            deathCanvas.SetActive(true);
+        }
     }
 
 // outer collider

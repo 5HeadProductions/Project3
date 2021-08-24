@@ -47,6 +47,9 @@ MonoBehaviour:
   - DisableProjectile
   - OnlineStartR
   - BeginRound
+  - UpdateWaveNumber
+  - FadeInStartButton
+  - UpdatePlayerCoins
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
