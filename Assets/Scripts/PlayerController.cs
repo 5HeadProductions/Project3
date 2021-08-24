@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviourPun
     void Pause(){
         if(Input.GetKeyDown(pauseButton) && _pauseCanvas.activeInHierarchy){
             if(PhotonNetwork.OfflineMode == true){
-                ResumeTime();
+                ResumeTime();  //resuming time when the player presses the 'ESC' key
             }
         _pauseCanvas.SetActive(false);
         }
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviourPun
         Time.timeScale = 0;
     }
     void ResumeTime(){
-        Time.timeScale = 1;
+        Time.timeScale = 1; 
     }
     //turret purchase*
    void TempPurchase(){
