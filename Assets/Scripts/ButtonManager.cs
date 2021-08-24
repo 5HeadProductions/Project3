@@ -23,7 +23,9 @@ public class ButtonManager : MonoBehaviour
     }
 
     public void HowToPlay(){
+        PhotonNetwork.OfflineMode = true;
         _audio.Play("ButtonClick");
+        SceneManager.LoadScene("HowToPlay");
     }
     public void PlayButton(){
         _audio.Play("ButtonClick");
