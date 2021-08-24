@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     private string _mainMenu = "MainMenu";
     private string _pauseCanvasName = "PauseCanvas";
     public void ExitToMainMenu(){
-        PhotonNetwork.Disconnect();
+        if(PhotonNetwork.OfflineMode == false) PhotonNetwork.Disconnect();
         SceneManager.LoadScene(_mainMenu);
     }
 

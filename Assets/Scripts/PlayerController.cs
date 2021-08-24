@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using MoreMountains.Feedbacks;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviourPun
 
         private bool _unlockedTurretTier2;
 
-        [SerializeField] KeyCode turretSpawner;
+        [SerializeField] KeyCode turretSpawner; // set in the inspector 
         [SerializeField] KeyCode pauseButton;
         public PlayerCoins PlayerCoins;
         [SerializeField] GameObject _pauseCanvas;
@@ -69,6 +70,9 @@ public class PlayerController : MonoBehaviourPun
             view = gameObject.GetComponent<PhotonView>();
             _pauseCanvas = GameObject.Find("PauseCanvas");  // dragged in the canvas instead
             _pauseCanvas.SetActive(false);
+            }
+            if(SceneManager.GetActiveScene().name == "HowToPlay"){
+                _pauseCanvas.SetActive(false);
             }
             PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
 
@@ -234,35 +238,44 @@ public class PlayerController : MonoBehaviourPun
    void TempPurchase(){
 
         if(Input.GetKeyDown(turretSpawner)){
-            if(PhotonNetwork.OfflineMode == false){
-            if(!_unlockedTurretTier2){
-           GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
-           temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
-            temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
-            }
-            else{
-            GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
-            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
-                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
-            }
             
-        }
-        else{ // for offline mode
-            if(!_unlockedTurretTier2 && PlayerCoins.playerCoins >= turretTier1.buyCost){
-                PlayerCoins.SubtractCoinsFromPlayer(turretTier1.buyCost);
-           GameObject temp = Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
-           temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
-            temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
-            }
-            else if(PlayerCoins.playerCoins >= turretTier2.buyCost){
-                PlayerCoins.SubtractCoinsFromPlayer(turretTier2.buyCost);
-            GameObject temp =Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            if(SceneManager.GetActiveScene().name == "HowToPlay"){ // used only in the how to play scene
+                GameObject temp = Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks(); 
+            }else{
+                if(PhotonNetwork.OfflineMode == false){
+                if(!_unlockedTurretTier2){
+            GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
             temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                }
+                else{
+                GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                    temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                }
+                
             }
-        }
-        }
+            else{ // for offline mode
+                if(!_unlockedTurretTier2 && PlayerCoins.playerCoins >= turretTier1.buyCost){
+                    PlayerCoins.SubtractCoinsFromPlayer(turretTier1.buyCost);
+            GameObject temp = Instantiate(turretTier1.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                }
+                else if(PlayerCoins.playerCoins >= turretTier2.buyCost){
+                    PlayerCoins.SubtractCoinsFromPlayer(turretTier2.buyCost);
+                GameObject temp =Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                    temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                }
+            }
+            }
+
     }
+
+}
 
     public void setTier2Turret(){
         _unlockedTurretTier2 = true;
