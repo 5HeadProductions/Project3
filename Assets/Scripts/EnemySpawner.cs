@@ -49,7 +49,10 @@ public class EnemySpawner : MonoBehaviour
         RotateSpawner();
         if(pause == true){
             currentWave = waves[currentWaveNumber];
+            if(PhotonNetwork.OfflineMode)
             waveRound.text = currentWave.waveNum.ToString();
+            else
+            this.GetComponent<PhotonView>().RPC("UpdateWaveNumber", RpcTarget.All, currentWave.waveNum);
            // if(numberOfEnemiesInWaveCounter < currentWave.numOfEnemies){ // doesn't decrement count of the text until the ships start getting destroyed
                 enemiesToSpawn = currentWave.numOfEnemies; // used to spawn enemies
             //     numberOfEnemiesInWaveCounter = currentWave.numOfEnemies; 
@@ -75,7 +78,13 @@ public class EnemySpawner : MonoBehaviour
                 currentWaveNumber++;
                 canSpawn = true;
                 pause = false;
-                animator.SetTrigger("FadeIn");
+
+
+                if(PhotonNetwork.OfflineMode)
+            animator.SetTrigger("FadeIn");
+            else
+            this.GetComponent<PhotonView>().RPC("FadeInStartButton", RpcTarget.All);
+                
                 }
             }
         }
@@ -178,7 +187,10 @@ public class EnemySpawner : MonoBehaviour
             GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy();
             if(obj == null) return;   
             obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
+            else
+            this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization(); // needed to play next feedback
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks(); // resetting their color, both feedbacks needed "Allow additive plays"
             suicideEnemySpawnTracker ++;
@@ -204,7 +216,10 @@ public class EnemySpawner : MonoBehaviour
            GameObject obj = BossPooler._Instance.SpawnBoss();
             if(obj == null)return;   
             obj.transform.position = new Vector3 (enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
+            else
+            this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
@@ -220,6 +235,16 @@ public class EnemySpawner : MonoBehaviour
             if(targetPhotonView != null)
             targetPhotonView.gameObject.SetActive(true);
         
+    }
+
+    [PunRPC]
+    private void UpdateWaveNumber(int currentWaveNumber){
+        waveRound.text = currentWaveNumber.ToString();
+    }
+
+    [PunRPC]
+    private void FadeInStartButton(){
+        animator.SetTrigger("FadeIn");
     }
 
 }

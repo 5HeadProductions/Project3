@@ -51,12 +51,21 @@ public class ButtonManager : MonoBehaviour
         _audio.Play("ButtonClick");
         animator.SetTrigger("Close");
         StartCoroutine(Delay());
-        
     }
 
     private IEnumerator Delay(){
         yield return new WaitForSeconds(2);
         PhotonNetwork.OfflineMode = true;
         SceneManager.LoadScene("SinglePlayerScene");
+    }
+
+    public void ReplayGame(){
+        
+        _audio.Play("ButtonClick");
+        animator.SetTrigger("Close");
+        StartCoroutine(Delay());
+        
+        Debug.Log(this.transform.parent.gameObject.name);
+        //this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }

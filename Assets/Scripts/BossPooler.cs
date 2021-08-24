@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class BossPooler : MonoBehaviour
 {
@@ -19,9 +20,18 @@ public class BossPooler : MonoBehaviour
         _Instance = this;
         list = new List<GameObject>();
         for(int i  = 0; i < bossCount; i++){
-            GameObject obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
-            obj.SetActive(false);
+            GameObject obj;
+            if(PhotonNetwork.OfflineMode == true){
+                obj = Instantiate(enemyObj,enemySpawner.transform.position,Quaternion.identity);
+                obj.SetActive(false);
+            }
+            else{
+            obj = PhotonNetwork.Instantiate(enemyObj.name,enemySpawner.transform.position,Quaternion.identity);
+            this.GetComponent<PhotonView>().RPC("DisableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+            }
+            
             list.Add(obj);
+            
         }     
         
     }
@@ -33,5 +43,12 @@ public class BossPooler : MonoBehaviour
             
         }
         return null;
+    }
+
+    [PunRPC]
+    private void DisableGameObject(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+            if(targetPhotonView != null)
+            targetPhotonView.gameObject.SetActive(false);
     }
 }
