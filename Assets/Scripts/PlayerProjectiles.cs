@@ -36,9 +36,10 @@ public class PlayerProjectiles : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
             if(PhotonNetwork.OfflineMode)
-            OnCollision?.PlayFeedbacks();
+            OnCollision?.PlayFeedbacks(); // normal function call
             else
-            this.GetComponent<PhotonView>().RPC("PlayFeedback", RpcTarget.All);
+            this.GetComponent<PhotonView>().RPC("PlayFeedback", RpcTarget.All); //RPC call
+
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
             if(PhotonNetwork.OfflineMode)
             other.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks(); // taking damage animaiton
@@ -106,9 +107,12 @@ public class PlayerProjectiles : MonoBehaviour
         temp.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks();
     }
 
+    //activate 
     [PunRPC]
     private void PlayFeedback(){
+        Debug.Log("reached funcrtion");
         OnCollision?.PlayFeedbacks();
+        Debug.Log("Should've played feedbacks");
     }
 
     [PunRPC]
@@ -118,5 +122,11 @@ public class PlayerProjectiles : MonoBehaviour
         OnInstantiation?.PlayFeedbacks();
     }
     
+    [PunRPC]
+    private void DeleteBullet(int viewID){
+        PhotonView temp = PhotonView.Find(viewID);
+            if(temp != null)
+            Destroy(temp.gameObject);
+    }
 
 }

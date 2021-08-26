@@ -68,6 +68,6 @@ public class ButtonManager : MonoBehaviour
         StartCoroutine(Delay());
         
         Debug.Log(this.transform.parent.gameObject.name);
-        //this.gameObject.transform.parent.gameObject.SetActive(false);
+        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
