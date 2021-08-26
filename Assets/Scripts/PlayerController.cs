@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using MoreMountains.Feedbacks;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -244,16 +245,18 @@ public class PlayerController : MonoBehaviourPun
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks(); 
             }else{
-                if(PhotonNetwork.OfflineMode == false){
+                if(PhotonNetwork.OfflineMode == false){// online mode
                 if(!_unlockedTurretTier2){
             GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
-            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
-                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+            this.GetComponent<PhotonView>().RPC("PlayTurretEffect",RpcTarget.All, temp.GetComponent<PhotonView>().ViewID);
+            // temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+            //     temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
                 }
                 else{
                 GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
-                temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
-                    temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                this.GetComponent<PhotonView>().RPC("PlayTurretEffect",RpcTarget.All, temp.GetComponent<PhotonView>().ViewID);
+                // temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                //     temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
                 }
                 
             }
@@ -266,7 +269,7 @@ public class PlayerController : MonoBehaviourPun
                 }
                 else if(PlayerCoins.playerCoins >= turretTier2.buyCost){
                     PlayerCoins.SubtractCoinsFromPlayer(turretTier2.buyCost);
-                GameObject temp =Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
+                GameObject temp = Instantiate(turretTier2.turretPrefab, firePoint.transform.position,firePoint.transform.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                     temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
                 }
@@ -286,6 +289,15 @@ public class PlayerController : MonoBehaviourPun
             PhotonView temp = PhotonView.Find(gameObjectViewID);
             if(temp != null)
             Destroy(temp.gameObject);
+    }
+
+    [PunRPC]
+    private void PlayTurretEffect(int turretViewID){
+        PhotonView temp = PhotonView.Find(turretViewID);
+            if(temp != null){
+            temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
+                temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+            }
     }
 
 

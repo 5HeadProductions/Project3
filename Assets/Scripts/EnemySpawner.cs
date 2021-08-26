@@ -204,9 +204,13 @@ public class EnemySpawner : MonoBehaviour
             obj.SetActive(true);
             else
             this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
-
+            if(PhotonNetwork.OfflineMode){
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
+            }
+            else{
+                this.gameObject.GetComponent<PhotonView>().RPC("PlayFeedbacks", RpcTarget.All, obj.GetComponent<PhotonView>().ViewID);
+            }
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             basicEnemySpawnTracker ++;
            
@@ -245,6 +249,16 @@ public class EnemySpawner : MonoBehaviour
     [PunRPC]
     private void FadeInStartButton(){
         animator.SetTrigger("FadeIn");
+    }
+
+    [PunRPC]
+    private void PlayFeedbacks(int viewID){
+        PhotonView temp = PhotonView.Find(viewID);
+            if(temp != null){
+                temp.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
+            temp.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
+            }
+            
     }
 
 }
