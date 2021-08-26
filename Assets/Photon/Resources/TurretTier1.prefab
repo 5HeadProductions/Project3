@@ -464,7 +464,7 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  Mode: 0
+  Mode: 1
   CachedRecycle: 1
   ParticlesPrefab: {fileID: 904178776310913933, guid: 8a9b7b2a6bee2bb44aa268840562f5de, type: 3}
   RandomParticlePrefabs: []

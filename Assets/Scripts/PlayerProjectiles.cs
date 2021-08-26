@@ -21,15 +21,24 @@ public class PlayerProjectiles : MonoBehaviour
 
     void Start(){
         PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
-        transform.Rotate(0,0,90);
+        // if(PhotonNetwork.OfflineMode){
+        //transform.Rotate(0,0,90);
         OnInstantiation.Initialization(this.gameObject);
         OnInstantiation?.PlayFeedbacks();
+        // }
+        // else {
+    
+        // this.GetComponent<PhotonView>().RPC("BulletStart",RpcTarget.MasterClient);
+        // }
     }
     
     // player shoots at the ship 
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
+            if(PhotonNetwork.OfflineMode)
             OnCollision?.PlayFeedbacks();
+            else
+            this.GetComponent<PhotonView>().RPC("PlayFeedback", RpcTarget.All);
             other.gameObject.GetComponent<BasicEnemy>().enemyHealth -= projectile.damage;
             if(PhotonNetwork.OfflineMode)
             other.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks(); // taking damage animaiton
@@ -96,5 +105,18 @@ public class PlayerProjectiles : MonoBehaviour
             if(temp != null)
         temp.gameObject.GetComponent<BasicEnemy>().onHitFeedback?.PlayFeedbacks();
     }
+
+    [PunRPC]
+    private void PlayFeedback(){
+        OnCollision?.PlayFeedbacks();
+    }
+
+    [PunRPC]
+    private void BulletStart(){
+        transform.Rotate(0,0,90);
+        OnInstantiation.Initialization(this.gameObject);
+        OnInstantiation?.PlayFeedbacks();
+    }
+    
 
 }

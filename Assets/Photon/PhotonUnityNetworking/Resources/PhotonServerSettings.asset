@@ -52,6 +52,10 @@ MonoBehaviour:
   - UpdatePlayerCoins
   - PlayFeedbacks
   - TakingDamageFeedback
+  - PlayFeedback
+  - BulletStart
+  - BulletDelay
+  - CoroutineBegin
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
