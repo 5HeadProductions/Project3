@@ -99,9 +99,27 @@ public class TurretBehavior : MonoBehaviourPun
     }
 
     void OnCollisionEnter2D(Collision2D other){
+
+        
+        //"destroying" suicide ships when they hit a turret
+        if(other.gameObject.CompareTag("Suicide")){
+            if(PhotonNetwork.OfflineMode == false){ //online
+
+            // destroying bullet and turret over the network
+            this.GetComponent<PhotonView>().RPC("DisableTurret", RpcTarget.All, this.gameObject.GetComponent<PhotonView>().ViewID);
+            this.GetComponent<PhotonView>().RPC("DisableEnemyShip", RpcTarget.All, other.gameObject.GetComponent<PhotonView>().ViewID);
+
+
+            
+
+            }else{
+                // single player    
+                other.gameObject.SetActive(false);
+                Destroy(this.gameObject);
+            }
+
+        }
         //If statement ensures this code is only excecuted once by checking their start times
-        //Debug.Log(this.gameObject.name + " " + other.gameObject.name);
-        //Debug.Log("this.startTime" + this.startTime);
         if(other.gameObject.CompareTag("Turret")  &&  this.startTime > other.gameObject.GetComponent<TurretBehavior>().startTime){
             //for the turrets of tier 1 combining
            if(_currentTurret.turretTier == 1 && other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1){
@@ -162,6 +180,22 @@ public class TurretBehavior : MonoBehaviourPun
            }
         
         }
+    }
+
+
+    [PunRPC]
+    private void DisableTurret(int turretID){
+        PhotonView targetPhotonView = PhotonView.Find(turretID);
+        Destroy(targetPhotonView.gameObject); // destroying the turret
+
+    }
+
+
+    [PunRPC]
+    private void DisableEnemyShip(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+        GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(targetPhotonView.gameObject.transform.position.x,targetPhotonView.gameObject.transform.position.y, 0));
+            if(targetPhotonView != null) targetPhotonView.gameObject.SetActive(false);
     }
 }
 
