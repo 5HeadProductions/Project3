@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210902154781347323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6598220907957165750}
@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6421207923324575761}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6598220907957165750}
@@ -569,6 +569,34 @@ PrefabInstance:
     - target: {fileID: 3690488941209282224, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: Chance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: MaxVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: MinVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: RandomSfx.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7675b015509a77a40b4a66e898826cc8, type: 3}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: RandomSfx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7675b015509a77a40b4a66e898826cc8, type: 3}
+    - target: {fileID: 3690488941209282225, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
+      propertyPath: RandomSfx.Array.data[3]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3690488941209282239, guid: 37696c69c8f201a43aeb2490e82a180d, type: 3}
       propertyPath: m_Name

@@ -34,9 +34,23 @@ public class PlayerProjectiles : MonoBehaviour
     
     // player shoots at the ship 
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
-            if(PhotonNetwork.OfflineMode)
+        if(other.gameObject.tag == "EnemyBullet"){
+            if(PhotonNetwork.OfflineMode){
             OnCollision?.PlayFeedbacks(); // normal function call
+            
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(gameObject, 2f); // destorying the bullet
+            Destroy(other.gameObject);
+            }
+            else
+            this.GetComponent<PhotonView>().RPC("BulletCollision", RpcTarget.All, this.GetComponent<PhotonView>().ViewID, other.gameObject.GetComponent<PhotonView>().ViewID); //RPC call
+        }
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
+            if(PhotonNetwork.OfflineMode){
+            OnCollision?.PlayFeedbacks(); // normal function call
+            
+            }
             else
             this.GetComponent<PhotonView>().RPC("PlayFeedback", RpcTarget.All); //RPC call
 
@@ -136,5 +150,16 @@ public class PlayerProjectiles : MonoBehaviour
     [PunRPC]
     private void DeathFeedback(){
          shipDeathFeedback.PlayFeedbacks();
+    }
+    [PunRPC]
+    private void BulletCollision(int bulletViewID, int enemyBulletViewID){
+        PhotonView bullet = PhotonView.Find(bulletViewID);
+        PhotonView enemyBullet = PhotonView.Find(enemyBulletViewID);
+        
+        OnCollision?.PlayFeedbacks(); // normal function call
+            bullet.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            bullet.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(bullet.gameObject, 1f); // destorying the bullet
+            Destroy(enemyBullet.gameObject);
     }
 }
