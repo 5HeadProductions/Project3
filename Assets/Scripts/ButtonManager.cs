@@ -69,6 +69,7 @@ public class ButtonManager : MonoBehaviour
         StartCoroutine(Delay());
         
         Debug.Log(this.transform.parent.gameObject.name);
+       // this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
      IEnumerator FadeOut(){
