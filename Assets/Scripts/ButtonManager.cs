@@ -60,13 +60,24 @@ public class ButtonManager : MonoBehaviour
         PhotonNetwork.OfflineMode = true;
         SceneManager.LoadScene("SinglePlayerScene");
     }
+    private IEnumerator MultiplayerDelay(){
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("MultiplayerScene");
+    }
 
     public void ReplayGame(){
-        
+        if(!PhotonNetwork.OfflineMode){
+            this.gameObject.GetComponent<PhotonView>().RPC("OnlineReplayGame",RpcTarget.All);
+        }
+        else{
         _audio.Play("ButtonClick");
         animator.SetTrigger("Replay");
         StartCoroutine(FadeOut());
         StartCoroutine(Delay());
+        }
+
+        
+        
        // this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
@@ -83,4 +94,16 @@ public class ButtonManager : MonoBehaviour
           }
 
      }
+
+     [PunRPC]
+     public void OnlineReplayGame(){
+        
+        _audio.Play("ButtonClick");
+        animator.SetTrigger("Replay");
+        StartCoroutine(FadeOut());
+        StartCoroutine(MultiplayerDelay());
+        
+        
+       // this.gameObject.transform.parent.gameObject.SetActive(false);
+    }
 }
