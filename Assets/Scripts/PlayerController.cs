@@ -61,8 +61,13 @@ public class PlayerController : MonoBehaviourPun
         bool _charge1 = true;
         bool _charge2 = true;
         bool _charge3 = true;
+
+        bool DeathCanvasIsOn = false;
+
+        public GameObject DeathCanvas;
         
         MMFeedbacks _currentShotFeedback;
+        
         void Start(){
             _currentShotFeedback = tier1Shot;
             //View component for the photon network
@@ -93,28 +98,36 @@ public class PlayerController : MonoBehaviourPun
 
 
     void Update(){
+        
         if(PhotonNetwork.OfflineMode == false){
         //the if statement is so you only control one player
         if(view.IsMine){
-        RotatePlayer();
+        
         Pause();
         TempPurchase();
 
 
         //this is a check so fire cannot be called immediatly
+        if(!DeathCanvas.activeInHierarchy){
+        RotatePlayer();
+        //this is a check so fire cannot be called immediatly
         if(_timeUntilFire <= Time.time)
         WeaponCharge();
+        }
         }
         }
         else{
-            RotatePlayer();
+        
         Pause();
         TempPurchase();
 
 
+    if(!DeathCanvas.activeInHierarchy){
+        RotatePlayer();
         //this is a check so fire cannot be called immediatly
         if(_timeUntilFire <= Time.time)
         WeaponCharge();
+        }
         }
         
 
@@ -139,13 +152,17 @@ public class PlayerController : MonoBehaviourPun
         }
         //so the bullet can be seen by other player
         else{
-        GameObject bullet = PhotonNetwork.Instantiate(_currentBullet.name,rocketSprite.position,transform.rotation);
+        Quaternion newRotation = transform.rotation * _currentBullet.transform.rotation;
+        GameObject bullet = PhotonNetwork.Instantiate(_currentBullet.name,rocketSprite.position,newRotation);
         bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
         }
         //giving the bullet velocity
         
-        
+        if(PhotonNetwork.OfflineMode)
         _currentShotFeedback?.PlayFeedbacks();
+        else
+        this.GetComponent<PhotonView>().RPC("CurrentShotFeedback", RpcTarget.All);
+
         _currentShotFeedback = tier1Shot;
         
 
@@ -200,7 +217,7 @@ public class PlayerController : MonoBehaviourPun
     //called by the weapon charge function, determines what charge is being displayed by also checking the timer
     void DisplayCharge(){
         
-        
+        if(PhotonNetwork.OfflineMode){
         if(_chargeTimer > bullet2Timer && _charge1){      
             tier1Charge?.PlayFeedbacks();
             _charge1 = false;
@@ -212,6 +229,21 @@ public class PlayerController : MonoBehaviourPun
         if(_chargeTimer > bullet4Timer && _charge3){
             tier3Charge?.PlayFeedbacks();
             _charge3 = false;
+        }
+        }
+        else{
+            if(_chargeTimer > bullet2Timer && _charge1){      
+            this.GetComponent<PhotonView>().RPC("OnlinePlayFeedbacks", RpcTarget.All, tier1Charge.GetComponent<PhotonView>().ViewID);
+            _charge1 = false;
+        }
+        if(_chargeTimer > bullet3Timer && _charge2){
+            this.GetComponent<PhotonView>().RPC("OnlinePlayFeedbacks", RpcTarget.All, tier2Charge.GetComponent<PhotonView>().ViewID);
+            _charge2 = false;
+        }
+        if(_chargeTimer > bullet4Timer && _charge3){
+            this.GetComponent<PhotonView>().RPC("OnlinePlayFeedbacks", RpcTarget.All, tier3Charge.GetComponent<PhotonView>().ViewID);
+            _charge3 = false;
+        }
         }
     }
 
@@ -300,6 +332,19 @@ public class PlayerController : MonoBehaviourPun
             temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
             }
+    }
+
+    [PunRPC]
+    private void OnlinePlayFeedbacks(int feedbackViewID){
+         PhotonView temp = PhotonView.Find(feedbackViewID);
+            if(temp != null){
+                temp.GetComponent<MMFeedbacks>()?.PlayFeedbacks();
+            }
+    }
+
+    [PunRPC]
+    private void CurrentShotFeedback(){
+         _currentShotFeedback.PlayFeedbacks();
     }
 
 

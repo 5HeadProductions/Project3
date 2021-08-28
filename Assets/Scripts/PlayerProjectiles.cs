@@ -47,11 +47,15 @@ public class PlayerProjectiles : MonoBehaviour
                 this.GetComponent<PhotonView>().RPC("TakingDamageFeedback", RpcTarget.All, other.gameObject.GetComponent<PhotonView>().ViewID);
             }
             if(other.gameObject.GetComponent<BasicEnemy>().enemyHealth < 1){
-                if(PhotonNetwork.OfflineMode)
+                GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(other.transform.position.x,other.transform.position.y, 0));
+                if(PhotonNetwork.OfflineMode){
                 PlayerCoins.AddCoinsToPlayer(other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
-                else
-                this.GetComponent<PhotonView>().RPC("UpdatePlayerCoins", RpcTarget.AllBuffered, other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
                 shipDeathFeedback?.PlayFeedbacks();
+                }
+                else{
+                this.GetComponent<PhotonView>().RPC("UpdatePlayerCoins", RpcTarget.AllBuffered, other.gameObject.GetComponent<BasicEnemy>().enemyStats.coinsDroppedOnDeath);
+                this.GetComponent<PhotonView>().RPC("DeathFeedback", RpcTarget.All);
+                }
                 if(other.gameObject.tag == "Enemy")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 3; // ressting the ships health
                 if(other.gameObject.tag == "Suicide")  other.gameObject.GetComponent<BasicEnemy>().enemyHealth = 1;
             EnemySpawner.Instance.UpdateEnemyTracker();
@@ -62,7 +66,7 @@ public class PlayerProjectiles : MonoBehaviour
             
             }
             if(PhotonNetwork.OfflineMode){
-            GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(other.transform.position.x,other.transform.position.y, 0));
+            
             this.GetComponent<SpriteRenderer>().enabled = false;
             this.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(gameObject, 1f); // destorying the bullet
@@ -110,9 +114,9 @@ public class PlayerProjectiles : MonoBehaviour
     //activate 
     [PunRPC]
     private void PlayFeedback(){
-        Debug.Log("reached funcrtion");
+        
         OnCollision?.PlayFeedbacks();
-        Debug.Log("Should've played feedbacks");
+       
     }
 
     [PunRPC]
@@ -129,4 +133,8 @@ public class PlayerProjectiles : MonoBehaviour
             Destroy(temp.gameObject);
     }
 
+    [PunRPC]
+    private void DeathFeedback(){
+         shipDeathFeedback.PlayFeedbacks();
+    }
 }

@@ -67,8 +67,6 @@ public class ButtonManager : MonoBehaviour
         animator.SetTrigger("Replay");
         StartCoroutine(FadeOut());
         StartCoroutine(Delay());
-        
-        Debug.Log(this.transform.parent.gameObject.name);
        // this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 

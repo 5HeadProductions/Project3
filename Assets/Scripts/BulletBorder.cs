@@ -15,10 +15,5 @@ public class BulletBorder : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
-    private void DeleteBullet(int viewID){
-        PhotonView temp = PhotonView.Find(viewID);
-            if(temp != null)
-            Destroy(temp.gameObject);
-    }
+    
 }
