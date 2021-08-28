@@ -6,8 +6,10 @@ using Photon.Pun;
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject playerPrefab;
+    public GameObject DeathCanvas;
 
     void Start(){
-        PhotonNetwork.Instantiate(playerPrefab.name,new Vector3(0,0,0),playerPrefab.transform.rotation);
+        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name,new Vector3(0,0,0),playerPrefab.transform.rotation);
+        player.GetComponent<PlayerController>().DeathCanvas = DeathCanvas;
     }
 }
