@@ -111,16 +111,13 @@ MonoBehaviour:
   DebugActive: 0
   Sfx: {fileID: 0}
   RandomSfx:
-  - {fileID: 8300000, guid: c2f48d1fa901f0f4f9002bf5e8fb1352, type: 3}
-  - {fileID: 8300000, guid: de5c919579c014e4ba6ab34ac9d4bebb, type: 3}
   - {fileID: 8300000, guid: 7675b015509a77a40b4a66e898826cc8, type: 3}
-  - {fileID: 8300000, guid: 9d7ca2d74151fbb40be45a1e0b0d957b, type: 3}
   TestButton: 0
   TestStopButton: 0
   PlayMethod: 2
   PoolSize: 10
-  MinVolume: 1
-  MaxVolume: 1
+  MinVolume: 0.5
+  MaxVolume: 0.5
   MinPitch: 1
   MaxPitch: 1
   SfxAudioMixerGroup: {fileID: 0}
