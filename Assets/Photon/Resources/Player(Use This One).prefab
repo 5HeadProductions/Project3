@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 89514499415263376}
   - component: {fileID: 89514499415263374}
   - component: {fileID: 89514499415263375}
+  - component: {fileID: 9194134361714012801}
   m_Layer: 0
   m_Name: Tier2Charge
   m_TagString: Untagged
@@ -120,6 +121,28 @@ MonoBehaviour:
   MinPitch: 1
   MaxPitch: 1
   SfxAudioMixerGroup: {fileID: 0}
+--- !u!114 &9194134361714012801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89514499415263377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &89514499663201020
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +155,7 @@ GameObject:
   - component: {fileID: 89514499663201019}
   - component: {fileID: 89514499663201017}
   - component: {fileID: 89514499663201018}
+  - component: {fileID: 7891258797320582301}
   m_Layer: 0
   m_Name: Tier3Charge
   m_TagString: Untagged
@@ -286,6 +310,28 @@ MonoBehaviour:
   MinPitch: 1
   MaxPitch: 1
   SfxAudioMixerGroup: {fileID: 0}
+--- !u!114 &7891258797320582301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89514499663201020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &89514499770974755
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +715,7 @@ GameObject:
   - component: {fileID: 89514500117142638}
   - component: {fileID: 89514500117142636}
   - component: {fileID: 89514500117142637}
+  - component: {fileID: 190580725661954533}
   m_Layer: 0
   m_Name: Tier1Charge
   m_TagString: Untagged
@@ -778,6 +825,28 @@ MonoBehaviour:
   MinPitch: 1
   MaxPitch: 1
   SfxAudioMixerGroup: {fileID: 0}
+--- !u!114 &190580725661954533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89514500117142639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &89514500839505920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1327,7 @@ MonoBehaviour:
   tier1Charge: {fileID: 89514500117142636}
   tier2Charge: {fileID: 89514499415263374}
   tier3Charge: {fileID: 89514499663201019}
+  DeathCanvas: {fileID: 0}
 --- !u!114 &2501909035621061493
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,7 +39,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     }
 
     private IEnumerator SetAlphaOfText(){
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         roomAlreadyExistsText.alpha = 1;
         StartCoroutine("TurnOffText");
     }

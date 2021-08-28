@@ -526,7 +526,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84469340}
-  m_LocalRotation: {x: -3e-45, y: 1e-45, z: 0, w: 1}
+  m_LocalRotation: {x: 1e-45, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3554,11 +3554,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0811e50943be15f48a2d3866bcd61506, type: 3}
---- !u!95 &844416393 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1005604195793492883, guid: 0811e50943be15f48a2d3866bcd61506, type: 3}
-  m_PrefabInstance: {fileID: 844416392}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &844416394 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1005604195793492882, guid: 0811e50943be15f48a2d3866bcd61506, type: 3}
@@ -6456,6 +6451,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1547508546}
     - target: {fileID: 2678361844693731869, guid: bf7ec3d9b690c81438b67f16e14e52c8, type: 3}
+      propertyPath: DeathCanvas
+      value: 
+      objectReference: {fileID: 240989684}
+    - target: {fileID: 2678361844693731869, guid: bf7ec3d9b690c81438b67f16e14e52c8, type: 3}
       propertyPath: tier1Charge
       value: 
       objectReference: {fileID: 1776236201}
@@ -7684,7 +7683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820030145}
-  m_LocalRotation: {x: -3e-45, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 1e-45, y: 1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
