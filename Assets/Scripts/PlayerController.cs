@@ -172,7 +172,10 @@ public class PlayerController : MonoBehaviourPun
         _charge1 = true;
         _charge2 = true;
         _charge3 = true;
+        if(PhotonNetwork.OfflineMode)
         tier3Charge?.StopFeedbacks();
+        else
+        this.GetComponent<PhotonView>().RPC("StopFeedback",RpcTarget.All);
         
         _timeUntilFire = Time.time + timeBetweenProjectiles;
     }
@@ -278,13 +281,15 @@ public class PlayerController : MonoBehaviourPun
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks(); 
             }else{
                 if(PhotonNetwork.OfflineMode == false){// online mode
-                if(!_unlockedTurretTier2){
+                if(!_unlockedTurretTier2&& PlayerCoins.playerCoins >= turretTier1.buyCost){
+                    PlayerCoins.SubtractCoinsFromPlayer(turretTier1.buyCost);
             GameObject temp =  PhotonNetwork.Instantiate(turretTier1.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
             this.GetComponent<PhotonView>().RPC("PlayTurretEffect",RpcTarget.All, temp.GetComponent<PhotonView>().ViewID);
             // temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
             //     temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
                 }
-                else{
+                else if(PlayerCoins.playerCoins >= turretTier2.buyCost){
+                    PlayerCoins.SubtractCoinsFromPlayer(turretTier2.buyCost);
                 GameObject temp = PhotonNetwork.Instantiate(turretTier2.turretPrefab.name, firePoint.transform.position,firePoint.transform.rotation);
                 this.GetComponent<PhotonView>().RPC("PlayTurretEffect",RpcTarget.All, temp.GetComponent<PhotonView>().ViewID);
                 // temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
@@ -316,6 +321,11 @@ public class PlayerController : MonoBehaviourPun
         _unlockedTurretTier2 = true;
     }
 
+    [PunRPC]
+    private void StopFeedback(){
+        tier3Charge?.StopFeedbacks();
+
+    }
     [PunRPC]
     public void DestroyGameObject(int gameObjectViewID){
             PhotonView temp = PhotonView.Find(gameObjectViewID);
