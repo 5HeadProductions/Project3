@@ -64,10 +64,25 @@ public class ButtonManager : MonoBehaviour
     public void ReplayGame(){
         
         _audio.Play("ButtonClick");
-        animator.SetTrigger("Close");
+        animator.SetTrigger("Replay");
+        StartCoroutine(FadeOut());
         StartCoroutine(Delay());
         
         Debug.Log(this.transform.parent.gameObject.name);
-        this.gameObject.transform.parent.gameObject.SetActive(false);
+       // this.gameObject.transform.parent.gameObject.SetActive(false);
     }
+
+     IEnumerator FadeOut(){
+        float counter = 0f;
+        float transitionTime = 2f;
+        float start = 1.0f;
+        float end = 0.0f;
+          while(counter < transitionTime){
+              counter += Time.deltaTime;
+              this.gameObject.transform.parent.gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(start, end, counter / transitionTime); // lerp is cool. 
+              yield return null;
+           
+          }
+
+     }
 }
