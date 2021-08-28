@@ -42,7 +42,7 @@ public class Earth : MonoBehaviour
         }
         OnEarthHit?.PlayFeedbacks(); // plays sound
         earthDamaged?.PlayFeedbacks();//plays red earth
-        if(earthHealth < 0){
+        if(earthHealth <= 0){
           //earth got destroyed
             deathCanvas.SetActive(true);
         }

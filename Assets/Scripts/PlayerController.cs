@@ -62,8 +62,6 @@ public class PlayerController : MonoBehaviourPun
         bool _charge2 = true;
         bool _charge3 = true;
 
-        bool DeathCanvasIsOn = false;
-
         public GameObject DeathCanvas;
         
         MMFeedbacks _currentShotFeedback;
