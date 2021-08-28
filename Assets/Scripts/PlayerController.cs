@@ -132,7 +132,9 @@ public class PlayerController : MonoBehaviourPun
     //Instantiates a bullet prefab
     void Fire(){
         if(PhotonNetwork.OfflineMode){
-            GameObject bullet = Instantiate(_currentBullet,rocketSprite.position,transform.rotation);
+            
+            Quaternion newRotation = transform.rotation * _currentBullet.transform.rotation;
+            GameObject bullet = Instantiate(_currentBullet,rocketSprite.position,newRotation);
             bullet.GetComponent<Rigidbody2D>().velocity = rocketSprite.position.normalized * projectileSpeed;
         }
         //so the bullet can be seen by other player
