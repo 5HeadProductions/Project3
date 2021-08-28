@@ -15,7 +15,7 @@ MonoBehaviour:
   shipType: {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
   enemyBullet: {fileID: 6421207923324575761, guid: 0083ba7fb7e89724dbf51477ba243208, type: 3}
   health: 3
-  damage: 5
+  damage: 1
   speed: 1
-  fireRate: 5
+  fireRate: 7
   coinsDroppedOnDeath: 10

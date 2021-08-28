@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7543180255943190620}
   - component: {fileID: 7831861564209683415}
   - component: {fileID: 1602374395082641609}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StackedEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3527746630548028477}
   - component: {fileID: 3527746630548028474}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 5480298438052830398}
   - component: {fileID: 887703056657802722}
   - component: {fileID: -6092845760950371143}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TurretTier2
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527746631141399281}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TurretFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -643,7 +643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747726340896163480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

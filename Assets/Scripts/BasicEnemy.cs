@@ -9,7 +9,7 @@ public class BasicEnemy : MonoBehaviour
     public EnemyStats enemyStats;
     public GameObject center; // earth
     public Rigidbody2D rb;
-    private bool isMoving = false, canShoot = false, isDashing = false;
+    private bool isMoving = false, canShoot = false;
     public GameObject FirePoint;
     private float startTime = 100.0f;
     public int enemyHealth; // needs to be public for the player projectile script to get the enemies health
@@ -34,7 +34,7 @@ public class BasicEnemy : MonoBehaviour
         center = GameObject.Find("EnemySpawnerCenter");
         enemyHealth = enemyStats.health; // assigning the scriptable objects value of each ships health here
         isMoving = true;
-        startTime  = Time.time;
+        startTime  = Time.time + enemyStats.fireRate;
     }
 
     // Update is called once per frame

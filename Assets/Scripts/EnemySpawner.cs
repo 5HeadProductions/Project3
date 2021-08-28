@@ -160,24 +160,24 @@ public class EnemySpawner : MonoBehaviour
                 case 20:
                 if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
                     break;
-                case 25:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
-                case 30:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
-                case 35:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
-                case 40:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
-                case 45:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
-                case 50:
-                if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
-                    break;
+                // case 25:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
+                // case 30:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
+                // case 35:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
+                // case 40:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
+                // case 45:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
+                // case 50:
+                // if(bossCount < bossPerRound[bossToSpawnIndex])Boss();
+                //     break;
                 default: break;
             }
     }
