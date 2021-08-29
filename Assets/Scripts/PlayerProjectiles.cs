@@ -34,7 +34,7 @@ public class PlayerProjectiles : MonoBehaviour
     
     // player shoots at the ship 
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "EnemyBullet"){
+        if(other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "BossEnemyBullet"){
             if(PhotonNetwork.OfflineMode){
             OnCollision?.PlayFeedbacks(); // normal function call
             this.GetComponent<SpriteRenderer>().enabled = false;
