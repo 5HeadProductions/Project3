@@ -63,6 +63,7 @@ MonoBehaviour:
   - DeathFeedback
   - OnlineReplayGame
   - BulletCollision
+  - StopFeedback
   - DisableTurret
   DisableAutoOpenWizard: 1
   ShowSettings: 0

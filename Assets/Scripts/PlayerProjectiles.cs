@@ -37,7 +37,6 @@ public class PlayerProjectiles : MonoBehaviour
         if(other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "BossEnemyBullet"){
             if(PhotonNetwork.OfflineMode){
             OnCollision?.PlayFeedbacks(); // normal function call
-            
             this.GetComponent<SpriteRenderer>().enabled = false;
             this.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(gameObject, 2f); // destorying the bullet
