@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class EnemyProjectile : MonoBehaviour
 {
@@ -17,18 +18,28 @@ public class EnemyProjectile : MonoBehaviour
         
     }
     public void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Turret")){
-           col.gameObject.GetComponent<TurretBehavior>().turretHealth -= enemyStats.damage;
-            if( col.gameObject.GetComponent<TurretBehavior>().turretHealth < 1){
+        
+        if(col.gameObject.CompareTag("Turret") ){
                 //turret got shot by enemy bullet, then destroy turret
+                if(PhotonNetwork.OfflineMode){
                 Destroy(col.gameObject); // single player
-            }
             Destroy(this.gameObject); // single player
+                }
+                else{
+                    this.GetComponent<PhotonView>().RPC("DestroyGameObject", RpcTarget.AllBuffered, col.gameObject.GetComponent<PhotonView>().ViewID);
+                }
         }
     }
     public int DoDamage(){
         return enemyStats.damage;
         
+    }
+
+    [PunRPC]
+    public void DestroyGameObject(int gameObjectViewID){
+            PhotonView temp = PhotonView.Find(gameObjectViewID);
+            if(temp != null)
+            Destroy(temp.gameObject);
     }
 
 
