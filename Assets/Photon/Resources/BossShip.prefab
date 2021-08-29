@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 5204331974021926034}
   - component: {fileID: -4385224720549297461}
   - component: {fileID: 7977247733290274029}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BossShip
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -686,6 +686,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -4385224720549297461}
+  - {fileID: 7977247733290274029}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -737,4 +738,6 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
