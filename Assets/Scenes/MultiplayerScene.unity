@@ -2805,12 +2805,12 @@ MonoBehaviour:
   cooldownCost: {fileID: 418832702}
   turretUpgradeCost: {fileID: 794855960}
   damageIncrease: 0
-  initialUpgradeBulletCost: 0
+  initialUpgradeBulletCost: 40
   upgradeBulletCostIncrease: 0
   maxUpgradeBulletAmount: 0
   Descripion2: 
   chargeTimeDecrease: 0
-  initialCooldownUpgradeCost: 0
+  initialCooldownUpgradeCost: 40
   cooldownUpgradeCostIncrease: 0
   maxCooldownUpgradeAmount: 0
 --- !u!114 &695313218
@@ -9226,7 +9226,7 @@ MonoBehaviour:
   cooldownCost: {fileID: 418832702}
   turretUpgradeCost: {fileID: 794855960}
   damageIncrease: 0
-  initialUpgradeBulletCost: 0
+  initialUpgradeBulletCost: 40
   upgradeBulletCostIncrease: 0
   maxUpgradeBulletAmount: 0
   Descripion2: 

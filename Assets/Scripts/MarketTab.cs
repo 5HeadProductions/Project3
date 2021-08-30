@@ -44,6 +44,7 @@ public class MarketTab : MonoBehaviour
 
     void Start(){
         _playerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
+        Debug.Log("worked fine");
         cost.text = initialUpgradeBulletCost.ToString();
         cooldownCost.text = initialUpgradeBulletCost.ToString();
         turretUpgradeCost.text = "100";
