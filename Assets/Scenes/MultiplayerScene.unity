@@ -1130,28 +1130,28 @@ MonoBehaviour:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     enemySpawnRate: 1
   - waveNum: 2
-    numOfEnemies: 1
+    numOfEnemies: 2
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     enemySpawnRate: 1
   - waveNum: 3
-    numOfEnemies: 1
+    numOfEnemies: 3
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     enemySpawnRate: 1
   - waveNum: 4
-    numOfEnemies: 1
+    numOfEnemies: 4
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     enemySpawnRate: 1
   - waveNum: 5
-    numOfEnemies: 10
+    numOfEnemies: 6
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
     enemySpawnRate: 1
   - waveNum: 6
-    numOfEnemies: 10
+    numOfEnemies: 8
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
@@ -1163,56 +1163,87 @@ MonoBehaviour:
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 8
-    numOfEnemies: 10
+    numOfEnemies: 12
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 9
-    numOfEnemies: 10
+    numOfEnemies: 14
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 10
-    numOfEnemies: 10
+    numOfEnemies: 14
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     - {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
     enemySpawnRate: 1
   - waveNum: 11
-    numOfEnemies: 10
+    numOfEnemies: 16
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 12
-    numOfEnemies: 10
+    numOfEnemies: 18
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 13
-    numOfEnemies: 10
+    numOfEnemies: 20
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 14
-    numOfEnemies: 10
+    numOfEnemies: 22
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     enemySpawnRate: 1
   - waveNum: 15
-    numOfEnemies: 10
+    numOfEnemies: 22
     typesOfEnemies:
     - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
     - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
     - {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
     enemySpawnRate: 1
-  bossPerRound: 010000000100000002000000
+  - waveNum: 16
+    numOfEnemies: 24
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    enemySpawnRate: 1
+  - waveNum: 17
+    numOfEnemies: 26
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    enemySpawnRate: 1
+  - waveNum: 18
+    numOfEnemies: 28
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    enemySpawnRate: 1
+  - waveNum: 19
+    numOfEnemies: 30
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    enemySpawnRate: 1
+  - waveNum: 20
+    numOfEnemies: 30
+    typesOfEnemies:
+    - {fileID: 2062837878321723779, guid: 83d995223e8905e4aa6cbacbab3704aa, type: 3}
+    - {fileID: 427192259025987632, guid: 5f27c879df3d0284a9a93d86416635ff, type: 3}
+    - {fileID: 8511489942359908842, guid: 15e24db90711b904ab2d674037be17bf, type: 3}
+    enemySpawnRate: 1
+  bossPerRound: 01000000010000000200000003000000
 --- !u!114 &462806891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7665,7 +7696,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065095296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -3e-45, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
