@@ -33,7 +33,7 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-    public void BackButton(){
+    public void BackButton(){ //back button in Main Menu Scene
         _audio.Play("ButtonClick");
         canvasSwitch.GetComponent<CanvasSwitch>().SwitchToMM();
     }
@@ -72,15 +72,11 @@ public class ButtonManager : MonoBehaviour
         StartCoroutine(FadeOut());
         StartCoroutine(Delay());
         }
-
-        
-        
-       // this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
-     IEnumerator FadeOut(){
+     IEnumerator FadeOut(){ // fading out the death canvas
         float counter = 0f;
-        float transitionTime = 2f;
+        float transitionTime =1.5f;
         float start = 1.0f;
         float end = 0.0f;
           while(counter < transitionTime){
