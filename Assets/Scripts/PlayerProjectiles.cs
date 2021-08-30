@@ -43,7 +43,7 @@ public class PlayerProjectiles : MonoBehaviour
             Destroy(other.gameObject);
             }
             else
-            this.GetComponent<PhotonView>().RPC("BulletCollision", RpcTarget.All, this.GetComponent<PhotonView>().ViewID, other.gameObject.GetComponent<PhotonView>().ViewID); //RPC call
+            this.GetComponent<PhotonView>().RPC("BulletCollision", RpcTarget.All, other.gameObject.GetComponent<PhotonView>().ViewID); //RPC call
         }
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Suicide" || other.gameObject.tag == "Boss"){
             if(PhotonNetwork.OfflineMode){
@@ -151,14 +151,16 @@ public class PlayerProjectiles : MonoBehaviour
          shipDeathFeedback.PlayFeedbacks();
     }
     [PunRPC]
-    private void BulletCollision(int bulletViewID, int enemyBulletViewID){
-        PhotonView bullet = PhotonView.Find(bulletViewID);
+    private void BulletCollision(int enemyBulletViewID){
+        PhotonView bullet = PhotonView.Find(this.gameObject.GetComponent<PhotonView>().ViewID);
         PhotonView enemyBullet = PhotonView.Find(enemyBulletViewID);
+        Debug.Log(bullet.gameObject.name);
         
         OnCollision?.PlayFeedbacks(); // normal function call
             bullet.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             bullet.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(bullet.gameObject, 1f); // destorying the bullet
+            
             Destroy(enemyBullet.gameObject);
     }
 }
