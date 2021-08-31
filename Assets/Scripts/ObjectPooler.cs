@@ -17,16 +17,16 @@ public class ObjectPooler : MonoBehaviour
         Instance = this;
         pooledObjList = new List<GameObject>(); // set in start cannnot be changed dynamically
         for(int i = 0; i < size; i ++){  //instantiating as many objects as specified by size and storing them in the list
-      //      if(PhotonNetwork.OfflineMode){
+            if(PhotonNetwork.OfflineMode){
             GameObject obj = Instantiate(pooledObj);
             obj.SetActive(false);
             pooledObjList.Add(obj);
-   //         }
-            // else{
-            //    GameObject obj = PhotonNetwork.Instantiate(pooledObj.name, pooledObj.transform.position,Quaternion.identity);
-            //    obj.SetActive(false);
-            // pooledObjList.Add(obj);
-            // }
+            }
+            else{
+               GameObject obj = PhotonNetwork.Instantiate(pooledObj.name, pooledObj.transform.position,Quaternion.identity);
+               this.GetComponent<PhotonView>().RPC("turnOffShip", RpcTarget.AllBuffered, obj.GetComponent<PhotonView>().ViewID);
+               pooledObjList.Add(obj);
+            }
             
         }
     }
@@ -44,5 +44,12 @@ public class ObjectPooler : MonoBehaviour
 
     public void Stop(){
         pooledObjList.Clear(); // stoppping the object from being pooled
+    }
+
+    [PunRPC]
+    void turnOffShip(int viewID){
+        PhotonView obj = PhotonView.Find(viewID);
+        obj.gameObject.SetActive(false);
+            
     }
 }
