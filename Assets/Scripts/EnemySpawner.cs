@@ -32,15 +32,13 @@ public class EnemySpawner : MonoBehaviour
     private int basicEnemySpawnTracker = 0, suicideEnemySpawnTracker = 0, bossCount = 0, temp; // keeping track of how many enemies spawned in, in order to stop them from continously spawning
     [Header("NumberOfBosses")][SerializeField] private int[] bossPerRound; // keeps track of how many bosses to spawn when there is a boss fight
     private int bossToSpawnIndex = 0; // keep track of which index to use the bossPerRound array
-    /*
 
-        TODO:health for ship, separate code chunks into their own functions
-    */
-
+    [SerializeField]GameObject winningCanvas;
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
+        
     }
 
     // Update is called once per frame
@@ -81,10 +79,14 @@ public class EnemySpawner : MonoBehaviour
 
 
                 if(PhotonNetwork.OfflineMode)
-            animator.SetTrigger("FadeIn");
-            else
-            this.GetComponent<PhotonView>().RPC("FadeInStartButton", RpcTarget.All);
+                    animator.SetTrigger("FadeIn");
+                else
+                    this.GetComponent<PhotonView>().RPC("FadeInStartButton", RpcTarget.All);
                 
+                }
+
+                if(currentWaveNumber == waves.Length - 1){
+                    winningCanvas.SetActive(true);
                 }
             }
         }
