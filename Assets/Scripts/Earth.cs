@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
+using Photon.Pun;
 
 public class Earth : MonoBehaviour
 {
@@ -32,11 +33,15 @@ public class Earth : MonoBehaviour
         if(col.transform.tag == "EnemyBullet"){ // enemy bullet hits earth
             //earth take damage
            // queue explosion/camera shake
-
+        if(PhotonNetwork.OfflineMode){
            earthHealth -= col.gameObject.GetComponent<EnemyProjectile>().DoDamage();
            OnEarthHit?.PlayFeedbacks();
             Destroy(col.gameObject);
             healthBar.Minus10Percent();
+        }
+        else{
+            this.GetComponent<PhotonView>().RPC("EarthUpdate", RpcTarget.All, col.gameObject.GetComponent<PhotonView>().ViewID);
+        }
 
 
         }
@@ -53,8 +58,26 @@ public class Earth : MonoBehaviour
         if(col.transform.tag == "Enemy" || col.tag == "Boss"){
             col.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             //call shoot
+            if(PhotonNetwork.OfflineMode)
             col.gameObject.GetComponent<BasicEnemy>().CanShoot();
+            else
+            this.GetComponent<PhotonView>().RPC("OnlineCanShoot", RpcTarget.MasterClient, col.GetComponent<PhotonView>().ViewID);
         }
+    }
+
+    [PunRPC]
+    void OnlineCanShoot(int viewID){
+        PhotonView col = PhotonView.Find(viewID);
+        col.gameObject.GetComponent<BasicEnemy>().CanShoot();
+    }
+
+    [PunRPC]
+    void EarthUpdate(int viewID){
+        PhotonView col = PhotonView.Find(viewID);
+        earthHealth -= col.gameObject.GetComponent<EnemyProjectile>().DoDamage();
+           OnEarthHit?.PlayFeedbacks();
+            Destroy(col.gameObject);
+            healthBar.Minus10Percent();
     }
 
     
