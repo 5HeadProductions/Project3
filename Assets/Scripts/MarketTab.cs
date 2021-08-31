@@ -95,7 +95,7 @@ public class MarketTab : MonoBehaviour
         projectileTier1.timeUnitilNextBullet -= chargeTimeDecrease;
         projectileTier2.timeUnitilNextBullet -= chargeTimeDecrease;
         projectileTier3.timeUnitilNextBullet -= chargeTimeDecrease;
-        cooldownCost.text =initialUpgradeBulletCost.ToString();
+        cooldownCost.text = initialCooldownUpgradeCost.ToString();
         maxCooldownUpgradeAmount--;
             }
             else{
@@ -168,7 +168,7 @@ public class MarketTab : MonoBehaviour
         projectileTier1.timeUnitilNextBullet -= chargeTimeDecrease;
         projectileTier2.timeUnitilNextBullet -= chargeTimeDecrease;
         projectileTier3.timeUnitilNextBullet -= chargeTimeDecrease;
-        cooldownCost.text =initialUpgradeBulletCost.ToString();
+        cooldownCost.text = initialCooldownUpgradeCost.ToString();
         maxCooldownUpgradeAmount--;
         
         PhotonView textBox = PhotonView.Find(ViewID);
