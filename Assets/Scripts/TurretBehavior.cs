@@ -54,6 +54,7 @@ public class TurretBehavior : MonoBehaviourPun
         if(_targetCollider != null && (_targetCollider.CompareTag("Enemy") || _targetCollider.CompareTag("Suicide") || _targetCollider.CompareTag("Boss"))){   
             _target = _targetCollider.gameObject.transform;
             
+            
             }
             if(_target != null && _target.gameObject.activeInHierarchy == false){
                _targetCollider = null;
@@ -103,7 +104,7 @@ public class TurretBehavior : MonoBehaviourPun
         //"destroying" suicide ships when they hit a turret
         if(other.gameObject.CompareTag("Suicide")){
             if(PhotonNetwork.OfflineMode == false){ //online
-
+            GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(other.transform.position.x,other.transform.position.y, 0));
             // destroying bullet and turret over the network
             this.GetComponent<PhotonView>().RPC("DisableTurret", RpcTarget.All, this.gameObject.GetComponent<PhotonView>().ViewID);
             this.GetComponent<PhotonView>().RPC("DisableEnemyShip", RpcTarget.All, other.gameObject.GetComponent<PhotonView>().ViewID);
