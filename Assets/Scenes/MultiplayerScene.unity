@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a159055652f1645ac217f79a62f443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1439232276}
   _audio: {fileID: 0}
 --- !u!114 &278600038
 MonoBehaviour:
@@ -3498,6 +3498,7 @@ GameObject:
   - component: {fileID: 769701884}
   - component: {fileID: 769701883}
   - component: {fileID: 769701882}
+  - component: {fileID: 769701885}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -3590,6 +3591,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!225 &769701885
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769701880}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &794855959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,7 +4883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a159055652f1645ac217f79a62f443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1439232276}
   _audio: {fileID: 0}
 --- !u!114 &1091509287
 MonoBehaviour:
@@ -10148,7 +10161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f94e826ba1078449d61caa136bde07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1439232276}
 --- !u!114 &2021771041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10354,7 +10367,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065095296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -3e-45, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
