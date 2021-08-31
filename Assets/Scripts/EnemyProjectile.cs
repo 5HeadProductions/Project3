@@ -20,10 +20,12 @@ public class EnemyProjectile : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col){
         
         if(col.gameObject.CompareTag("Turret") ){
+            GameObject.Find("FeedbackManager").GetComponent<FeedbackManager>().ShipExplosion(new Vector3(col.transform.position.x,col.transform.position.y, 0));
                 //turret got shot by enemy bullet, then destroy turret
                 if(PhotonNetwork.OfflineMode){
                 Destroy(col.gameObject); // single player
             Destroy(this.gameObject); // single player
+
                 }
                 else{
                     this.GetComponent<PhotonView>().RPC("DestroyGameObject", RpcTarget.AllBuffered, col.gameObject.GetComponent<PhotonView>().ViewID);

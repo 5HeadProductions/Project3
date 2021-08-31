@@ -11,7 +11,7 @@ public class FeedbackManager : MonoBehaviour
     public ParticleSystem explosionParticle;
     public void ShipExplosion(Vector3 explosionPosition){
         ParticleSystem particles = Instantiate(explosionParticle,explosionPosition, Quaternion.identity);
-        Destroy(particles, 2f);
+        Destroy(particles.gameObject, 2f);
     }
 
 }
