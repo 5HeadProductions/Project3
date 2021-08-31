@@ -84,12 +84,19 @@ public class EnemySpawner : MonoBehaviour
                     this.GetComponent<PhotonView>().RPC("FadeInStartButton", RpcTarget.All);
                 
                 }
-
-                if(currentWaveNumber == waves.Length - 1){
-                    winningCanvas.SetActive(true);
-                }
             }
+                Debug.Log("ROUND NUMBER: " + currentWave.waveNum);
+                if(currentWave.waveNum == 20){
+                    if(activeEnemies.Length == 0 && activeSuicides.Length == 0 && activeBosses.Length == 0){
+                       StartCoroutine(Delay());
+                    }
+                }
         }
+    }
+
+    IEnumerator Delay(){
+        yield return new WaitForSeconds(3);
+         winningCanvas.SetActive(true);
     }
 
     public void BeginRound(){// this is called when the player hits the start button on the top of their screen
