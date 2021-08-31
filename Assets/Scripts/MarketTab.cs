@@ -45,10 +45,6 @@ public class MarketTab : MonoBehaviour
 
     void Start(){
         _playerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
-        // Debug.Log("worked fine");
-        // cost.text = initialUpgradeBulletCost.ToString();
-        // cooldownCost.text = initialUpgradeBulletCost.ToString();
-        // turretUpgradeCost.text = "100";
     }
 
     //function checks a boolean to se if tab is open, if not it plays an animation
@@ -66,7 +62,7 @@ public class MarketTab : MonoBehaviour
 
     //changes all the damage fields in the scriptable objects, could be changed to change player stats instead 
     public void UpgradeBullet(){
-        if(maxUpgradeBulletAmount > 0 && _playerCoins.playerCoins > initialUpgradeBulletCost){
+        if(maxUpgradeBulletAmount > 0 && _playerCoins.playerCoins >= initialUpgradeBulletCost){
         if(PhotonNetwork.OfflineMode){
             _playerCoins.SubtractCoinsFromPlayer(initialUpgradeBulletCost);
         initialUpgradeBulletCost += upgradeBulletCostIncrease;
@@ -92,7 +88,7 @@ public class MarketTab : MonoBehaviour
 
     //changes cooldown fields in scriptable objects
     public void UpgradeBulletCooldown(){
-        if(maxCooldownUpgradeAmount > 0 && _playerCoins.playerCoins > initialCooldownUpgradeCost){
+        if(maxCooldownUpgradeAmount > 0 && _playerCoins.playerCoins >= initialCooldownUpgradeCost){
             if(PhotonNetwork.OfflineMode){
             _playerCoins.SubtractCoinsFromPlayer(initialCooldownUpgradeCost);
             initialCooldownUpgradeCost += cooldownUpgradeCostIncrease;
@@ -116,7 +112,7 @@ public class MarketTab : MonoBehaviour
 
     //Player holds a boolean saying whether or not they can place a tier 2 turret, this function updates it so it can
     public void UnlockTurretTier2(){
-        if(_playerCoins.playerCoins > 100){
+        if(_playerCoins.playerCoins >= 100){
             if(PhotonNetwork.OfflineMode){
             _playerCoins.SubtractCoinsFromPlayer(100);
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
