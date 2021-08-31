@@ -154,7 +154,7 @@ public class PlayerProjectiles : MonoBehaviour
     private void BulletCollision(int enemyBulletViewID){
         PhotonView bullet = PhotonView.Find(this.gameObject.GetComponent<PhotonView>().ViewID);
         PhotonView enemyBullet = PhotonView.Find(enemyBulletViewID);
-        Debug.Log(bullet.gameObject.name);
+        
         
         OnCollision?.PlayFeedbacks(); // normal function call
             bullet.gameObject.GetComponent<SpriteRenderer>().enabled = false;

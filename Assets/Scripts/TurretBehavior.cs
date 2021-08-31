@@ -72,6 +72,7 @@ public class TurretBehavior : MonoBehaviourPun
             float angle = Mathf.Atan2(bulletDirection.y,bulletDirection.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y) * _currentTurret.bulletSpeed;
+            _timeUntilAttack = Time.time + _currentTurret.fireRate;
             }
             else{
             GameObject bullet = PhotonNetwork.Instantiate(_currentTurret.projectilePrefab.name,firePoint.transform.position, firePoint.transform.rotation);
@@ -79,13 +80,18 @@ public class TurretBehavior : MonoBehaviourPun
             float angle = Mathf.Atan2(bulletDirection.y,bulletDirection.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y) * _currentTurret.bulletSpeed;
+            this.GetComponent<PhotonView>().RPC("TimeUpdate", RpcTarget.MasterClient);
             }
             
-            _timeUntilAttack = Time.time + _currentTurret.fireRate;
             StartCoroutine(animatorWait());
         }
         
         
+    }
+
+    [PunRPC]
+    void TimeUpdate(){
+        _timeUntilAttack = Time.time + _currentTurret.fireRate;
     }
 
     void OnDrawGizmos(){

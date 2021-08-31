@@ -115,7 +115,6 @@ public class BasicEnemy : MonoBehaviour
         
         }
         else{
-            Debug.Log("instantiate over network");
             GameObject bullet = PhotonNetwork.Instantiate(enemyStats.enemyBullet.name,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);
         var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
