@@ -63,7 +63,9 @@ public class ButtonManager : MonoBehaviour
     
 
     public void ReplayGame(){
-        if(!PhotonNetwork.OfflineMode){
+        if(!PhotonNetwork.OfflineMode){ //multiplayer
+            _audio.Play("ButtonClick");
+            animator.SetTrigger("Replay");
             this.gameObject.GetComponent<PhotonView>().RPC("OnlineReplayGame",RpcTarget.All);
         }
         else{
