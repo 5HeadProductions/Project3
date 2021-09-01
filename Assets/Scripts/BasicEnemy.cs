@@ -106,22 +106,21 @@ public class BasicEnemy : MonoBehaviour
     }
     public void Fire(){
         if(PhotonNetwork.OfflineMode){
-        GameObject bullet = Instantiate(enemyStats.enemyBullet,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);
-        var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        dir = dir.normalized * 25;
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(dir.x, dir.y);
+            GameObject bullet = Instantiate(enemyStats.enemyBullet,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);
+            var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            dir = dir.normalized * 25;
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(dir.x, dir.y);
         
         }
         else{
-            Debug.Log("instantiate over network");
             GameObject bullet = PhotonNetwork.Instantiate(enemyStats.enemyBullet.name,FirePoint.transform.position, enemyStats.shipType.gameObject.transform.rotation);
-        var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        dir = dir.normalized * 25;
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(dir.x, dir.y);
+            var dir = center.transform.position - bullet.transform.position; // distance between two points in a graph
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            dir = dir.normalized * 25;
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(dir.x, dir.y);
         }
     }
 

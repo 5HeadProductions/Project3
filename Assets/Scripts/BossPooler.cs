@@ -29,7 +29,6 @@ public class BossPooler : MonoBehaviour
             obj = PhotonNetwork.Instantiate(enemyObj.name,enemySpawner.transform.position,Quaternion.identity);
             this.GetComponent<PhotonView>().RPC("DisableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             }
-            
             list.Add(obj);
             
         }     
