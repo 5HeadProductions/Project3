@@ -87,10 +87,19 @@ public class EnemySpawner : MonoBehaviour
             }
                 if(currentWave.waveNum == 20){
                     if(activeEnemies.Length == 0 && activeSuicides.Length == 0 && activeBosses.Length == 0){
-                       StartCoroutine(Delay());
+                        if(Photonnetwork.OfflineMode){
+                            StartCoroutine(Delay());
+                        }else{
+                            this.GetComponent<PhotonView>().RPC("SpawnWinCanvas", RpcTarget.All);
+                        }
                     }
                 }
         }
+    }
+
+    [PunRPC]
+    private void SpawnWinCanvas(){
+        winningCanvas.SetActive(true);
     }
 
     IEnumerator Delay(){
