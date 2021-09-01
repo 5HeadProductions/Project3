@@ -197,8 +197,9 @@ public class EnemySpawner : MonoBehaviour
             obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
-            else
-            this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+            else{
+            this.GetComponent<PhotonView>().RPC("EnableSuicides", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+            }
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization(); // needed to play next feedback
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks(); // resetting their color, both feedbacks needed "Allow additive plays"
             suicideEnemySpawnTracker ++;
@@ -207,7 +208,6 @@ public class EnemySpawner : MonoBehaviour
             GameObject obj = EnemyPooler._Instance.SpawnEnemy();
             if(obj == null)return;   
             obj.transform.position = enemySpawner.transform.position;
-            //spawning over network requires a RPC
             if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
             else
@@ -244,9 +244,18 @@ public class EnemySpawner : MonoBehaviour
     [PunRPC]
     private void EnableGameObject(int targetViewID){
         PhotonView targetPhotonView = PhotonView.Find(targetViewID);
-            if(targetPhotonView != null)
-            targetPhotonView.gameObject.SetActive(true);
+            if(targetPhotonView != null){
+                targetPhotonView.gameObject.SetActive(true);
+            }
+
         
+    }
+    [PunRPC]
+    private void EnableSuicides(int targetViewID){
+        PhotonView targetPhotonView = PhotonView.Find(targetViewID);
+            if(targetPhotonView != null){
+                targetPhotonView.gameObject.SetActive(true);
+            }  
     }
 
     [PunRPC]
