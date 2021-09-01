@@ -157,10 +157,9 @@ public class PlayerProjectiles : MonoBehaviour
         
         
         OnCollision?.PlayFeedbacks(); // normal function call
-            bullet.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            bullet.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(bullet.gameObject, 1f); // destorying the bullet
-            
-            Destroy(enemyBullet.gameObject);
+        bullet.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        bullet.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(bullet.gameObject, 1f); // destorying the bullet          
+        Destroy(enemyBullet.gameObject);
     }
 }
