@@ -39,6 +39,10 @@ public class TurretBehavior : MonoBehaviourPun
 
     public int turretHealth;
 
+    private bool canShoot = false;
+
+    private bool canUpgrade = true;
+
     void Start(){
         
         // _currentTurret = turretTier1;
@@ -46,6 +50,9 @@ public class TurretBehavior : MonoBehaviourPun
         startTime = Time.time;
         _playerFirePoint = GameObject.Find("PlayerFirePoint").transform;
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if(PhotonNetwork.IsMasterClient){
+            canShoot = true;
+        }
     }
     
     void Update(){
@@ -61,17 +68,17 @@ public class TurretBehavior : MonoBehaviourPun
                 _target = null;
                 
         }
-        
+        if(canShoot || PhotonNetwork.OfflineMode){
         if(Time.time > _timeUntilAttack && _target != null && _targetCollider != null && !_target.CompareTag("Turret") ){
             animator.SetBool("Firing",true);
             Quaternion newRotation = transform.rotation * _currentTurret.projectilePrefab.transform.rotation;
             if(PhotonNetwork.OfflineMode){
-          
             GameObject bullet = Instantiate(_currentTurret.projectilePrefab,firePoint.transform.position, firePoint.transform.rotation);
             Vector2 bulletDirection = (_target.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(bulletDirection.y,bulletDirection.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y) * _currentTurret.bulletSpeed;
+            
             }
             else{
             GameObject bullet = PhotonNetwork.Instantiate(_currentTurret.projectilePrefab.name,firePoint.transform.position, firePoint.transform.rotation);
@@ -79,13 +86,23 @@ public class TurretBehavior : MonoBehaviourPun
             float angle = Mathf.Atan2(bulletDirection.y,bulletDirection.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirection.x, bulletDirection.y) * _currentTurret.bulletSpeed;
-            }
             
+            
+            }
             _timeUntilAttack = Time.time + _currentTurret.fireRate;
+            
             StartCoroutine(animatorWait());
+        }
         }
         
         
+    }
+
+    [PunRPC]
+    void TimeUpdate(){
+        
+        
+        Debug.Log("timeUntilAttack" + _timeUntilAttack + "Time: " + Time.time);
     }
 
     void OnDrawGizmos(){
@@ -119,6 +136,7 @@ public class TurretBehavior : MonoBehaviourPun
             }
 
         }
+        if(canUpgrade){
         //If statement ensures this code is only excecuted once by checking their start times
         if(other.gameObject.CompareTag("Turret")  &&  this.startTime > other.gameObject.GetComponent<TurretBehavior>().startTime){
             //for the turrets of tier 1 combining
@@ -132,6 +150,7 @@ public class TurretBehavior : MonoBehaviourPun
                 _playerFirePoint.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+
            }
            else{
            Destroy(this.gameObject);
@@ -141,6 +160,7 @@ public class TurretBehavior : MonoBehaviourPun
                 _playerFirePoint.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                temp.GetComponent<TurretBehavior>().canUpgrade = false;
            }
            }
            //for turrets of tier 2 combining
@@ -161,6 +181,7 @@ public class TurretBehavior : MonoBehaviourPun
                 _playerFirePoint.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                temp.GetComponent<TurretBehavior>().canUpgrade = false;
                }
                else{
                    Destroy(this.gameObject);
@@ -169,6 +190,7 @@ public class TurretBehavior : MonoBehaviourPun
                 _playerFirePoint.rotation);
                 temp.GetComponent<TurretBehavior>().stackEffect?.Initialization();
                 temp.GetComponent<TurretBehavior>().stackEffect?.PlayFeedbacks();
+                temp.GetComponent<TurretBehavior>().canUpgrade = false;
                }
            }
             else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
@@ -179,6 +201,29 @@ public class TurretBehavior : MonoBehaviourPun
                    Destroy(this.gameObject);
            }
         
+        }
+        }
+        else{
+            if(_currentTurret.turretTier == 1 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 2 ||
+           other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
+               if(PhotonNetwork.OfflineMode == false)
+                   PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
+                   else{
+                       GameObject.Find("GameManager").GetComponent<PlayerCoins>().AddCoinsToPlayer(_currentTurret.buyCost / 2);
+                   Destroy(other.gameObject);
+                   }
+           }
+           else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
+           other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
+               if(PhotonNetwork.OfflineMode == false)
+                   PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
+                   else{
+                       GameObject.Find("GameManager").GetComponent<PlayerCoins>().AddCoinsToPlayer(_currentTurret.buyCost / 2);
+                   Destroy(other.gameObject);
+
+                   }
+           }
+
         }
     }
 
