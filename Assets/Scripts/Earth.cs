@@ -40,7 +40,7 @@ public class Earth : MonoBehaviour
             healthBar.Minus10Percent();
         }
         else{
-            this.GetComponent<PhotonView>().RPC("EarthUpdate", RpcTarget.All, col.gameObject.GetComponent<PhotonView>().ViewIDd);
+            this.GetComponent<PhotonView>().RPC("EarthUpdate", RpcTarget.All, col.gameObject.GetComponent<PhotonView>().ViewID);
         }
 
 
