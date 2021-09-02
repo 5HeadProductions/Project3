@@ -249,8 +249,11 @@ public class EnemySpawner : MonoBehaviour
             obj.SetActive(true);
             else
             this.GetComponent<PhotonView>().RPC("EnableGameObject", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
+            if(PhotonNetwork.OfflineMode){
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
+            }
+            this.gameObject.GetComponent<PhotonView>().RPC("PlayFeedbacks", RpcTarget.All, obj.GetComponent<PhotonView>().ViewID);
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             bossCount++;
             temp = bossCount;
