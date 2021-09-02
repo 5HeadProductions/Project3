@@ -24,10 +24,15 @@ public class Earth : MonoBehaviour
 // inner collider, suicide ships hit and enemy bullets
    public void OnCollisionEnter2D(Collision2D col){ 
         if(col.transform.tag == "Suicide"){
+            if(PhotonNetwork.OfflineMode){
             EnemySpawner.Instance.UpdateEnemyTracker();
             col.gameObject.SetActive(false);
             // queue explosion/camera shake 
-            earthHealth = earthHealth - col.gameObject.GetComponent<BasicEnemy>().SuicideDamage();;
+            earthHealth = earthHealth - col.gameObject.GetComponent<BasicEnemy>().SuicideDamage();
+            }
+            else{
+                this.GetComponent<PhotonView>().RPC("SuicideDamage", RpcTarget.AllBuffered, col.gameObject.GetComponent<PhotonView>().ViewID);
+            }
 
             }
         if(col.transform.tag == "EnemyBullet"){ // enemy bullet hits earth
@@ -49,7 +54,10 @@ public class Earth : MonoBehaviour
         earthDamaged?.PlayFeedbacks();//plays red earth
         if(earthHealth <= 0){
           //earth got destroyed
+          if(PhotonNetwork.OfflineMode)
             deathCanvas.SetActive(true);
+            else
+            this.GetComponent<PhotonView>().RPC("DeathCanvas", RpcTarget.AllBuffered);
         }
     }
 
@@ -70,6 +78,10 @@ public class Earth : MonoBehaviour
         PhotonView col = PhotonView.Find(viewID);
         col.gameObject.GetComponent<BasicEnemy>().CanShoot();
     }
+    [PunRPC]
+    void DeathCanvas(){
+        deathCanvas.SetActive(true);
+    }
 
     [PunRPC]
     void EarthUpdate(int viewID){
@@ -78,6 +90,16 @@ public class Earth : MonoBehaviour
            OnEarthHit?.PlayFeedbacks();
             Destroy(col.gameObject);
             healthBar.Minus10Percent();
+    }
+
+    [PunRPC]
+    void SuicideDamage( int viewID){
+        PhotonView col = PhotonView.Find(viewID);
+        OnEarthHit?.PlayFeedbacks();
+        col.gameObject.SetActive(false);
+        healthBar.Minus10Percent();
+            // queue explosion/camera shake 
+            earthHealth = earthHealth - col.gameObject.GetComponent<BasicEnemy>().SuicideDamage();
     }
 
     
