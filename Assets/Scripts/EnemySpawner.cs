@@ -204,8 +204,10 @@ public class EnemySpawner : MonoBehaviour
             GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy();
             if(obj == null) return;   
             
-            if(PhotonNetwork.OfflineMode)
+            if(PhotonNetwork.OfflineMode){
+            obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             obj.SetActive(true);
+            }
             else{
             this.GetComponent<PhotonView>().RPC("EnableSuicides", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             }

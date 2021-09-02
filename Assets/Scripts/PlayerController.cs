@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviourPun
         public GameObject DeathCanvas;
         
         MMFeedbacks _currentShotFeedback;
+        public GameObject StartButton;
         
         void Start(){
             _currentShotFeedback = tier1Shot;
