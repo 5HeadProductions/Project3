@@ -52,6 +52,7 @@ public class TurretBehavior : MonoBehaviourPun
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if(PhotonNetwork.IsMasterClient){
             canShoot = true;
+            
         }
     }
     

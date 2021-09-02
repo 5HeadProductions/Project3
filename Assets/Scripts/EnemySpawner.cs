@@ -203,14 +203,20 @@ public class EnemySpawner : MonoBehaviour
     public void SuicideEnemies(){  // enables the suicide ships across from the spawn position of the basic enemy
             GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy();
             if(obj == null) return;   
-            obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            
             if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
             else{
             this.GetComponent<PhotonView>().RPC("EnableSuicides", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             }
+
+            if(PhotonNetwork.OfflineMode){
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization(); // needed to play next feedback
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks(); // resetting their color, both feedbacks needed "Allow additive plays"
+            }
+            else{
+                this.gameObject.GetComponent<PhotonView>().RPC("PlayFeedbacks", RpcTarget.All, obj.GetComponent<PhotonView>().ViewID);
+            }
             suicideEnemySpawnTracker ++;
             }
     public void BasicEnemies(){ // enables the basic ship        
@@ -264,6 +270,7 @@ public class EnemySpawner : MonoBehaviour
         PhotonView targetPhotonView = PhotonView.Find(targetViewID);
             if(targetPhotonView != null){
                 targetPhotonView.gameObject.SetActive(true);
+                targetPhotonView.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             }  
     }
 

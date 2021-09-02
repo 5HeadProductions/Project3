@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviourPun
         [SerializeField] KeyCode turretSpawner; // set in the inspector 
         [SerializeField] KeyCode pauseButton;
         public PlayerCoins PlayerCoins;
-        [SerializeField] GameObject _pauseCanvas;
+        public GameObject _pauseCanvas;
 
         [Header("FeedBacks")]
         [SerializeField] MMFeedbacks tier1Shot;
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviourPun
             if(SceneManager.GetActiveScene().name == "HowToPlay"){
                 _pauseCanvas.SetActive(false);
             }
-            PlayerCoins = GameObject.Find("GameManager").GetComponent<PlayerCoins>();
+            
 
             
             
