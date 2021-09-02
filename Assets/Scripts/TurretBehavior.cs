@@ -99,13 +99,6 @@ public class TurretBehavior : MonoBehaviourPun
         
     }
 
-    [PunRPC]
-    void TimeUpdate(){
-        
-        
-        Debug.Log("timeUntilAttack" + _timeUntilAttack + "Time: " + Time.time);
-    }
-
     void OnDrawGizmos(){
         Gizmos.DrawWireSphere(aimArea.transform.position, _currentTurret.range);
     }
