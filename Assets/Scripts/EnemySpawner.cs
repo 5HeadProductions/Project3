@@ -87,7 +87,7 @@ public class EnemySpawner : MonoBehaviour
             }
                 if(currentWave.waveNum == 20){
                     if(activeEnemies.Length == 0 && activeSuicides.Length == 0 && activeBosses.Length == 0){
-                        if(Photonnetwork.OfflineMode){
+                        if(PhotonNetwork.OfflineMode){
                             StartCoroutine(Delay());
                         }else{
                             this.GetComponent<PhotonView>().RPC("SpawnWinCanvas", RpcTarget.All);

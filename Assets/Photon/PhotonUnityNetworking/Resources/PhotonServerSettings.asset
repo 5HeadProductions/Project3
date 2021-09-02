@@ -75,6 +75,7 @@ MonoBehaviour:
   - UpdateCooldown
   - TimeUpdate
   - EnableSuicides
+  - SpawnWinCanvas
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
