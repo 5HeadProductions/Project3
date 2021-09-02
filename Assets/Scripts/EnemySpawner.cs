@@ -209,8 +209,14 @@ public class EnemySpawner : MonoBehaviour
             else{
             this.GetComponent<PhotonView>().RPC("EnableSuicides", RpcTarget.AllBuffered,obj.GetComponent<PhotonView>().ViewID);
             }
+
+            if(PhotonNetwork.OfflineMode){
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization(); // needed to play next feedback
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks(); // resetting their color, both feedbacks needed "Allow additive plays"
+            }
+            else{
+                this.gameObject.GetComponent<PhotonView>().RPC("PlayFeedbacks", RpcTarget.All, obj.GetComponent<PhotonView>().ViewID);
+            }
             suicideEnemySpawnTracker ++;
             }
     public void BasicEnemies(){ // enables the basic ship        
