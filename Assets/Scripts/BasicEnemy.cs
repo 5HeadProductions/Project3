@@ -20,6 +20,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void OnEnable(){ // killing the enemy after it has been alive for a number of time
         Invoke("Dead", 60);
+        startTime  = Time.time + enemyStats.fireRate;
     }
     public void Dead(){
         canShoot = false;
