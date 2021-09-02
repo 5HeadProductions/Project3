@@ -16,7 +16,7 @@ public class StartRound : MonoBehaviour
     EnemySpawner.Instance.BeginRound();
     }
     else{
-      this.GetComponent<PhotonView>().RPC("OnlineStartR",RpcTarget.All);
+      this.GetComponent<PhotonView>().RPC("OnlineStartR",RpcTarget.MasterClient);
       this.GetComponent<PhotonView>().RPC("BeginRound", RpcTarget.MasterClient);
     }
   }
