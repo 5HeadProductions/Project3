@@ -29,6 +29,7 @@ public class EnemyProjectile : MonoBehaviour
                 }
                 else{
                     this.GetComponent<PhotonView>().RPC("DestroyGameObject", RpcTarget.AllBuffered, col.gameObject.GetComponent<PhotonView>().ViewID);
+                    this.GetComponent<PhotonView>().RPC("DestroyGameObject", RpcTarget.AllBuffered, this.gameObject.GetComponent<PhotonView>().ViewID);
                 }
         }
     }
