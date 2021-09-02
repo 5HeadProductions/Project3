@@ -203,7 +203,7 @@ public class EnemySpawner : MonoBehaviour
     public void SuicideEnemies(){  // enables the suicide ships across from the spawn position of the basic enemy
             GameObject obj = SuicidePooler._Instance.SpawnSuiEnemy();
             if(obj == null) return;   
-            obj.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
+            
             if(PhotonNetwork.OfflineMode)
             obj.SetActive(true);
             else{
@@ -264,6 +264,7 @@ public class EnemySpawner : MonoBehaviour
         PhotonView targetPhotonView = PhotonView.Find(targetViewID);
             if(targetPhotonView != null){
                 targetPhotonView.gameObject.SetActive(true);
+                targetPhotonView.transform.position = new Vector3 (-enemySpawner.transform.position.x, -enemySpawner.transform.position.y, enemySpawner.transform.position.z);
             }  
     }
 
