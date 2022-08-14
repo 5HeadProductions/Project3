@@ -89,20 +89,24 @@ namespace MoreMountains.Feedbacks
         /// <param name="owner"></param>
         protected override void CustomInitialization(GameObject owner)
         {
-            base.CustomInitialization(owner);
-            if (PlayMethod == PlayMethods.Cached)
+            if(owner.activeSelf == true)
             {
-                _cachedAudioSource = CreateAudioSource(owner, "CachedFeedbackAudioSource");
-            }
-            if (PlayMethod == PlayMethods.Pool)
-            {
-                // create a pool
-                _pool = new AudioSource[PoolSize];
-                for (int i = 0; i < PoolSize; i++)
+                base.CustomInitialization(owner);
+                if (PlayMethod == PlayMethods.Cached)
                 {
-                    _pool[i] = CreateAudioSource(owner, "PooledAudioSource"+i);
+                    _cachedAudioSource = CreateAudioSource(owner, "CachedFeedbackAudioSource");
+                }
+                if (PlayMethod == PlayMethods.Pool)
+                {
+                    // create a pool
+                    _pool = new AudioSource[PoolSize];
+                    for (int i = 0; i < PoolSize; i++)
+                    {
+                        _pool[i] = CreateAudioSource(owner, "PooledAudioSource" + i);
+                    }
                 }
             }
+ 
         }
 
         protected virtual AudioSource CreateAudioSource(GameObject owner, string audioSourceName)

@@ -85,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
                 
                 }
             }
-                if(currentWave.waveNum == 20){
+                if(currentWave.waveNum == 10){
                     if(activeEnemies.Length == 0 && activeSuicides.Length == 0 && activeBosses.Length == 0){
                         if(PhotonNetwork.OfflineMode){
                             StartCoroutine(Delay());
@@ -130,15 +130,17 @@ public class EnemySpawner : MonoBehaviour
                 }
                 if(enemiesToSpawn % 2 == 0){
                     //evenly spawn basic and suicide ships
-                     totalBasicEnemiesToSpawn = enemiesToSpawn / 2;
-                     totalSuicideEnemiesToSpawn = enemiesToSpawn / 2; 
+                    //totalBasicEnemiesToSpawn = enemiesToSpawn / 2;
+                    //totalSuicideEnemiesToSpawn = enemiesToSpawn / 2; 
 
-                     //stoping the spawning of more enemies than specified
-                     if(basicEnemySpawnTracker <= totalBasicEnemiesToSpawn) BasicEnemies();
-                     
-                    if(suicideEnemySpawnTracker <= totalSuicideEnemiesToSpawn)SuicideEnemies();
-                    
-                 }
+                    //stoping the spawning of more enemies than specified
+                    //if(basicEnemySpawnTracker <= totalBasicEnemiesToSpawn) BasicEnemies();
+                    BasicEnemies();
+
+                    // if(suicideEnemySpawnTracker <= totalSuicideEnemiesToSpawn)SuicideEnemies();
+                    SuicideEnemies();
+
+                }
                     currentWave.numOfEnemies = currentWave.numOfEnemies - 2;
                     if(currentWave.numOfEnemies == 0)canSpawn = false;
             }else{
@@ -253,6 +255,7 @@ public class EnemySpawner : MonoBehaviour
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.Initialization();
             obj.GetComponent<BasicEnemy>().onSpawnFeedback?.PlayFeedbacks();
             }
+            else
             this.gameObject.GetComponent<PhotonView>().RPC("PlayFeedbacks", RpcTarget.All, obj.GetComponent<PhotonView>().ViewID);
             obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             bossCount++;

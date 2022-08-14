@@ -48,7 +48,11 @@ public class BasicEnemy : MonoBehaviour
     transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward); // 90 is added to the angle bc 
     if(this.gameObject.activeInHierarchy && canShoot == true){
         if(Time.time > startTime){
-            enemyShootingSound?.PlayFeedbacks();
+            if(this.gameObject.activeInHierarchy == true)
+                {
+                    enemyShootingSound?.PlayFeedbacks();
+                }
+            
             Fire();
             startTime = Time.time + enemyStats.fireRate;
             }

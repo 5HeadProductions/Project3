@@ -119,14 +119,11 @@ public class TurretBehavior : MonoBehaviourPun
             // destroying bullet and turret over the network
             this.GetComponent<PhotonView>().RPC("DisableTurret", RpcTarget.All, this.gameObject.GetComponent<PhotonView>().ViewID);
             this.GetComponent<PhotonView>().RPC("DisableEnemyShip", RpcTarget.All, other.gameObject.GetComponent<PhotonView>().ViewID);
-
-
-            
-
             }else{
                 // single player    
                 other.gameObject.SetActive(false);
                 Destroy(this.gameObject);
+                return;
             }
 
         }
@@ -207,16 +204,16 @@ public class TurretBehavior : MonoBehaviourPun
                    Destroy(other.gameObject);
                    }
            }
-           else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
-           other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
-               if(PhotonNetwork.OfflineMode == false)
-                   PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
-                   else{
-                       GameObject.Find("GameManager").GetComponent<PlayerCoins>().AddCoinsToPlayer(_currentTurret.buyCost / 2);
-                   Destroy(other.gameObject);
+           //else if(_currentTurret.turretTier == 2 && (other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 1 ||
+           //other.gameObject.GetComponent<TurretBehavior>()._currentTurret.turretTier == 3)){
+           //    if(PhotonNetwork.OfflineMode == false)
+           //        PlayerController.GetComponent<PhotonView>().RPC("DestroyGameObject",RpcTarget.All,this.gameObject.GetComponent<PhotonView>().ViewID);
+           //        else{
+           //            GameObject.Find("GameManager").GetComponent<PlayerCoins>().AddCoinsToPlayer(_currentTurret.buyCost / 2);
+           //        Destroy(other.gameObject);
 
-                   }
-           }
+           //        }
+           //}
 
         }
     }

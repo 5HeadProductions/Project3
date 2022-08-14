@@ -216,7 +216,10 @@ namespace MoreMountains.Feedbacks
         /// </summary>
         public virtual void PlayFeedbacks()
         {
-            StartCoroutine(PlayFeedbacksInternal(this.transform.position, FeedbacksIntensity));
+            if(this.gameObject.activeInHierarchy == true)
+            {
+                StartCoroutine(PlayFeedbacksInternal(this.transform.position, FeedbacksIntensity));
+            }
         }
 
         /// <summary>
